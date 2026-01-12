@@ -82,7 +82,7 @@ const GlobalPlacement: React.FC = () => {
               <img
                 src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762413812/ChatGPT_Image_Nov_6_2025_12_53_13_PM_ngcmc0.png"
                 alt="World map showing placement regions"
-                className="h-full rounded-2xl ring-2 ring-red-600 object-contain"
+                className="h-full rounded-2xl ring-2 ring-purple-600 object-contain"
               />
             </div>
           </div>

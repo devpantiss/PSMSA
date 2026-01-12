@@ -24,6 +24,10 @@ import TrainingCentersPage from "./pages/TrainingCentersPage";
 import CampusLife from "./pages/CampusLife";
 import Labs from "./pages/Labs";
 import Courses from "./pages/Courses";
+import Collaborations from "./pages/Collaborations";
+import ITIPage from "./pages/Programmes/ITIPage";
+import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
+import WorkIntegratedTrainingPage from "./pages/Programmes/WorkIntegratedTrainingPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -40,6 +44,7 @@ function LayoutWrapper() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/placements" element={<Collaborations />} />
         <Route path="/our-programmes" element={<AllProgramsPage />} />
         <Route path="/contact-us" element={<ContactPage/>} />
         <Route path="/events" element={<EventsPage/>} />
@@ -48,6 +53,9 @@ function LayoutWrapper() {
         <Route path="/our-programmes/diploma-programs" element={<DiplomaAndAdvancedDiplomaPage />} />
         <Route path="/our-programmes/upskilling-and-reskilling-program" element={<UpskillingAndReskillingPage />} />
         <Route path="/our-programmes/industry-alligned-certification" element={<IndustryAllignedCertificationPage />} />
+        <Route path="/our-programmes/iti-program" element={<ITIPage />} />
+        <Route path="/our-programmes/advanced-diploma-program" element={<AdvancedDiplomaPage />} />
+        <Route path="/our-programmes/work-integrated-training-program" element={<WorkIntegratedTrainingPage />} />
         <Route path="/academics/our-departments" element={<DepartmentsPage />} />
         <Route path="/academics/our-curriculum" element={<CurriculumPage />} />
         <Route path="/academics/academic-calender" element={<AcademicCalendarPage />} />

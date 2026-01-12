@@ -107,46 +107,50 @@ const ProgramCard: React.FC<ProgramCardProps> = ({ program }) => {
 
 // -------------------------- Page Sections -------------------------
 const HeroSection: React.FC = () => (
-  <section className="relative bg-black h-[80vh] text-white py-24 mt-28">
-    {/* Background Image */}
-    <img
-      src="https://res.cloudinary.com/djtzx6wo7/image/upload/v1761228314/artyom-korshunov-NWByxwVN-J0-unsplash_1_qznmdv.jpg"
-      alt="Industrial Training"
-      className="absolute inset-0 w-full h-full object-cover"
+  <section className="relative h-[80vh] mt-28 overflow-hidden text-white">
+    {/* Parallax Background */}
+    <div
+      className="absolute inset-0 bg-cover bg-center bg-fixed"
+      style={{
+        backgroundImage:
+          "url('/curriculum_hero.jpg')",
+      }}
     />
 
     {/* Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/30" />
 
     {/* Content */}
-    <div className="relative max-w-6xl mx-auto px-6 md:px-12 text-center">
-      <motion.span
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="inline-block px-4 py-1 bg-purple-600/20 text-purple-400 text-sm font-medium rounded-full"
-      >
-        Curriculum
-      </motion.span>
+    <div className="relative z-10 h-full flex items-center">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 text-center">
+        <motion.span
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-block px-4 py-1 bg-purple-600/20 text-purple-400 text-sm font-medium rounded-full"
+        >
+          Curriculum
+        </motion.span>
 
-      <motion.h1
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="mt-5 text-4xl md:text-6xl font-extrabold leading-tight"
-      >
-        Comprehensive Industrial Training Programmes
-      </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mt-5 text-4xl md:text-6xl font-extrabold leading-tight"
+        >
+          Comprehensive Industrial Training Programmes
+        </motion.h1>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="mt-6 text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
-      >
-        Hands-on, industry-aligned training across Mining, Fabrication,
-        Electrical, Mechanical, HEMM, and Foundry — featuring fleet practice,
-        AR/VR simulations, and employability-driven skill development.
-      </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-6 text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+        >
+          Hands-on, industry-aligned training across Mining, Fabrication,
+          Electrical, Mechanical, HEMM, and Foundry — featuring fleet practice,
+          AR/VR simulations, and employability-driven skill development.
+        </motion.p>
+      </div>
     </div>
   </section>
 );

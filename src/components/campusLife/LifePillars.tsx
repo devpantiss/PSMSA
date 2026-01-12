@@ -31,7 +31,7 @@ const LifePillars = () => (
           key={title}
           className="border border-zinc-800 rounded-xl p-6 bg-zinc-900/40"
         >
-          <Icon className="w-8 h-8 text-red-500 mb-4" />
+          <Icon className="w-8 h-8 text-purple-500 mb-4" />
           <h3 className="font-semibold text-lg">{title}</h3>
           <p className="text-sm text-neutral-400 mt-2">{desc}</p>
         </div>

@@ -27,7 +27,7 @@ const EventCard: React.FC<{ event: AcademicEvent }> = ({ event }) => {
   const typeColors: Record<AcademicEvent["type"], string> = {
     semester: "from-green-400 to-teal-500",
     holiday: "from-yellow-400 to-orange-400",
-    exam: "from-red-500 to-pink-500",
+    exam: "from-purple-500 to-pink-500",
     training: "from-purple-500 to-fuchsia-400",
     orientation: "from-blue-500 to-purple-500",
     event: "from-cyan-400 to-sky-600",

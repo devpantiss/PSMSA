@@ -18,20 +18,41 @@ interface Student {
 
 const statsData: Stat[] = [
   { value: "50+", description: "Recruiters partnered with Pantiss" },
-  { value: "120+", description: "Job offers in Mining, Shipping, Power & Infrastructure" },
+  {
+    value: "120+",
+    description: "Job offers in Mining, Shipping, Power & Infrastructure",
+  },
   { value: "₹3L", description: "Average salary of top 25% placed students" },
   { value: "20+", description: "Global companies hiring Pantiss graduates" },
   { value: "100+", description: "Students placed at packages above ₹3.5 Lakh" },
 ];
 
 const companiesData: Company[] = [
-  { name: "Vedanta Resources", logo: "/homepage/companies/vedanta-removebg-preview.png" },
+  {
+    name: "Vedanta Resources",
+    logo: "/homepage/companies/vedanta-removebg-preview.png",
+  },
   { name: "Tata Steel", logo: "/homepage/companies/Tata_Steel_Logo.png" },
-  { name: "Wistron", logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163688/pngegg_4_zq8y0w.png" },
-  { name: "Jindal Steel & Power", logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png" },
-  { name: "Dhoot Transmission", logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163613/dhoot-trans-removebg-preview_rz6kgo.png" },
-  { name: "Schneider Electric", logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png" },
-  { name: "FleetGuard", logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png" },
+  {
+    name: "Wistron",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163688/pngegg_4_zq8y0w.png",
+  },
+  {
+    name: "Jindal Steel & Power",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+  },
+  {
+    name: "Dhoot Transmission",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163613/dhoot-trans-removebg-preview_rz6kgo.png",
+  },
+  {
+    name: "Schneider Electric",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+  },
+  {
+    name: "FleetGuard",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+  },
 ];
 
 const studentsData: Student[] = [
@@ -45,55 +66,68 @@ const studentsData: Student[] = [
     name: "Ranjita Gochayat",
     batch: "Batch 2023",
     package: "₹3.5 Lac.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163947/student-6_ls3cpe.jpg",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163947/student-6_ls3cpe.jpg",
   },
   {
     name: "Nabjyoti Nayak",
     batch: "Batch 2024",
     package: "₹3.5 Lac.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163909/student-5_duxroz.jpg",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163909/student-5_duxroz.jpg",
   },
   {
     name: "Manoj Kumar Kisan",
     batch: "Batch 2024",
     package: "₹3 Lac.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163916/student-4_p3zw09.jpg",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163916/student-4_p3zw09.jpg",
   },
   {
     name: "Kanha Raula",
     batch: "Batch 2024",
     package: "₹2.8 Lac.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163900/student-3_tzesxw.jpg",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163900/student-3_tzesxw.jpg",
   },
   {
     name: "Subham Majhi",
     batch: "Batch 2025",
     package: "₹2.8 Lac.",
-    image: "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746000304/student-2_dw91lt.jpg",
+    image:
+      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746000304/student-2_dw91lt.jpg",
   },
   {
     name: "Chandan Sahoo",
     batch: "Batch 2025",
     package: "₹2.64 Lac.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163871/student-1_fbrzzd.jpg",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163871/student-1_fbrzzd.jpg",
   },
 ];
 
 const StatCard = memo(({ stat, index }: { stat: Stat; index: number }) => (
   <article
-    className="bg-gray-950/90 p-6 sm:p-8 rounded-xl border border-green-600/50 hover:scale-102 hover:ring-2 hover:ring-green-600/70 transition-all duration-300 text-center"
+    className="bg-gray-950/90 p-6 sm:p-8 rounded-xl border border-green-600/50 text-center"
     role="article"
     tabIndex={0}
     aria-describedby={`stat-details-${index}`}
   >
-    <h3 className="text-2xl sm:text-5xl font-extrabold text-green-300">{stat.value}</h3>
-    <p id={`stat-details-${index}`} className="text-sm sm:text-base text-gray-200 mt-3 line-clamp-2">{stat.description}</p>
+    <h3 className="text-2xl sm:text-5xl font-extrabold text-green-300">
+      {stat.value}
+    </h3>
+    <p
+      id={`stat-details-${index}`}
+      className="text-sm sm:text-base text-gray-200 mt-3 line-clamp-2"
+    >
+      {stat.description}
+    </p>
   </article>
 ));
 
 const CompanyLogo = memo(({ company }: { company: Company; index: number }) => (
   <article
-    className="flex-shrink-0 w-40 sm:w-44 bg-gray-900/50 rounded-lg ring-2 ring-green-600/50 hover:ring-2 hover:ring-green-600/70 filter grayscale hover:grayscale-0 transition-all duration-300 flex flex-col items-center justify-center p-4 mx-2"
+    className="flex-shrink-0 w-40 sm:w-44 bg-gray-900/50 rounded-lg ring-1 ring-green-600/50 flex flex-col items-center justify-center p-4 mx-2"
     role="article"
     tabIndex={0}
     aria-label={`Logo of ${company.name}`}
@@ -105,29 +139,37 @@ const CompanyLogo = memo(({ company }: { company: Company; index: number }) => (
       loading="lazy"
       decoding="async"
     />
-    <p className="text-base font-semibold text-gray-100 mt-2 line-clamp-1">{company.name}</p>
+    <p className="text-base font-semibold text-gray-100 mt-2 line-clamp-1">
+      {company.name}
+    </p>
   </article>
 ));
 
-const StudentCard = memo(({ student, index }: { student: Student; index: number }) => (
-  <article
-    className="flex-shrink-0 w-64 sm:w-72 bg-gray-900/50 rounded-xl ring-2 ring-green-600/50 hover:scale-102 hover:ring-2 hover:ring-green-600/70 filter grayscale hover:grayscale-0 transition-all duration-300 text-center p-4 sm:p-6 mx-2"
-    role="article"
-    tabIndex={0}
-    aria-describedby={`student-details-${index}`}
-  >
-    <img
-      src={student.image}
-      alt={`${student.name} profile`}
-      className="w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover mx-auto mb-4 border-2 border-green-600"
-      loading="lazy"
-      decoding="async"
-    />
-    <h4 className="text-lg sm:text-xl font-bold text-gray-100">{student.name}</h4>
-    <p id={`student-details-${index}`} className="text-sm text-gray-200">{student.batch}</p>
-    <p className="text-green-600 font-bold mt-2">{student.package}</p>
-  </article>
-));
+const StudentCard = memo(
+  ({ student, index }: { student: Student; index: number }) => (
+    <article
+      className="flex-shrink-0 w-64 sm:w-72 bg-gray-900/50 rounded-xl ring-1 ring-green-600/50 text-center p-4 sm:p-6 mx-2"
+      role="article"
+      tabIndex={0}
+      aria-describedby={`student-details-${index}`}
+    >
+      <img
+        src={student.image}
+        alt={`${student.name} profile`}
+        className="w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover mx-auto mb-4 border-2 border-green-600"
+        loading="lazy"
+        decoding="async"
+      />
+      <h4 className="text-lg sm:text-xl font-bold text-gray-100">
+        {student.name}
+      </h4>
+      <p id={`student-details-${index}`} className="text-sm text-gray-200">
+        {student.batch}
+      </p>
+      <p className="text-green-600 font-bold mt-2">{student.package}</p>
+    </article>
+  )
+);
 
 const PlacementsSection: React.FC = () => {
   const companiesList = useMemo(() => [...companiesData, ...companiesData], []);
@@ -155,12 +197,16 @@ const PlacementsSection: React.FC = () => {
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold text-green-700 uppercase tracking-wider">Placements & Careers</h2>
+          <h2 className="text-sm font-semibold text-green-700 uppercase tracking-wider">
+            Placements & Careers
+          </h2>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white mt-2">
-            Glance at the <span className="text-green-600">Top Companies</span> Hiring from Us
+            Glance at the <span className="text-green-600">Top Companies</span>{" "}
+            Hiring from Us
           </h1>
           <p className="text-lg text-gray-200 mt-4 max-w-3xl mx-auto">
-            Skilling Revolution Starts at Us: Exceptional Placements for 2021-2025 Batches
+            Skilling Revolution Starts at Us: Exceptional Placements for
+            2021-2025 Batches
           </p>
         </div>
 
@@ -181,13 +227,19 @@ const PlacementsSection: React.FC = () => {
             aria-label="Scrolling company logos"
           >
             {companiesList.map((company, i) => (
-              <CompanyLogo key={`${company.name}-${i}`} company={company} index={i} />
+              <CompanyLogo
+                key={`${company.name}-${i}`}
+                company={company}
+                index={i}
+              />
             ))}
           </Marquee>
         </div>
 
         <div className="text-center mb-8">
-          <h3 className="text-2xl sm:text-3xl font-bold text-gray-50">Students Getting Highest Packages</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-50">
+            Students Getting Highest Packages
+          </h3>
         </div>
 
         <Marquee
@@ -198,7 +250,11 @@ const PlacementsSection: React.FC = () => {
           aria-label="Scrolling student profiles"
         >
           {studentsList.map((student, i) => (
-            <StudentCard key={`${student.name}-${i}`} student={student} index={i} />
+            <StudentCard
+              key={`${student.name}-${i}`}
+              student={student}
+              index={i}
+            />
           ))}
         </Marquee>
 

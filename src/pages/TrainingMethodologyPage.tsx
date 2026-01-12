@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ScrollLockedTrainingProcess from "../components/methodology/ScrollLockedTrainingProcess";
 
 // Reusable section title component
 const SectionTitle: React.FC<{ title: string; subtitle?: string }> = ({
@@ -8,7 +9,9 @@ const SectionTitle: React.FC<{ title: string; subtitle?: string }> = ({
 }) => (
   <div className="text-center mb-12">
     <h2 className="text-3xl md:text-4xl font-bold text-green-500">{title}</h2>
-    {subtitle && <p className="text-gray-300 mt-2 max-w-2xl mx-auto">{subtitle}</p>}
+    {subtitle && (
+      <p className="text-gray-300 mt-2 max-w-2xl mx-auto">{subtitle}</p>
+    )}
   </div>
 );
 
@@ -16,13 +19,19 @@ const TrainingMethodologyPage: React.FC = () => {
   return (
     <main className="bg-black text-white mt-32 overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-32 h-[90vh] flex items-center justify-center text-center">
-        <img
-          src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1742816194/2cf04226-46c3-4820-90e4-61a001350d8b_jkt1vh.jpg"
-          alt="Training Methodology"
-          className="absolute inset-0 w-full h-full object-cover"
+      <section className="relative h-[80vh] overflow-hidden flex items-center justify-center text-center">
+        {/* Parallax Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{
+            backgroundImage: "url('/methodology_hero.jpg')",
+          }}
         />
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/20" />
+
+        {/* Content */}
         <div className="relative z-10 max-w-4xl px-6">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -32,10 +41,11 @@ const TrainingMethodologyPage: React.FC = () => {
           >
             Learning by Doing — The Pantiss Way
           </motion.h1>
+
           <p className="text-gray-200 text-lg md:text-xl">
-            Our methodology integrates hands-on training, AR/VR modules, simulation-based
-            learning, and live industry exposure to ensure every learner becomes truly
-            job-ready.
+            Our methodology integrates hands-on training, AR/VR modules,
+            simulation-based learning, and live industry exposure to ensure
+            every learner becomes truly job-ready.
           </p>
         </div>
       </section>
@@ -46,19 +56,23 @@ const TrainingMethodologyPage: React.FC = () => {
           title="Our Training Philosophy"
           subtitle="Rooted in practice, powered by technology, and aligned with industry."
         />
+
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto px-6">
           {[
             {
               title: "Hands-on Learning",
               desc: "80% of the training happens in live workshops, labs, and yards, giving learners real exposure to machines, materials, and environments.",
+              image: "/methodology/training.jpg",
             },
             {
               title: "Industry Integration",
               desc: "Our programmes are co-designed with industry partners ensuring alignment with real job roles and market expectations.",
+              image: "/methodology/ndustry.jpg",
             },
             {
               title: "Continuous Assessment",
               desc: "Learners are evaluated through daily performance tracking, task-based assessments, and practical demonstrations.",
+              image: "/methodology/assessment.jpg",
             },
           ].map((item, i) => (
             <motion.div
@@ -67,19 +81,35 @@ const TrainingMethodologyPage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
-              className="bg-black/50 border border-purple-600/30 rounded-2xl p-6 hover:bg-purple-900/20 transition"
+              className="relative rounded-2xl overflow-hidden h-[250px] border border-purple-600/30"
             >
-              <h3 className="text-green-500 text-xl font-semibold mb-3">
-                {item.title}
-              </h3>
-              <p className="text-gray-300 text-sm">{item.desc}</p>
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${item.image})` }}
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/10" />
+
+              {/* Content */}
+              <div className="relative z-10 p-8">
+                <h3 className="text-green-500 text-xl font-semibold mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-200 text-sm leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
       </section>
 
+      <ScrollLockedTrainingProcess />
+
       {/* Step-by-Step Process */}
-      <section className="py-20 bg-black">
+      {/* <section className="py-20 bg-black">
         <SectionTitle
           title="Our Training Process"
           subtitle="A structured journey from fundamentals to field readiness."
@@ -129,7 +159,7 @@ const TrainingMethodologyPage: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Technology Integration */}
       <section className="py-20 bg-gradient-to-b from-black via-purple-950 to-black">
@@ -205,7 +235,7 @@ const TrainingMethodologyPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-purple-800 to-green-600 py-16 text-center">
+      <section className="bg-gradient-to-r from-black via-purple-900 to-black py-16 text-center">
         <h2 className="text-3xl font-bold text-white mb-4">
           Ready to Experience the Pantiss Methodology?
         </h2>

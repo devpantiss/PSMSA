@@ -1,4 +1,5 @@
 import React, { memo, useMemo, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Define the Program interface
 interface Program {
@@ -193,9 +194,9 @@ const ProgramPreview: React.FC = () => {
 
       {/* CTA */}
       <div className="text-center mt-10">
-        <button className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-purple-700 transition-colors duration-300">
+        <Link to="/our-programmes" className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-purple-700 transition-colors duration-300">
           Explore Programs
-        </button>
+        </Link>
       </div>
     </section>
   );

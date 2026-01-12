@@ -17,7 +17,7 @@ const HeroSection = () => (
       {/* Content */}
       <div className="relative z-10 h-full flex items-center px-6">
         <div className="max-w-5xl mx-auto">
-          <p className="uppercase tracking-widest text-sm text-red-500 mb-4">
+          <p className="uppercase tracking-widest text-sm text-purple-500 mb-4">
             Pantiss School for Mines, Steel & Aluminium
           </p>
   

@@ -32,12 +32,12 @@ const navLinks: NavLink[] = [
     description:
       "Welcome to Pantiss Skill University, the next-generation hub for blue-collar skills and upward mobility in India. Uniting expertise, innovation, and social upliftment.",
   },
-  // {
-  //   name: "About",
-  //   path: "/about",
-  //   description:
-  //     "Discover our mission to empower India's workforce through world-class training, impactful industry engagement, and transformative student journeys. At PSU, we set audacious goals and lead with purpose.",
-  // },
+  {
+    name: "About",
+    path: "/about",
+    description:
+      "Discover our mission to empower India's workforce through world-class training, impactful industry engagement, and transformative student journeys. At PSU, we set audacious goals and lead with purpose.",
+  },
   // {
   //   name: "Programs",
   //   description:
@@ -86,11 +86,11 @@ const navLinks: NavLink[] = [
     description:
       "Explore our academic framework, schools, curriculum, and academic resources.",
     subLinks: [
-      {
-        name: "Departments",
-        path: "/academics/our-departments",
-        description: "Explore specialized schools across PSU.",
-      },
+      // {
+      //   name: "Departments",
+      //   path: "/academics/our-departments",
+      //   description: "Explore specialized schools across PSU.",
+      // },
       {
         name: "Curriculum",
         path: "/academics/our-curriculum",
@@ -101,14 +101,24 @@ const navLinks: NavLink[] = [
       //   path: "/academics/academic-calender",
       //   description: "Stay updated with important academic dates.",
       // },
-      {
-        name: "Faculties",
-        path: "/academics/faculties",
-        description: "Stay updated with important academic dates.",
-      },
+      // {
+      //   name: "Faculties",
+      //   path: "/academics/faculties",
+      //   description: "Stay updated with important academic dates.",
+      // },
       {
         name: "Courses",
-        path: "/academics/courses",
+        path: "/our-programmes",
+        description: "Stay updated with Courses.",
+      },
+      {
+        name: "Statutory & Safety Compliance",
+        path: "#",
+        description: "Stay updated with Courses.",
+      },
+      {
+        name: "Research ESG & Knowledge Hub",
+        path: "#",
         description: "Stay updated with Courses.",
       },
       {

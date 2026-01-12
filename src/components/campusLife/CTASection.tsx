@@ -12,7 +12,7 @@ const CTASection = () => (
 
     <Link
       to="/apply"
-      className="inline-block mt-8 px-8 py-4 bg-red-600 rounded-xl font-semibold hover:scale-105 transition"
+      className="inline-block mt-8 px-8 py-4 bg-purple-600 rounded-xl font-semibold hover:scale-105 transition"
     >
       Apply Now
     </Link>

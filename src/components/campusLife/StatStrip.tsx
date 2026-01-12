@@ -10,7 +10,7 @@ const stats = [
       <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-10 text-center">
         {stats.map((s) => (
           <div key={s.label}>
-            <p className="text-3xl font-semibold text-red-600">
+            <p className="text-3xl font-semibold text-purple-600">
               {s.value}
             </p>
             <p className="mt-2 text-sm text-neutral-400">
