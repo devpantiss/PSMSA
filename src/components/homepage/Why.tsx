@@ -58,7 +58,7 @@ export default function Why() {
   }, []);
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden">
+    <div className="relative w-full h-[550px] overflow-hidden">
       {/* Background Image Slider */}
       {slides.map((src, idx) => (
         <motion.img

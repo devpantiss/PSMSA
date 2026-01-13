@@ -11,34 +11,34 @@ interface Program {
 
 // Static program data
 const programData: Program[] = [
-  {
-    title: "Bachelors in Mining (UG)",
-    description:
-      "Blends classroom learning with hands-on industry training to prepare students for practical roles in mining, steel, and aluminium sectors.",
-    image: "/homepage/Programs/bachelors_in_mining.png",
-    duration: "48 months",
-  },
-  {
-    title: "Industrial Training Institution (ITI)",
-    description:
-      "Industry-designed certifications focused on high employability, aligning skills directly with employer requirements.",
-      image: "/homepage/Programs/apprenticeship.png",
-      duration: "12-24 months",
-  },
-  {
-    title: "Diploma/Polytechnic",
-    description:
-      "Blends classroom learning with hands-on industry training to prepare students for practical roles in mining, steel, and aluminium sectors.",
-      image: "/homepage/Programs/diploma.png",
-      duration: "6-24 months",
-  },
-  {
-    title: "Industry Aligned Certification",
-    description:
-      "Industry-designed certifications focused on high employability, aligning skills directly with employer requirements.",
-    image: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1758377339/industry_gixjl2.jpg",
-    duration: "3-6 months",
-  },
+  // {
+  //   title: "Bachelors in Mining (UG)",
+  //   description:
+  //     "Blends classroom learning with hands-on industry training to prepare students for practical roles in mining, steel, and aluminium sectors.",
+  //   image: "/homepage/Programs/bachelors_in_mining.png",
+  //   duration: "48 months",
+  // },
+  // {
+  //   title: "Industrial Training Institution (ITI)",
+  //   description:
+  //     "Industry-designed certifications focused on high employability, aligning skills directly with employer requirements.",
+  //     image: "/homepage/Programs/apprenticeship.png",
+  //     duration: "12-24 months",
+  // },
+  // {
+  //   title: "Diploma/Polytechnic",
+  //   description:
+  //     "Blends classroom learning with hands-on industry training to prepare students for practical roles in mining, steel, and aluminium sectors.",
+  //     image: "/homepage/Programs/diploma.png",
+  //     duration: "6-24 months",
+  // },
+  // {
+  //   title: "Industry Aligned Certification",
+  //   description:
+  //     "Industry-designed certifications focused on high employability, aligning skills directly with employer requirements.",
+  //   image: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1758377339/industry_gixjl2.jpg",
+  //   duration: "3-6 months",
+  // },
   {
     title: "Workmen Upskilling & Reskilling Program",
     description:
@@ -162,7 +162,7 @@ const ProgramPreview: React.FC = () => {
       {/* Heading */}
       <div className="text-center mb-12">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Explore Our <span className="text-green-500">Programs</span>
+          Our <span className="text-green-500">Flagship Programs</span>
         </h2>
         <p className="text-gray-400 mt-4 text-lg max-w-3xl mx-auto">
           Empowering students with industry-ready skills through hands-on training and certification programs.

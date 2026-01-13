@@ -1,5 +1,7 @@
 import React, { memo, useMemo } from "react";
 import Marquee from "react-fast-marquee";
+import GlobalPlacement from "./GlobalPlacement";
+import { Link } from "react-router-dom";
 
 interface Stat {
   value: string;
@@ -176,7 +178,7 @@ const PlacementsSection: React.FC = () => {
   const studentsList = useMemo(() => [...studentsData, ...studentsData], []);
 
   return (
-    <section className="relative py-16 overflow-hidden">
+    <section className="relative pt-16 pb-8 overflow-hidden bg-gradient-to-b from-black via-purple-900 to-black">
       {/* Background Video */}
       <video
         autoPlay
@@ -192,10 +194,11 @@ const PlacementsSection: React.FC = () => {
       </video>
 
       {/* Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/85 via-purple-900/30 to-black/85 z-10" />
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/85 via-purple-900/30 to-black/85 z-10" /> */}
+
         <div className="text-center mb-12">
           <h2 className="text-sm font-semibold text-green-700 uppercase tracking-wider">
             Placements & Careers
@@ -257,15 +260,14 @@ const PlacementsSection: React.FC = () => {
             />
           ))}
         </Marquee>
+      </div>
 
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <button
-            className="px-8 py-4 bg-green-500 text-white font-semibold rounded-lg ring-1 ring-green-600/50 hover:bg-green-700 hover:ring-2 hover:ring-green-400/70 focus-visible:ring-2 focus-visible:ring-green-400 transition-all duration-300"
-            aria-label="View placement details"
-          >
-            View Placements
-          </button>
+      <GlobalPlacement />
+
+      {/* CTA */}
+      <div className="text-center bg-transparent flex mt-8 justify-center items-center">
+        <div className="px-8 py-4 bg-green-500 w-[250px] text-white font-semibold rounded-md ring-1 ring-green-600/50 hover:bg-green-700 hover:ring-2 hover:ring-green-400/70 focus-visible:ring-2 focus-visible:ring-green-400 transition-all duration-300">
+          <Link to="/placements">View Placements</Link>
         </div>
       </div>
     </section>

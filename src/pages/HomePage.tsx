@@ -8,8 +8,7 @@ import CampusExperienceSection from "../components/homepage/CampusExperienceSect
 import Why from "../components/homepage/Why";
 import ProgramPreview from "../components/homepage/ProgramPreview";
 import Notices from "../components/homepage/Notices";
-import ImpactSection from "../components/homepage/ImpactSection";
-import GlobalPlacement from "../components/homepage/GlobalPlacement";
+// import ImpactSection from "../components/homepage/ImpactSection";
 
 const HomePage: React.FC = () => {
   return (
@@ -19,9 +18,9 @@ const HomePage: React.FC = () => {
       <Why />
       <ProgramPreview />
       <PlacementsSection />
-      <GlobalPlacement />
+      {/* <GlobalPlacement /> */}
       {/* <OurFuturisticApproach /> */}
-      <ImpactSection />
+      {/* <ImpactSection /> */}
       <FleetSection />
       <Notices />
       <CampusExperienceSection />

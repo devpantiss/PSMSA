@@ -1,4 +1,5 @@
 import React, { memo, useMemo, useEffect, useRef, useState } from "react";
+import OurFuturisticApproach from "./OurFuturisticApproach";
 
 // Define the Vehicle interface
 interface Vehicle {
@@ -17,7 +18,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Volvo 460 Dumper",
     image: "/fleet/volvo-460-tipper.avif",
-    description: "A heavy-duty articulated dumper with a 46-ton capacity, designed for rugged terrains and efficient material transport.",
+    description:
+      "A heavy-duty articulated dumper with a 46-ton capacity, designed for rugged terrains and efficient material transport.",
     registrationNo: "VOL-460-1234",
     assetNo: "A-001",
     engineNo: "ENG-460-7890",
@@ -27,7 +29,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Volvo Excavator",
     image: "/fleet/volvo-excavator.jpg",
-    description: "A versatile EC480 excavator with advanced hydraulics, delivering precision and power for large-scale digging operations.",
+    description:
+      "A versatile EC480 excavator with advanced hydraulics, delivering precision and power for large-scale digging operations.",
     registrationNo: "VOL-EXC-5678",
     assetNo: "A-002",
     engineNo: "ENG-480-2345",
@@ -37,7 +40,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Ace Hydra Crane",
     image: "/fleet/ace-hydra.webp",
-    description: "A mobile hydraulic crane with a 14-ton lifting capacity, ideal for construction and industrial lifting tasks.",
+    description:
+      "A mobile hydraulic crane with a 14-ton lifting capacity, ideal for construction and industrial lifting tasks.",
     registrationNo: "ACE-HYD-9012",
     assetNo: "A-003",
     engineNo: "ENG-014-6789",
@@ -47,7 +51,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Caterpillar Loader",
     image: "/fleet/caterpillar-loader.avif",
-    description: "A robust 950M wheel loader with superior digging and loading capabilities for heavy-duty applications.",
+    description:
+      "A robust 950M wheel loader with superior digging and loading capabilities for heavy-duty applications.",
     registrationNo: "CAT-LOD-3456",
     assetNo: "A-004",
     engineNo: "ENG-950-1234",
@@ -57,7 +62,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Caterpillar Haulpack",
     image: "/fleet/cat-haulpack.avif",
-    description: "A high-capacity 777G haul truck built for mining, offering durability and efficiency in material hauling.",
+    description:
+      "A high-capacity 777G haul truck built for mining, offering durability and efficiency in material hauling.",
     registrationNo: "CAT-HPK-7890",
     assetNo: "A-005",
     engineNo: "ENG-777-5678",
@@ -67,7 +73,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Propel Electric Tipper",
     image: "/fleet/propel-ev-tipper.jpeg",
-    description: "An electric tipper truck designed for sustainable mining operations, combining efficiency with zero emissions.",
+    description:
+      "An electric tipper truck designed for sustainable mining operations, combining efficiency with zero emissions.",
     registrationNo: "PRO-EV-2345",
     assetNo: "A-006",
     engineNo: "ENG-EV-9012",
@@ -77,7 +84,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Ace TC 6040 Tower Crane",
     image: "/fleet/ace-crane.jpg",
-    description: "A high-performance tower crane with a 60-meter jib and 40-ton lifting capacity, ideal for heavy construction sites.",
+    description:
+      "A high-performance tower crane with a 60-meter jib and 40-ton lifting capacity, ideal for heavy construction sites.",
     registrationNo: "ACE-TC-6040",
     assetNo: "A-007",
     engineNo: "ENG-TC-6040-5678",
@@ -87,7 +95,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Toyota Core IC Pneumatic Forklift",
     image: "/fleet/forklift.jpeg",
-    description: "A mid-size IC pneumatic forklift designed for outdoor heavy lifting tasks, delivering excellent durability and performance.",
+    description:
+      "A mid-size IC pneumatic forklift designed for outdoor heavy lifting tasks, delivering excellent durability and performance.",
     registrationNo: "TOY-IC-4321",
     assetNo: "A-008",
     engineNo: "ENG-IC-6789",
@@ -97,7 +106,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Komatsu Bulldozer",
     image: "/fleet/bulldozer.jpg",
-    description: "A powerful bulldozer for earthmoving and grading, equipped with advanced blade control for precision work.",
+    description:
+      "A powerful bulldozer for earthmoving and grading, equipped with advanced blade control for precision work.",
     registrationNo: "KOM-6789",
     assetNo: "A-009",
     engineNo: "ENG-BML-3456",
@@ -107,7 +117,8 @@ const fleetData: Vehicle[] = [
   {
     title: "Tata Prima 2830K",
     image: "/fleet/prima.jpg",
-    description: "A robust 28-ton tipper truck built for construction and mining applications, offering high durability and performance.",
+    description:
+      "A robust 28-ton tipper truck built for construction and mining applications, offering high durability and performance.",
     registrationNo: "TATA-PRIMA-2830K",
     assetNo: "A-010",
     engineNo: "ENG-PRIMA-2830",
@@ -234,12 +245,15 @@ const FleetSection: React.FC = () => {
         <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
           Discover Our <span className="text-green-500">Elite Fleet</span>
         </h2>
-        <p className="text-gray-400 mt-4 text-lg max-w-3xl mx-auto">
-          Owned and Operated By Us, Engineered for excellence, our vehicles power operations with unmatched reliability and innovation in the field of Practical Skill Training.
-        </p>
       </div>
 
+      <OurFuturisticApproach />
       {/* Scrollable Fleet Container */}
+      <p className="text-white my-10 text-lg max-w-3xl mx-auto">
+        Owned and Operated By Us, Engineered for excellence, our vehicles power
+        operations with unmatched reliability and innovation in the field of
+        Practical Skill Training.
+      </p>
       <div className="relative max-w-[1440px] mx-auto">
         <div
           ref={scrollContainerRef}
