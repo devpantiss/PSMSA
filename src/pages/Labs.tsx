@@ -8,6 +8,7 @@ import LabsCTA from "../components/Labs/LabsCTA";
 import FuturisticLabsShowcaseSection from "../components/Labs/FuturisticLabsShowcaseSection";
 import HEMMMechanicsShowcase from "../components/Labs/HEMMMechanicsShowcase";
 import ElectricalLabViewer from "../components/Labs/ElectricalLabViewer";
+import ARVRLabShowcase from "../components/Labs/ARVRLabShowcase";
 
 // const ACCENT = "#4eeac8";
 
@@ -69,6 +70,7 @@ const Labs: React.FC = () => {
         <FuturisticLabsShowcaseSection />
         <HEMMMechanicsShowcase />
         <ElectricalLabViewer />
+        <ARVRLabShowcase />
         <TechStack />
         <LabsImpact />
         <LabsCTA />

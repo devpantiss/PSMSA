@@ -33,7 +33,7 @@ const models: SketchfabModel[] = [
     title: "Volvo L220H",
     category: "Loader",
     iframeSrc:
-      "https://sketchfab.com/models/ae722dd38bf5491590cb5df4df800871/embed?ui_theme=dark&ui_infos=0&ui_controls=1",
+      "https://sketchfab.com/models/ae722dd38bf5491590cb5df4df800871/embed?ui_theme=dark&transparent=1&ui_infos=0&ui_controls=1",
     sketchfabUrl:
       "https://sketchfab.com/3d-models/volvo-l220h-ae722dd38bf5491590cb5df4df800871",
     authorName: "Ricardo",
@@ -45,7 +45,7 @@ const models: SketchfabModel[] = [
     title: "Volvo A40G",
     category: "Dumper",
     iframeSrc:
-      "https://sketchfab.com/models/323ace20856d478e89acface2a762809/embed?ui_theme=dark&ui_infos=0&ui_controls=1",
+      "https://sketchfab.com/models/323ace20856d478e89acface2a762809/embed?ui_theme=dark&transparent=1&ui_infos=0&ui_controls=1",
     sketchfabUrl:
       "https://sketchfab.com/3d-models/volvo-a40g-323ace20856d478e89acface2a762809",
     authorName: "Ricardo",
@@ -57,7 +57,7 @@ const models: SketchfabModel[] = [
     title: "Volvo EC380EL",
     category: "Excavator",
     iframeSrc:
-      "https://sketchfab.com/models/670325cfb1534d4aa19d5b2c38d1034e/embed?ui_theme=dark&ui_infos=0&ui_controls=1",
+      "https://sketchfab.com/models/670325cfb1534d4aa19d5b2c38d1034e/embed?ui_theme=dark&transparent=1&ui_infos=0&ui_controls=1",
     sketchfabUrl:
       "https://sketchfab.com/3d-models/volvo-ec380el-670325cfb1534d4aa19d5b2c38d1034e",
     authorName: "Ricardo",
