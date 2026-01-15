@@ -2,7 +2,7 @@ import React from "react";
 
 const LabsHero: React.FC = () => {
   return (
-    <section className="relative h-[90vh] flex items-center justify-center text-center overflow-hidden">
+    <section className="relative h-[100vh] flex items-center justify-center text-center overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: "url('/labs_hero.jpg')" }}
