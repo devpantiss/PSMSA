@@ -1,16 +1,18 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import Marquee from "react-fast-marquee";
 import GlobalPlacement from "./GlobalPlacement";
-import { Link } from "react-router-dom";
 
+// Interfaces
 interface Stat {
   value: string;
   description: string;
 }
+
 interface Company {
   name: string;
   logo: string;
 }
+
 interface Student {
   name: string;
   batch: string;
@@ -18,13 +20,14 @@ interface Student {
   image: string;
 }
 
+// Static Data
 const statsData: Stat[] = [
   { value: "50+", description: "Recruiters partnered with Pantiss" },
   {
     value: "120+",
     description: "Job offers in Mining, Shipping, Power & Infrastructure",
   },
-  { value: "₹3L", description: "Average salary of top 25% placed students" },
+  { value: "₹3 Lac", description: "Average salary of top 25% placed students" },
   { value: "20+", description: "Global companies hiring Pantiss graduates" },
   { value: "100+", description: "Students placed at packages above ₹3.5 Lakh" },
 ];
@@ -32,9 +35,12 @@ const statsData: Stat[] = [
 const companiesData: Company[] = [
   {
     name: "Vedanta Resources",
-    logo: "/homepage/companies/vedanta-removebg-preview.png",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
   },
-  { name: "Tata Steel", logo: "/homepage/companies/Tata_Steel_Logo.png" },
+  {
+    name: "Tata Steel",
+    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+  },
   {
     name: "Wistron",
     logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163688/pngegg_4_zq8y0w.png",
@@ -97,7 +103,7 @@ const studentsData: Student[] = [
     batch: "Batch 2025",
     package: "₹2.8 Lac.",
     image:
-      "https://res.cloudinary.com/dgtc2fvgu/image/upload/v1746000304/student-2_dw91lt.jpg",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163885/student-2_jfgmyh.jpg",
   },
   {
     name: "Chandan Sahoo",
@@ -108,167 +114,133 @@ const studentsData: Student[] = [
   },
 ];
 
-const StatCard = memo(({ stat, index }: { stat: Stat; index: number }) => (
-  <article
-    className="bg-gray-950/90 p-6 sm:p-8 rounded-xl border border-green-600/50 text-center"
-    role="article"
-    tabIndex={0}
-    aria-describedby={`stat-details-${index}`}
-  >
-    <h3 className="text-2xl sm:text-5xl font-extrabold text-green-300">
-      {stat.value}
-    </h3>
-    <p
-      id={`stat-details-${index}`}
-      className="text-sm sm:text-base text-gray-200 mt-3 line-clamp-2"
-    >
-      {stat.description}
-    </p>
-  </article>
+// Components
+const StatCard = memo(({ stat }: { stat: Stat }) => (
+  <div className="bg-transparent ring-2 ring-white p-6 rounded-lg shadow-md text-center">
+    <h3 className="text-3xl font-bold text-white">{stat.value}</h3>
+    <p className="text-gray-100 mt-2">{stat.description}</p>
+  </div>
 ));
 
-const CompanyLogo = memo(({ company }: { company: Company; index: number }) => (
-  <article
-    className="flex-shrink-0 w-40 sm:w-44 bg-gray-900/50 rounded-lg ring-1 ring-green-600/50 flex flex-col items-center justify-center p-4 mx-2"
-    role="article"
-    tabIndex={0}
-    aria-label={`Logo of ${company.name}`}
-  >
+const CompanyLogo = memo(({ company }: { company: Company }) => (
+  <div className="flex-shrink-0 w-44 h-44 flex items-center justify-center p-4">
     <img
       src={company.logo}
-      alt={`${company.name} logo`}
-      className="w-32 h-32 sm:w-36 sm:h-36 object-contain rounded-md"
+      alt={company.name}
+      className="w-full h-full object-contain"
       loading="lazy"
-      decoding="async"
     />
-    <p className="text-base font-semibold text-gray-100 mt-2 line-clamp-1">
-      {company.name}
-    </p>
-  </article>
+  </div>
 ));
 
-const StudentCard = memo(
-  ({ student, index }: { student: Student; index: number }) => (
-    <article
-      className="flex-shrink-0 w-64 sm:w-72 bg-gray-900/50 rounded-xl ring-1 ring-green-600/50 text-center p-4 sm:p-6 mx-2"
-      role="article"
-      tabIndex={0}
-      aria-describedby={`student-details-${index}`}
-    >
-      <img
-        src={student.image}
-        alt={`${student.name} profile`}
-        className="w-36 h-36 sm:w-44 sm:h-44 rounded-full object-cover mx-auto mb-4 border-2 border-green-600"
-        loading="lazy"
-        decoding="async"
-      />
-      <h4 className="text-lg sm:text-xl font-bold text-gray-100">
-        {student.name}
-      </h4>
-      <p id={`student-details-${index}`} className="text-sm text-gray-200">
-        {student.batch}
-      </p>
-      <p className="text-green-600 font-bold mt-2">{student.package}</p>
-    </article>
-  )
-);
+const StudentCard = memo(({ student }: { student: Student }) => (
+  <div className="flex-shrink-0 w-64 bg-transparent rounded-lg text-center">
+    <img
+      src={student.image}
+      alt={student.name}
+      className="w-44 h-44 rounded-full object-cover mx-auto mb-4 border-2 border-orange-500"
+      loading="lazy"
+    />
+    <h4 className="text-lg font-semibold text-gray-100">{student.name}</h4>
+    <p className="text-sm text-gray-50">{student.batch}</p>
+    <p className="text-orange-600 font-bold mt-2">{student.package}</p>
+  </div>
+));
 
+// Main Section
 const PlacementsSection: React.FC = () => {
-  const companiesList = useMemo(() => [...companiesData, ...companiesData], []);
-  const studentsList = useMemo(() => [...studentsData, ...studentsData], []);
-
   return (
-    <section className="relative pt-16 pb-8 overflow-hidden bg-gradient-to-b from-black via-purple-900 to-black">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        <source
-          src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743490663/12266398_1920_1080_30fps_njenhk.mp4"
-          type="video/mp4"
-        />
-      </video>
-
-      {/* Overlay */}
-
-      {/* Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/85 via-purple-900/30 to-black/85 z-10" /> */}
-
-        <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold text-green-700 uppercase tracking-wider">
-            Placements & Careers
-          </h2>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mt-2">
-            Glance at the <span className="text-green-600">Top Companies</span>{" "}
-            Hiring from Us
-          </h1>
-          <p className="text-lg text-gray-200 mt-4 max-w-3xl mx-auto">
-            Skilling Revolution Starts at Us: Exceptional Placements for
-            2021-2025 Batches
-          </p>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
-          {statsData.map((stat, i) => (
-            <StatCard key={i} stat={stat} index={i} />
-          ))}
-        </div>
-
-        {/* Scrolling Content */}
-        <div className="mb-12">
-          <Marquee
-            speed={30}
-            pauseOnHover={true}
-            loop={0}
-            className="w-full overflow-hidden bg-gray-900/30 rounded-xl p-4"
-            aria-label="Scrolling company logos"
-          >
-            {companiesList.map((company, i) => (
-              <CompanyLogo
-                key={`${company.name}-${i}`}
-                company={company}
-                index={i}
-              />
-            ))}
-          </Marquee>
-        </div>
-
-        <div className="text-center mb-8">
-          <h3 className="text-2xl sm:text-3xl font-bold text-gray-50">
-            Students Getting Highest Packages
-          </h3>
-        </div>
-
-        <Marquee
-          speed={20}
-          pauseOnHover={true}
-          loop={0}
-          className="w-full overflow-hidden bg-transparent p-4"
-          aria-label="Scrolling student profiles"
+    <section className="bg-black">
+      <div className="relative py-16 overflow-hidden">
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
-          {studentsList.map((student, i) => (
-            <StudentCard
-              key={`${student.name}-${i}`}
-              student={student}
-              index={i}
-            />
-          ))}
-        </Marquee>
+          <source
+            src="https://res.cloudinary.com/dgtc2fvgu/video/upload/v1743490663/12266398_1920_1080_30fps_njenhk.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {/* Blurry Circles Overlay */}
+        <div className="absolute inset-0 z-5">
+          {/* Large Blurry Circles */}
+          <div className="absolute top-0 left-0 w-96 h-96 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-green-600 rounded-full blur-3xl opacity-30 z-0" />
+
+          {/* Small Blurry Circles */}
+          <div className="absolute top-10 right-10 w-32 h-32 bg-blue-600 rounded-full blur-3xl opacity-30 z-0" />
+          <div className="absolute bottom-10 left-10 w-32 h-32 bg-yellow-600 rounded-full blur-3xl opacity-30 z-0" />
+          <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
+          <div className="absolute bottom-1/3 right-1/4 w-32 h-32 bg-pink-600 rounded-full blur-3xl opacity-30 z-0" />
+          <div className="absolute top-1/4 right-1/3 w-32 h-32 bg-cyan-600 rounded-full blur-3xl opacity-30 z-0" />
+          <div className="absolute bottom-1/4 left-1/3 w-32 h-32 bg-orange-600 rounded-full blur-3xl opacity-30 z-0" />
+          <div className="absolute top-1/2 left-10 w-32 h-32 bg-red-600 rounded-full blur-3xl opacity-30 z-0" />
+          <div className="absolute bottom-1/2 right-10 w-32 h-32 bg-green-600 rounded-full blur-3xl opacity-30 z-0" />
+        </div>
+
+        {/* Dark Gradient Overlay (kept for readability) */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/85 via-black/60 to-black/90 z-10" />
+
+        {/* Content */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-sm font-semibold text-gray-300 uppercase">
+              Placements & Careers
+            </h2>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-white mt-2">
+              Glance at the <span className="text-red-600">Top Companies</span>{" "}
+              Hiring from Us
+            </h1>
+            <p className="text-lg text-gray-200 mt-4 max-w-3xl mx-auto">
+              Skilling Revolution Starts at Us: Exceptional Placements for
+              2021-2025 Batches
+            </p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-12">
+            {/* Stats */}
+            <div className="lg:w-1/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {statsData.map((stat, i) => (
+                <StatCard key={i} stat={stat} />
+              ))}
+            </div>
+
+            {/* Marquee Content */}
+            <div className="lg:w-2/3">
+              <Marquee gradient={false} speed={40} pauseOnHover>
+                {companiesData.map((company, i) => (
+                  <CompanyLogo key={`${company.name}-${i}`} company={company} />
+                ))}
+              </Marquee>
+
+              <div className="text-center mb-8 mt-12">
+                <h3 className="text-2xl font-bold text-gray-50">
+                  Students Getting Highest Packages
+                </h3>
+              </div>
+
+              <Marquee gradient={false} speed={40} pauseOnHover>
+                {studentsData.map((student, i) => (
+                  <StudentCard key={`${student.name}-${i}`} student={student} />
+                ))}
+              </Marquee>
+            </div>
+          </div>
+        </div>
       </div>
 
       <GlobalPlacement />
 
       {/* CTA */}
-      <div className="text-center bg-transparent flex mt-8 justify-center items-center">
-        <div className="px-8 py-4 bg-green-500 w-[250px] text-white font-semibold rounded-md ring-1 ring-green-600/50 hover:bg-green-700 hover:ring-2 hover:ring-green-400/70 focus-visible:ring-2 focus-visible:ring-green-400 transition-all duration-300">
-          <Link to="/placements">View Placements</Link>
-        </div>
+      <div className="text-center mt-12">
+        <button className="px-6 py-3 bg-purple-900 text-white font-semibold rounded-md hover:bg-purple-600 transition-colors">
+          View Placements
+        </button>
       </div>
     </section>
   );

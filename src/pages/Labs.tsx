@@ -2,13 +2,15 @@ import React from "react";
 import LabsHero from "../components/Labs/LabsHero";
 import LabsWhyItMatters from "../components/Labs/LabsWhyItMatters";
 import LabsGrid from "../components/Labs/LabsGrid";
-import TechStack from "../components/Labs/TechStack";
+// import TechStack from "../components/Labs/TechStack";
 import LabsImpact from "../components/Labs/LabsImpact";
-import LabsCTA from "../components/Labs/LabsCTA";
+// import LabsCTA from "../components/Labs/LabsCTA";
 import FuturisticLabsShowcaseSection from "../components/Labs/FuturisticLabsShowcaseSection";
 import HEMMMechanicsShowcase from "../components/Labs/HEMMMechanicsShowcase";
 import ElectricalLabViewer from "../components/Labs/ElectricalLabViewer";
 import ARVRLabShowcase from "../components/Labs/ARVRLabShowcase";
+import LabsSimulatorPromoBanner from "../components/Labs/LabsSimulatorPromoBanner";
+import HEMMMechanicLabPartsShowcase from "../components/Labs/HEMMMechanicLabPartsShowcase";
 
 // const ACCENT = "#4eeac8";
 
@@ -67,13 +69,15 @@ const Labs: React.FC = () => {
         <LabsHero />
         <LabsWhyItMatters />
         <LabsGrid />
-        <FuturisticLabsShowcaseSection />
         <HEMMMechanicsShowcase />
+        <FuturisticLabsShowcaseSection />
+        <LabsSimulatorPromoBanner />
+        <HEMMMechanicLabPartsShowcase />
         <ElectricalLabViewer />
         <ARVRLabShowcase />
-        <TechStack />
+        {/* <TechStack /> */}
         <LabsImpact />
-        <LabsCTA />
+        {/* <LabsCTA /> */}
       </div>
 
       {/* ===== Background CSS ===== */}

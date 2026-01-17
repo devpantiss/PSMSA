@@ -7,7 +7,7 @@ import {
   Pickaxe,
   Truck,
   Construction,
-//   Wrench,
+  //   Wrench,
   Sparkles,
   ScanEye,
 } from "lucide-react";
@@ -64,18 +64,18 @@ const models: SketchfabModel[] = [
     authorUrl: "https://sketchfab.com/ricardoalb",
     icon: <Construction className="h-4 w-4" />,
   },
-//   {
-//     id: "volvo-fmx",
-//     title: "Volvo FMX (Stylized)",
-//     category: "Truck",
-//     iframeSrc:
-//       "https://sketchfab.com/models/8e4c0bbbefa745f7882d04d9331a5245/embed?ui_theme=dark&ui_infos=0&ui_controls=1",
-//     sketchfabUrl:
-//       "https://sketchfab.com/3d-models/volvo-fmx-stylized-8e4c0bbbefa745f7882d04d9331a5245",
-//     authorName: "Ahmed Ragab",
-//     authorUrl: "https://sketchfab.com/Ahmed_Ragab90",
-//     icon: <Wrench className="h-4 w-4" />,
-//   },
+  //   {
+  //     id: "volvo-fmx",
+  //     title: "Volvo FMX (Stylized)",
+  //     category: "Truck",
+  //     iframeSrc:
+  //       "https://sketchfab.com/models/8e4c0bbbefa745f7882d04d9331a5245/embed?ui_theme=dark&ui_infos=0&ui_controls=1",
+  //     sketchfabUrl:
+  //       "https://sketchfab.com/3d-models/volvo-fmx-stylized-8e4c0bbbefa745f7882d04d9331a5245",
+  //     authorName: "Ahmed Ragab",
+  //     authorUrl: "https://sketchfab.com/Ahmed_Ragab90",
+  //     icon: <Wrench className="h-4 w-4" />,
+  //   },
 ];
 
 const categories: ModelCategory[] = ["All", "Loader", "Dumper", "Excavator"];
@@ -129,19 +129,20 @@ export default function HEMMMechanicsShowcase() {
             </p>
 
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl">
-              HEMM Mechanics{" "}
+              Practical Training{" "}
               <span
                 className="bg-clip-text text-transparent"
                 style={{
                   backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(78,234,200,0.55))`,
                 }}
               >
-                Simulator
+                Fleet
               </span>
             </h2>
 
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base">
-              Select a machine and explore it in a futuristic simulator-style interface.
+              Select a machine and explore it in a futuristic simulator-style
+              interface.
             </p>
           </div>
 
@@ -198,7 +199,9 @@ export default function HEMMMechanicsShowcase() {
                   <span style={{ color: ACCENT }}>{activeModel?.icon}</span>
                 </div>
                 <div>
-                  <p className="text-xs text-white/50">{activeModel?.category}</p>
+                  <p className="text-xs text-white/50">
+                    {activeModel?.category}
+                  </p>
                   <p className="text-sm font-semibold text-white">
                     {activeModel?.title}
                   </p>
@@ -329,7 +332,9 @@ export default function HEMMMechanicsShowcase() {
                             {m.icon}
                           </div>
                           <div>
-                            <p className="text-xs text-white/50">{m.category}</p>
+                            <p className="text-xs text-white/50">
+                              {m.category}
+                            </p>
                             <p className="text-sm font-semibold text-white">
                               {m.title}
                             </p>
@@ -348,8 +353,9 @@ export default function HEMMMechanicsShowcase() {
 
             {/* Micro note */}
             <div className="rounded-[28px] border border-white/10 bg-white/5 p-5 text-sm text-white/70 backdrop-blur-xl">
-              <span className="font-semibold text-white">Tip:</span> Keep only 1 active
-              model loaded for best performance. This simulator UI does exactly that.
+              <span className="font-semibold text-white">Tip:</span> Keep only 1
+              active model loaded for best performance. This simulator UI does
+              exactly that.
             </div>
           </div>
         </div>

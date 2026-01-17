@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 interface Partner {
   name: string;
   logo: string;
-  category: 'government' | 'industry' | 'education' | 'technology';
+  category: "government" | "industry" | "education" | "technology";
 }
 
 interface CategoryTheme {
-  gradient: string;
+  chip: string;
   border: string;
   glow: string;
   accent: string;
+  gradient: string;
 }
 
 interface FloatingOrbProps {
@@ -23,380 +24,514 @@ interface FloatingOrbProps {
 interface PartnerCardProps {
   partner: Partner;
   index: number;
-  isVisible: boolean;
 }
 
+const ACCENT = "#4eeac8";
+const PURPLE = "#7c3aed"; // purple-600 vibe
+
 const partners: Partner[] = [
-  { name: "UGC", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/UGC.webp", category: "government" },
-  { name: "NSDC", logo: "https://www.msu.edu.in/frontend_assets/images/Government-partners/govt-2.png", category: "government" },
-  { name: "Sikkim", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/govt-of-sikkim.jpg", category: "government" },
-  { name: "NAPS", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/NAPS.webp", category: "government" },
-  { name: "NATS", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/NATS.webp", category: "government" },
-  { name: "DGT", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/DGT.webp", category: "government" },
-  { name: "Skill India", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/Skill-India-min.webp", category: "government" },
-  { name: "TTAADC", logo: "https://www.msu.edu.in/frontend_assets/images/Government-partners/govt-5.png", category: "government" },
-  { name: "Film School", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/image-filem-school.jpg", category: "education" },
-  { name: "iAce", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/iAce.png", category: "technology" },
-  { name: "Crowne Plaza", logo: "https://www.msu.edu.in/frontend_assets/images/industry-partners/Crowne_Plaza_logo_logotype.png", category: "industry" },
-  { name: "Holiday Inn", logo: "https://www.msu.edu.in/frontend_assets/images/industry-partners/HOLIDAY_INN_EXPRESS.png", category: "industry" },
-  { name: "D23", logo: "https://www.msu.edu.in/frontend_assets/images/industry-partners/d23-min.jpg", category: "industry" },
-  { name: "Skilling-9", logo: "https://www.msu.edu.in/frontend_assets/images/industry-partners/skilling-9.png", category: "industry" },
-  { name: "LCBS", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/LCBS.png", category: "education" },
-  { name: "Don Bosco", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/Don+Bosco+Image.webp", category: "education" },
-  { name: "Emversity", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/website-images/emversity.jpg", category: "technology" },
-  { name: "Logic Knots", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/Logic-Knots.png", category: "technology" },
-  { name: "Tech Partner 5", logo: "https://www.msu.edu.in/frontend_assets/images/technology-partners/tech-5.png", category: "technology" },
-  { name: "Tech Partner 3", logo: "https://www.msu.edu.in/frontend_assets/images/technology-partners/tech-3.png", category: "technology" },
+  {
+    name: "UGC",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/UGC.webp",
+    category: "government",
+  },
+  {
+    name: "NSDC",
+    logo: "https://www.msu.edu.in/frontend_assets/images/Government-partners/govt-2.png",
+    category: "government",
+  },
+  {
+    name: "Sikkim",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/govt-of-sikkim.jpg",
+    category: "government",
+  },
+  {
+    name: "NAPS",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/NAPS.webp",
+    category: "government",
+  },
+  {
+    name: "NATS",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/NATS.webp",
+    category: "government",
+  },
+  {
+    name: "DGT",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/DGT.webp",
+    category: "government",
+  },
+  {
+    name: "Skill India",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/Skill-India-min.webp",
+    category: "government",
+  },
+  {
+    name: "TTAADC",
+    logo: "https://www.msu.edu.in/frontend_assets/images/Government-partners/govt-5.png",
+    category: "government",
+  },
+  {
+    name: "Film School",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/image-filem-school.jpg",
+    category: "education",
+  },
+  {
+    name: "iAce",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/iAce.png",
+    category: "technology",
+  },
+  {
+    name: "Crowne Plaza",
+    logo: "https://www.msu.edu.in/frontend_assets/images/industry-partners/Crowne_Plaza_logo_logotype.png",
+    category: "industry",
+  },
+  {
+    name: "Holiday Inn",
+    logo: "https://www.msu.edu.in/frontend_assets/images/industry-partners/HOLIDAY_INN_EXPRESS.png",
+    category: "industry",
+  },
+  {
+    name: "D23",
+    logo: "https://www.msu.edu.in/frontend_assets/images/industry-partners/d23-min.jpg",
+    category: "industry",
+  },
+  {
+    name: "Skilling-9",
+    logo: "https://www.msu.edu.in/frontend_assets/images/industry-partners/skilling-9.png",
+    category: "industry",
+  },
+  {
+    name: "LCBS",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/LCBS.png",
+    category: "education",
+  },
+  {
+    name: "Don Bosco",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/Don+Bosco+Image.webp",
+    category: "education",
+  },
+  {
+    name: "Emversity",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/website-images/emversity.jpg",
+    category: "technology",
+  },
+  {
+    name: "Logic Knots",
+    logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/Logic-Knots.png",
+    category: "technology",
+  },
+  {
+    name: "Tech Partner 5",
+    logo: "https://www.msu.edu.in/frontend_assets/images/technology-partners/tech-5.png",
+    category: "technology",
+  },
+  {
+    name: "Tech Partner 3",
+    logo: "https://www.msu.edu.in/frontend_assets/images/technology-partners/tech-3.png",
+    category: "technology",
+  },
 ];
 
-const categoryThemes: Record<Partner['category'], CategoryTheme> = {
+const categoryThemes: Record<Partner["category"], CategoryTheme> = {
   government: {
-    gradient: "from-purple-500/30 via-purple-400/20 to-purple-500/30",
-    border: "border-purple-400/40",
-    glow: "shadow-purple-400/25",
-    accent: "bg-purple-500"
+    chip: "text-white/80",
+    border: "border-white/10",
+    glow: "shadow-[0_0_40px_rgba(124,58,237,0.18)]",
+    accent: PURPLE,
+    gradient: "from-white/8 via-white/5 to-white/8",
   },
   industry: {
-    gradient: "from-teal-500/30 via-teal-400/20 to-teal-500/30",
-    border: "border-teal-400/40",
-    glow: "shadow-teal-400/25",
-    accent: "bg-teal-500"
+    chip: "text-white/80",
+    border: "border-white/10",
+    glow: "shadow-[0_0_40px_rgba(78,234,200,0.16)]",
+    accent: ACCENT,
+    gradient: "from-white/8 via-white/5 to-white/8",
   },
   education: {
-    gradient: "from-purple-500/20 via-teal-500/15 to-purple-500/20",
-    border: "border-purple-400/30",
-    glow: "shadow-purple-400/20",
-    accent: "bg-purple-500"
+    chip: "text-white/80",
+    border: "border-white/10",
+    glow: "shadow-[0_0_40px_rgba(124,58,237,0.14)]",
+    accent: PURPLE,
+    gradient: "from-white/8 via-white/5 to-white/8",
   },
   technology: {
-    gradient: "from-teal-500/20 via-purple-500/15 to-teal-500/20",
-    border: "border-teal-400/30",
-    glow: "shadow-teal-400/20",
-    accent: "bg-teal-500"
-  }
+    chip: "text-white/80",
+    border: "border-white/10",
+    glow: "shadow-[0_0_40px_rgba(78,234,200,0.14)]",
+    accent: ACCENT,
+    gradient: "from-white/8 via-white/5 to-white/8",
+  },
 };
 
-const useIntersectionObserver = (options: IntersectionObserverInit = {}): [React.RefObject<HTMLDivElement>, boolean] => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+/* -----------------------------
+   Intersection Observer Hook
+----------------------------- */
+const useIntersectionObserver = (
+  options: IntersectionObserverInit = {}
+): [React.RefObject<HTMLDivElement>, boolean] => {
+  const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsVisible(entry.isIntersecting);
-    }, { threshold: 0.1, ...options });
+    const obs = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.12, ...options }
+    );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    if (ref.current) obs.observe(ref.current);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      if (ref.current) obs.unobserve(ref.current);
     };
   }, [options]);
 
   return [ref, isVisible];
 };
 
-const FloatingOrb: React.FC<FloatingOrbProps> = ({ size, color, position, delay = 0 }) => (
+/* -----------------------------
+   Floating Orb
+----------------------------- */
+const FloatingOrb: React.FC<FloatingOrbProps> = ({
+  size,
+  color,
+  position,
+  delay = 0,
+}) => (
   <div
-    className={`absolute ${size} ${color} rounded-full blur-3xl opacity-15 animate-pulse`}
+    className={`absolute ${size} ${color} rounded-full blur-[120px] opacity-20`}
     style={{
       ...position,
       animationDelay: `${delay}s`,
-      animationDuration: `${4 + Math.random() * 4}s`
+      animation: `orbPulse ${5 + Math.random() * 4}s ease-in-out infinite`,
     }}
   />
 );
 
+/* -----------------------------
+   Partner Card (Equal Height)
+----------------------------- */
 const PartnerCard: React.FC<PartnerCardProps> = ({ partner, index }) => {
-  const [cardRef, cardIsVisible] = useIntersectionObserver();
+  const [cardRef, visible] = useIntersectionObserver();
   const theme = categoryThemes[partner.category];
-  
+
   return (
     <div
       ref={cardRef}
       className={`
-        transform transition-all duration-1000 ease-out
-        ${cardIsVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-16 opacity-0 scale-95'}
+        transform transition-all duration-700 ease-out
+        ${visible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}
       `}
-      style={{ transitionDelay: `${index * 80}ms` }}
+      style={{ transitionDelay: `${index * 45}ms` }}
     >
-      <div className={`
-        relative group cursor-pointer h-32
-        bg-gradient-to-br ${theme.gradient}
-        backdrop-blur-xl rounded-3xl ${theme.border}
-        border-2 hover:border-gray-200/60
-        hover:scale-[1.02] hover:${theme.glow}
-        transition-all duration-700 ease-out
-        overflow-hidden
-        before:absolute before:inset-0 
-        before:bg-gradient-to-br before:from-white/10 before:via-transparent before:to-transparent
-        before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500
-        after:absolute after:inset-0 after:rounded-3xl
-        after:bg-gradient-to-r after:from-transparent after:via-white/20 after:to-transparent
-        after:translate-x-[-200%] after:skew-x-12 after:transition-transform after:duration-1000
-        hover:after:translate-x-[200%]
-      `}>
-        {/* Animated corner accent */}
-        <div className={`
-          absolute top-0 right-0 w-8 h-8 ${theme.accent} 
-          opacity-40 rounded-bl-2xl
-          transform scale-0 group-hover:scale-100 origin-top-right
-          transition-transform duration-500
-        `} />
-        
-        {/* Main content */}
-        <div className="relative z-20 h-full flex items-center justify-center p-6">
+      <div
+        className={`
+          group relative h-[140px] w-full
+          overflow-hidden rounded-3xl
+          border ${theme.border}
+          bg-gradient-to-br ${theme.gradient}
+          backdrop-blur-xl
+          transition-all duration-500
+          hover:scale-[1.02] hover:${theme.glow}
+        `}
+      >
+        {/* corner accent */}
+        <div
+          className="absolute right-0 top-0 h-10 w-10 rounded-bl-3xl opacity-35 transition duration-500 group-hover:opacity-60"
+          style={{
+            background: `linear-gradient(135deg, ${theme.accent}, transparent)`,
+          }}
+        />
+
+        {/* shine sweep */}
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+          <div
+            className="absolute -left-24 top-0 h-full w-44 rotate-12 blur-2xl"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent)",
+            }}
+          />
+        </div>
+
+        {/* inner glass */}
+        <div className="absolute inset-[1px] rounded-[22px] bg-black/35" />
+
+        {/* content */}
+        <div className="relative z-10 flex h-full items-center justify-center px-6">
           <img
             src={partner.logo}
             alt={partner.name}
             className="
-              max-h-16 w-auto object-contain
-              filter brightness-90 contrast-110 grayscale
-              group-hover:grayscale-0 group-hover:brightness-110
-              transform group-hover:scale-110 group-hover:rotate-1
-              transition-all duration-700 ease-out drop-shadow-lg
+              max-h-14 w-auto object-contain
+              opacity-90 grayscale
+              transition duration-500
+              group-hover:opacity-100 group-hover:grayscale-0
+              group-hover:scale-[1.06]
+              drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)]
             "
             loading="lazy"
             onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
               const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const nextElement = target.nextSibling as HTMLElement;
-              if (nextElement) {
-                nextElement.style.display = 'flex';
-              }
+              target.style.display = "none";
+              const next = target.nextSibling as HTMLElement;
+              if (next) next.style.display = "flex";
             }}
           />
-          <div className="hidden items-center justify-center h-16 w-20 bg-gray-800/80 backdrop-blur-sm rounded-xl text-gray-200 text-xs font-semibold text-center">
+
+          {/* fallback */}
+          <div className="hidden h-14 w-full items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-center text-xs font-semibold text-white/80">
             {partner.name}
           </div>
         </div>
-        
-        {/* Floating tooltip */}
-        <div className="
-          absolute -top-14 left-1/2 transform -translate-x-1/2
-          bg-gray-900/95 backdrop-blur-md text-gray-200 text-sm font-medium
-          px-4 py-2 rounded-2xl border border-gray-200/20
-          opacity-0 group-hover:opacity-100 
-          translate-y-2 group-hover:translate-y-0
-          transition-all duration-300 pointer-events-none 
-          whitespace-nowrap z-30 shadow-2xl
-        ">
+
+        {/* tooltip */}
+        <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 rounded-2xl border border-white/10 bg-black/80 px-4 py-2 text-xs font-semibold text-white/85 opacity-0 transition duration-300 group-hover:opacity-100">
           {partner.name}
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900/95" />
         </div>
 
-        {/* Subtle inner glow */}
-        <div className="absolute inset-1 rounded-2xl bg-gradient-to-t from-white/5 to-transparent pointer-events-none" />
+        {/* micro bottom bar */}
+        <div
+          className="absolute bottom-0 left-0 h-[2px] w-full opacity-60"
+          style={{
+            backgroundImage: `linear-gradient(90deg, transparent, ${theme.accent}, transparent)`,
+          }}
+        />
       </div>
     </div>
   );
 };
 
 const PartnersLogos: React.FC = () => {
-  const [sectionRef, sectionIsVisible] = useIntersectionObserver();
-  const [activeFilter, setActiveFilter] = useState<string>('all');
-  
-  const filteredPartners = activeFilter === 'all' 
-    ? partners 
-    : partners.filter(partner => partner.category === activeFilter);
+  const [sectionRef, visible] = useIntersectionObserver();
+  const [activeFilter, setActiveFilter] = useState<
+    "all" | Partner["category"]
+  >("all");
 
-  const categories: string[] = ['all', ...new Set(partners.map(p => p.category))];
+  const categories = useMemo(
+    () => ["all", "government", "industry", "education", "technology"] as const,
+    []
+  );
+
+  const filteredPartners =
+    activeFilter === "all"
+      ? partners
+      : partners.filter((p) => p.category === activeFilter);
+
+  const counts = useMemo(() => {
+    return partners.reduce(
+      (acc, p) => {
+        acc[p.category] += 1;
+        return acc;
+      },
+      { government: 0, industry: 0, education: 0, technology: 0 }
+    );
+  }, []);
 
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-b from-black to-black py-24 overflow-hidden">
-      {/* Ethereal background effects */}
+    <section className="relative w-full overflow-hidden bg-black py-24">
+      {/* Premium sci-fi background */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        {/* Main ambient orbs */}
-        <FloatingOrb 
-          size="w-96 h-96" 
-          color="bg-purple-500" 
-          position={{ top: '10%', left: '5%' }} 
+        <FloatingOrb
+          size="h-[520px] w-[520px]"
+          color="bg-purple-600"
+          position={{ top: "-12%", left: "-8%" }}
           delay={0}
         />
-        <FloatingOrb 
-          size="w-80 h-80" 
-          color="bg-teal-500" 
-          position={{ top: '20%', right: '10%' }} 
-          delay={1.5}
+        <FloatingOrb
+          size="h-[520px] w-[520px]"
+          color="bg-[#4eeac8]"
+          position={{ top: "10%", right: "-10%" }}
+          delay={1.2}
         />
-        <FloatingOrb 
-          size="w-64 h-64" 
-          color="bg-purple-400" 
-          position={{ bottom: '25%', left: '15%' }} 
-          delay={3}
-        />
-        <FloatingOrb 
-          size="w-72 h-72" 
-          color="bg-teal-400" 
-          position={{ bottom: '10%', right: '20%' }} 
-          delay={2}
+        <FloatingOrb
+          size="h-[520px] w-[520px]"
+          color="bg-purple-600"
+          position={{ bottom: "-18%", left: "18%" }}
+          delay={2.2}
         />
 
-        {/* Smaller accent orbs */}
-        {[...Array(8)].map((_, i) => (
-          <FloatingOrb
-            key={i}
-            size="w-32 h-32"
-            color={i % 2 === 0 ? "bg-purple-500" : "bg-teal-500"}
-            position={{
-              left: `${10 + i * 12}%`,
-              top: `${20 + (i % 3) * 25}%`,
-            }}
-            delay={i * 0.7}
-          />
-        ))}
+        {/* HUD grid */}
+        <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
 
-        {/* Animated grid overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="h-full w-full" style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-            animation: 'gridMove 20s linear infinite'
-          }} />
-        </div>
+        {/* scanlines */}
+        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:100%_8px]" />
+
+        {/* vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_42%,rgba(0,0,0,0.92)_100%)]" />
       </div>
 
-      <div ref={sectionRef} className="relative z-10 max-w-8xl mx-auto px-6 md:px-12">
-        {/* Hero header with dramatic typography */}
-        <div className={`
-          text-center mb-20
-          transform transition-all duration-1500 ease-out
-          ${sectionIsVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}
-        `}>
-          <div className="relative inline-block">
-            {/* <h2 className="text-6xl md:text-8xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-teal-400 to-purple-500 mb-8 tracking-tighter leading-none"> */}
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-black text-transparent bg-clip-text bg-white mb-8 tracking-tighter leading-none">
-              Partners
-            </h2>
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-green-500 to-green-400 rounded-full animate-bounce opacity-60" />
-            <div className="absolute -bottom-2 -left-6 w-6 h-6 bg-gradient-to-r from-purple-500 to-purple-500 rounded-full animate-ping opacity-40" />
-          </div>
-          
-          <div className="w-48 h-1 bg-gradient-to-r from-transparent via-gray-200/60 to-transparent mx-auto mb-8 rounded-full" />
-          
-          <p className="text-2xl md:text-3xl text-gray-200 max-w-4xl mx-auto font-light leading-relaxed tracking-wide">
-            Where Innovation Meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-purple-400 font-semibold">Excellence</span>
+      <div
+        ref={sectionRef}
+        className="relative z-10 mx-auto max-w-7xl px-6"
+      >
+        {/* Header */}
+        <div
+          className={`
+            text-center transition-all duration-1000 ease-out
+            ${visible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}
+          `}
+        >
+          <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
+            <span
+              className="h-2 w-2 rounded-full animate-pulse"
+              style={{ backgroundColor: ACCENT }}
+            />
+            Ecosystem of Collaboration
           </p>
+
+          <h2 className="mt-5 text-5xl font-extrabold tracking-tight text-white md:text-6xl">
+            Our{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(90deg, ${ACCENT}, ${PURPLE})`,
+              }}
+            >
+              Partners
+            </span>
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-3xl text-base text-white/70 md:text-lg">
+            Government, Industry, Education & Technology partners powering skill
+            excellence.
+          </p>
+
+          <div
+            className="mx-auto mt-8 h-[3px] w-28 rounded-full"
+            style={{
+              backgroundImage: `linear-gradient(90deg, ${PURPLE}, transparent)`,
+            }}
+          />
         </div>
 
-        {/* Aesthetic category filters */}
-        <div className={`
-          flex flex-wrap justify-center gap-3 mb-16
-          transform transition-all duration-1200 ease-out
-          ${sectionIsVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}
-        `} style={{ transitionDelay: '300ms' }}>
-          {categories.map((category) => {
-            const isActive = activeFilter === category;
-            const theme = categoryThemes[category as Partner['category']] || categoryThemes.government;
-            
+        {/* Filters */}
+        <div
+          className={`
+            mt-14 flex flex-wrap justify-center gap-3
+            transition-all duration-1000 ease-out
+            ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
+          `}
+          style={{ transitionDelay: "120ms" }}
+        >
+          {categories.map((cat) => {
+            const isActive = activeFilter === cat;
+            const label = cat.charAt(0).toUpperCase() + cat.slice(1);
+
+            const count =
+              cat === "all"
+                ? partners.length
+                : counts[cat as Exclude<typeof cat, "all">];
+
             return (
               <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
                 className={`
-                  relative px-8 py-4 rounded-2xl font-semibold text-sm uppercase tracking-widest
-                  transition-all duration-500 transform hover:scale-105 overflow-hidden
-                  ${isActive 
-                    ? `bg-gradient-to-r ${theme.gradient} text-white shadow-lg ${theme.glow} border ${theme.border}` 
-                    : 'bg-gray-800/50 backdrop-blur-sm text-gray-200 hover:bg-gray-700/60 hover:text-white border border-gray-700/50'
+                  relative overflow-hidden rounded-2xl px-6 py-3 text-xs font-semibold uppercase tracking-[0.22em]
+                  transition duration-300
+                  ${
+                    isActive
+                      ? "border border-white/15 bg-white/10 text-white shadow-[0_0_40px_rgba(78,234,200,0.14)]"
+                      : "border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-white/10"
                   }
-                  before:absolute before:inset-0 before:bg-gradient-to-r 
-                  before:from-transparent before:via-white/10 before:to-transparent
-                  before:translate-x-[-100%] before:transition-transform before:duration-700
-                  hover:before:translate-x-[100%]
                 `}
               >
                 <span className="relative z-10">
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                  <span className="ml-2 text-xs opacity-60">
-                    ({category === 'all' ? partners.length : partners.filter(p => p.category === category).length})
-                  </span>
+                  {label}
+                  <span className="ml-2 text-[10px] opacity-60">({count})</span>
+                </span>
+
+                {/* subtle shine */}
+                <span className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 hover:opacity-100">
+                  <span className="absolute -left-24 top-0 h-full w-44 rotate-12 bg-white/10 blur-2xl" />
                 </span>
               </button>
             );
           })}
         </div>
 
-        {/* Elegant statistics */}
-        <div className={`
-          grid grid-cols-2 md:grid-cols-4 gap-8 mb-20
-          transform transition-all duration-1200 ease-out
-          ${sectionIsVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}
-        `} style={{ transitionDelay: '500ms' }}>
-          {Object.entries(
-            partners.reduce((acc: Record<string, number>, partner) => {
-              acc[partner.category] = (acc[partner.category] || 0) + 1;
-              return acc;
-            }, {})
-          ).map(([category, count]) => {
-            const theme = categoryThemes[category as Partner['category']];
+        {/* Stats */}
+        <div
+          className={`
+            mt-14 grid grid-cols-2 gap-5 md:grid-cols-4
+            transition-all duration-1000 ease-out
+            ${visible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}
+          `}
+          style={{ transitionDelay: "220ms" }}
+        >
+          {(
+            [
+              ["government", counts.government],
+              ["industry", counts.industry],
+              ["education", counts.education],
+              ["technology", counts.technology],
+            ] as const
+          ).map(([cat, count]) => {
+            const theme = categoryThemes[cat];
             return (
-              <div key={category} className="text-center group">
-                <div className={`
-                  relative inline-block p-6 rounded-3xl bg-gradient-to-br ${theme.gradient}
-                  backdrop-blur-xl border-2 ${theme.border} hover:scale-105 transition-transform duration-500
-                `}>
-                  <div className="text-4xl md:text-5xl font-black text-white mb-2 tabular-nums">
-                    {sectionIsVisible ? count : 0}
-                  </div>
-                  <div className="text-gray-200 text-xs uppercase tracking-[0.2em] font-medium">
-                    {category}
-                  </div>
-                  <div className={`absolute top-0 right-0 w-3 h-3 ${theme.accent} rounded-full opacity-60 animate-pulse`} />
-                </div>
+              <div
+                key={cat}
+                className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-xl"
+              >
+                <p className="text-4xl font-extrabold text-white tabular-nums">
+                  {count}
+                </p>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-white/60">
+                  {cat}
+                </p>
+                <div
+                  className="mx-auto mt-4 h-[2px] w-14 rounded-full opacity-80"
+                  style={{
+                    backgroundImage: `linear-gradient(90deg, transparent, ${theme.accent}, transparent)`,
+                  }}
+                />
               </div>
             );
           })}
         </div>
 
-        {/* Premium partners grid */}
-        <div className={`
-          grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6
-          transform transition-all duration-1500 ease-out
-          ${sectionIsVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'}
-        `} style={{ transitionDelay: '700ms' }}>
-          {filteredPartners.map((partner, idx) => (
-            <PartnerCard 
-              key={`${partner.name}-${activeFilter}`}
-              partner={partner} 
-              index={idx} 
-              isVisible={sectionIsVisible}
-            />
+        {/* Grid */}
+        <div
+          className={`
+            mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6
+            transition-all duration-1000 ease-out
+            ${visible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}
+          `}
+          style={{ transitionDelay: "320ms" }}
+        >
+          {filteredPartners.map((p, idx) => (
+            <PartnerCard key={`${p.name}-${activeFilter}-${idx}`} partner={p} index={idx} />
           ))}
         </div>
 
-        {/* Artistic footer */}
-        <div className={`
-          flex items-center justify-center mt-24 space-x-6
-          transform transition-all duration-1500 ease-out
-          ${sectionIsVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}
-        `} style={{ transitionDelay: '900ms' }}>
-          <div className="flex items-center space-x-4">
-            <div className="w-16 h-px bg-gradient-to-r from-transparent to-purple-500" />
-            <div className="relative">
-              <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-teal-500 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
-              <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-purple-500 to-teal-500 rounded-full animate-ping opacity-30" />
-            </div>
-            <div className="w-32 h-px bg-gradient-to-r from-purple-500 via-teal-500 to-purple-500" />
-            <div className="relative">
-              <div className="w-3 h-3 bg-gradient-to-r from-teal-500 to-purple-500 rounded-full animate-pulse" />
-              <div className="absolute -top-1 -left-1 w-5 h-5 border border-teal-500 rounded-full animate-spin opacity-40" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
-            </div>
-            <div className="w-16 h-px bg-gradient-to-r from-teal-500 to-transparent" />
+        {/* Footer ornament */}
+        <div className="mt-20 flex items-center justify-center">
+          <div className="flex items-center gap-4 opacity-70">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-white/30" />
+            <div
+              className="h-2.5 w-2.5 rounded-full"
+              style={{
+                backgroundColor: ACCENT,
+                boxShadow: `0 0 20px ${ACCENT}66`,
+              }}
+            />
+            <div className="h-px w-28 bg-gradient-to-r from-white/30 to-white/10" />
+            <div
+              className="h-2 w-2 rounded-full"
+              style={{
+                backgroundColor: PURPLE,
+                boxShadow: `0 0 20px ${PURPLE}66`,
+              }}
+            />
+            <div className="h-px w-16 bg-gradient-to-r from-white/10 to-transparent" />
           </div>
         </div>
       </div>
 
       <style>{`
-        @keyframes gridMove {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(60px, 60px); }
+        @keyframes orbPulse {
+          0%, 100% { transform: scale(1); opacity: 0.18; }
+          50% { transform: scale(1.12); opacity: 0.28; }
         }
       `}</style>
     </section>
