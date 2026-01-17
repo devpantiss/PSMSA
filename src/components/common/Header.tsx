@@ -118,7 +118,7 @@ const navLinks: NavLink[] = [
       },
       {
         name: "Research ESG & Knowledge Hub",
-        path: "#",
+        path: "/academics/knowledge-hub",
         description: "Stay updated with Courses.",
       },
       {

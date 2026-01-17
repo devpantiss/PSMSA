@@ -28,6 +28,7 @@ import Collaborations from "./pages/Collaborations";
 import ITIPage from "./pages/Programmes/ITIPage";
 import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
 import WorkIntegratedTrainingPage from "./pages/Programmes/WorkIntegratedTrainingPage";
+import ResearchESGKnowledgeHub from "./pages/ResearchESGKnowledgeHub";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -67,6 +68,8 @@ function LayoutWrapper() {
         <Route path="/campus-life" element={<CampusLife />} />
         <Route path="/academics/labs" element={<Labs />} />
         <Route path="/academics/courses" element={<Courses />} />
+        <Route path="/academics/knowledge-hub" element={<ResearchESGKnowledgeHub />} />
+
 
       </Routes>
       {!hideLayout && <Footer />}

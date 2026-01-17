@@ -1,205 +1,248 @@
-import React, { memo, useMemo, useEffect, useRef, useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
+import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { ArrowUpRight, Clock } from "lucide-react";
 
-// Define the Program interface
-interface Program {
-  title: string;
-  description: string;
-  image: string;
-  duration?: string; // optional
-}
-
-// Static program data
-const programData: Program[] = [
-  // {
-  //   title: "Bachelors in Mining (UG)",
-  //   description:
-  //     "Blends classroom learning with hands-on industry training to prepare students for practical roles in mining, steel, and aluminium sectors.",
-  //   image: "/homepage/Programs/bachelors_in_mining.png",
-  //   duration: "48 months",
-  // },
-  // {
-  //   title: "Industrial Training Institution (ITI)",
-  //   description:
-  //     "Industry-designed certifications focused on high employability, aligning skills directly with employer requirements.",
-  //     image: "/homepage/Programs/apprenticeship.png",
-  //     duration: "12-24 months",
-  // },
-  // {
-  //   title: "Diploma/Polytechnic",
-  //   description:
-  //     "Blends classroom learning with hands-on industry training to prepare students for practical roles in mining, steel, and aluminium sectors.",
-  //     image: "/homepage/Programs/diploma.png",
-  //     duration: "6-24 months",
-  // },
-  // {
-  //   title: "Industry Aligned Certification",
-  //   description:
-  //     "Industry-designed certifications focused on high employability, aligning skills directly with employer requirements.",
-  //   image: "https://res.cloudinary.com/djtzx6wo7/image/upload/v1758377339/industry_gixjl2.jpg",
-  //   duration: "3-6 months",
-  // },
+const programmes = [
+  {
+    title: "Diploma/Polytechnic",
+    description:
+      "Comprehensive training in technical and applied sciences, preparing students for supervisory and technician roles.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421119/diploma_diqahi.avif",
+    duration: "2-3 years",
+    highlights: ["Technical Proficiency", "Career-Ready Skills", "Lab-Based Learning"],
+    path: "/our-programmes/diploma-programs",
+  },
+  {
+    title: "Industrial Training Institute (ITI)",
+    description:
+      "Hands-on skill development programs designed to create industry-ready technicians for blue-collar sectors.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421038/iti_pld6fw.avif",
+    duration: "6-24 months",
+    highlights: ["Hands-On Workshops", "Industry Tools", "Placement Assistance"],
+    path: "/our-programmes/iti-program",
+  },
   {
     title: "Workmen Upskilling & Reskilling Program",
     description:
       "Upgrades existing workers to new technologies and skills, ensuring long-term career growth in dynamic industries.",
-      image: "/homepage/Programs/workmen.jpg",
+    image: "/homepage/Programs/workmen.jpg",
     duration: "1-6 months",
+    highlights: ["Technology Upgrade", "Role Transition Support", "Industry-Aligned Skills"],
+    path: "/our-programmes/upskilling-and-reskilling-program",
   },
   {
     title: "Women in Mining",
     description:
-      "Certifies experienced workers' skills for formal recognition and career advancement in the industry.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762167481/Gemini_Generated_Image_dm4793dm4793dm47_obiynh.png",
+      "Empowering women with industry-ready skills, certifications, and safe pathways into mining and heavy industry roles.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762167481/Gemini_Generated_Image_dm4793dm4793dm47_obiynh.png",
     duration: "8-12 weeks",
+    highlights: ["Inclusive Training", "Certification Ready", "Workplace Safety Focus"],
+    path: "/our-programmes/women-in-mining",
   },
   {
     title: "Operator Licencing & Certification",
     description:
-      "Certifies experienced workers' skills for formal recognition and career advancement in the industry.",
-    image: "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745242/IMG_9085_tkrncl_1_1_cc29gu.jpg",
+      "Structured certification pathways for operators to gain formal licensing, improve safety compliance, and boost employability.",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745242/IMG_9085_tkrncl_1_1_cc29gu.jpg",
     duration: "8-12 weeks",
+    highlights: ["License Readiness", "Safety Compliance", "Practical Evaluation"],
+    path: "/our-programmes/operator-licencing",
   },
   {
     title: "International Mobility Program",
     description:
-      "Certifies experienced workers' skills for formal recognition and career advancement in the industry.",
-      image: "/solutions_banner.webp",
+      "Global-standard training designed for overseas opportunities, skill validation, and international job readiness.",
+    image: "/solutions_banner.webp",
     duration: "18-24 weeks",
+    highlights: ["Global Standards", "Overseas Pathways", "International Readiness"],
+    path: "/our-programmes/international-mobility",
   },
 ];
 
-// ProgramCard Component
-interface ProgramCardProps {
-  program: Program;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-}
+const ACCENT = "#9333ea"; // purple-600
+const SECONDARY = "#22c55e"; // green-500
 
-const ProgramCard = memo(
-  ({ program, onMouseEnter, onMouseLeave }: ProgramCardProps) => {
-    return (
-      <div
-        className="relative w-80 h-[500px] group cursor-pointer bg-gradient-to-b from-black to-purple-900 rounded-xl overflow-hidden shadow-2xl border-2 border-green-600 flex flex-col"
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
-        {/* Top: Program Title */}
-        <div className="bg-purple-600/30 text-white text-center py-3">
-          <h3 className="text-xl font-bold">{program.title}</h3>
-          {program.duration && (
-            <p className="text-sm text-green-400">Duration: {program.duration}</p>
-          )}
-        </div>
-
-        {/* Middle: Program Image */}
-        <img
-          src={program.image}
-          alt={program.title}
-          className="h-full object-cover w-[600px] transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
-          decoding="async"
+const ProgrammeCategories: React.FC = () => {
+  return (
+    <section
+      className="relative w-full overflow-hidden bg-black py-20"
+      role="region"
+      aria-label="Programme Categories"
+    >
+      {/* Futuristic background system */}
+      <div className="pointer-events-none absolute inset-0">
+        {/* Glow orbs */}
+        <div
+          className="absolute -top-40 left-[-120px] h-[520px] w-[520px] rounded-full blur-[160px] opacity-40"
+          style={{ backgroundColor: `${ACCENT}55` }}
+        />
+        <div
+          className="absolute bottom-[-220px] right-[-120px] h-[620px] w-[620px] rounded-full blur-[190px] opacity-30"
+          style={{ backgroundColor: `${SECONDARY}44` }}
         />
 
-        {/* Bottom: Program Description */}
-        <div className="bg-black/60 text-white text-sm p-4 flex-1 flex items-center justify-center">
-          <p>{program.description}</p>
-        </div>
-      </div>
-    );
-  },
-  (prevProps, nextProps) => prevProps.program.title === nextProps.program.title
-);
-ProgramCard.displayName = "ProgramCard";
+        {/* Premium grid */}
+        <div className="absolute inset-0 opacity-[0.10] [background-image:linear-gradient(rgba(147,51,234,0.30)_1px,transparent_1px),linear-gradient(90deg,rgba(147,51,234,0.30)_1px,transparent_1px)] [background-size:72px_72px]" />
+        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.10)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:18px_18px]" />
 
-// ProgramPreview Component
-const ProgramPreview: React.FC = () => {
-  const [isPaused, setIsPaused] = useState(false);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const scrollPositionRef = useRef(0);
-
-  const programList = useMemo(() => [...programData, ...programData], []);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const scrollSpeed = 0.5;
-    let animationFrameId: number;
-
-    const scroll = () => {
-      if (!isPaused) {
-        scrollPositionRef.current += scrollSpeed;
-        container.scrollLeft = scrollPositionRef.current;
-
-        const totalWidth = programData.length * 320;
-        if (scrollPositionRef.current >= totalWidth) {
-          scrollPositionRef.current = 0;
-          container.scrollLeft = 0;
-        }
-      }
-      animationFrameId = requestAnimationFrame(scroll);
-    };
-
-    animationFrameId = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused]);
-
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-  };
-
-  const handleMouseLeave = () => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      scrollPositionRef.current = container.scrollLeft;
-    }
-    setIsPaused(false);
-  };
-
-  return (
-    <section className="py-16 bg-gradient-to-b from-black via-purple-900 to-black overflow-hidden">
-      {/* Heading */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Our <span className="text-green-500">Flagship Programs</span>
-        </h2>
-        <p className="text-gray-400 mt-4 text-lg max-w-3xl mx-auto">
-          Empowering students with industry-ready skills through hands-on training and certification programs.
-        </p>
+        {/* vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.95)_100%)]" />
       </div>
 
-      {/* Scrollable Programs Container */}
-      <div className="relative max-w-[1440px] mx-auto">
-        <div
-          ref={scrollContainerRef}
-          className="flex overflow-x-hidden gap-6 px-4 pb-6"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
-          {programList.map((program, index) => (
-            <div
-              key={`${program.title}-${index}`}
-              className="flex-shrink-0 min-w-[320px]"
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
+            <span
+              className="h-2 w-2 rounded-full animate-pulse"
+              style={{ backgroundColor: ACCENT }}
+            />
+            Programmes • Industry Readiness • Career Outcomes
+          </p>
+
+          <h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+            Programme{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(147,51,234,0.55))`,
+              }}
             >
-              <ProgramCard
-                program={program}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              />
-            </div>
+              Categories
+            </span>
+          </h2>
+
+          <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed">
+            Choose the pathway that fits your goals — from foundational technical education
+            to certification, upskilling, and international mobility.
+          </p>
+
+          <div className="mt-6 mx-auto h-[3px] w-28 rounded-full bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
+        </motion.div>
+
+        {/* Grid */}
+        <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {programmes.map((programme, index) => (
+            <Link to={programme.path} key={index} className="group">
+              <motion.article
+                initial={{ opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.06,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                viewport={{ once: true }}
+                className="
+                  relative overflow-hidden rounded-[28px]
+                  border border-white/10 bg-white/5
+                  backdrop-blur-xl
+                  shadow-[0_0_0_1px_rgba(255,255,255,0.04)]
+                  transition-all duration-500
+                  hover:border-white/20 hover:shadow-[0_0_60px_rgba(147,51,234,0.18)]
+                "
+              >
+                {/* Image */}
+                <div className="relative h-[210px] w-full bg-black/40">
+                  <img
+                    src={programme.image}
+                    alt={programme.title}
+                    className="h-full w-full object-cover opacity-90 transition duration-700 group-hover:scale-[1.06]"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-transparent" />
+
+                  {/* top chip */}
+                  <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs text-white/75 backdrop-blur-xl">
+                    <span
+                      className="h-2 w-2 rounded-full"
+                      style={{ backgroundColor: SECONDARY }}
+                    />
+                    Active Programme
+                  </div>
+
+                  {/* duration chip */}
+                  <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs text-white/75 backdrop-blur-xl">
+                    <Clock className="h-4 w-4" style={{ color: ACCENT }} />
+                    {programme.duration}
+                  </div>
+
+                  {/* hover action */}
+                  <div className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs text-white/70 backdrop-blur-xl opacity-0 translate-y-1 transition duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                    View <ArrowUpRight className="h-4 w-4" />
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 flex flex-col min-h-[250px]">
+                  <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-purple-300 transition-colors">
+                    {programme.title}
+                  </h3>
+
+                  <p className="mt-2 text-sm text-white/65 leading-relaxed line-clamp-3">
+                    {programme.description}
+                  </p>
+
+                  {/* Highlights */}
+                  <ul className="mt-5 space-y-2">
+                    {programme.highlights?.slice(0, 3).map((point, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center gap-2 text-sm text-white/80"
+                      >
+                        <FaCheckCircle className="h-4 w-4 text-green-400 shrink-0" />
+                        <span className="line-clamp-1">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Footer CTA */}
+                  <div className="mt-auto pt-6 flex items-center justify-between">
+                    <div className="text-xs text-white/45">
+                      View curriculum • outcomes • eligibility
+                    </div>
+
+                    <div
+                      className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-xs font-semibold
+                      border border-white/10 bg-black/40 text-white/80
+                      transition group-hover:text-white group-hover:border-white/20"
+                    >
+                      View Details <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Premium hover sweep */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
+                  <div
+                    className="absolute -left-24 -top-24 h-60 w-60 rounded-full blur-[90px]"
+                    style={{ backgroundColor: `${ACCENT}18` }}
+                  />
+                  <div
+                    className="absolute -bottom-24 -right-24 h-60 w-60 rounded-full blur-[100px]"
+                    style={{ backgroundColor: `${SECONDARY}14` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-20" />
+                </div>
+              </motion.article>
+            </Link>
           ))}
         </div>
-      </div>
-
-      {/* CTA */}
-      <div className="text-center mt-10">
-        <Link to="/our-programmes" className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-purple-700 transition-colors duration-300">
-          Explore Programs
-        </Link>
       </div>
     </section>
   );
 };
 
-export default memo(ProgramPreview, () => true);
+export default ProgrammeCategories;

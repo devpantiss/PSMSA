@@ -2,16 +2,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { ArrowUpRight, Clock } from "lucide-react";
 
 const programmes = [
-  // ✅ Active Programmes (Currently Available)
   {
     title: "Diploma/Polytechnic",
     description:
       "Comprehensive training in technical and applied sciences, preparing students for supervisory and technician roles.",
-    comingSoon: false,
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421119/diploma_diqahi.avif",
+    duration: "2-3 years",
     highlights: ["Technical Proficiency", "Career-Ready Skills", "Lab-Based Learning"],
     path: "/our-programmes/diploma-programs",
   },
@@ -19,174 +19,222 @@ const programmes = [
     title: "Industrial Training Institute (ITI)",
     description:
       "Hands-on skill development programs designed to create industry-ready technicians for blue-collar sectors.",
-    comingSoon: false,
     image:
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421038/iti_pld6fw.avif",
+    duration: "6-24 months",
     highlights: ["Hands-On Workshops", "Industry Tools", "Placement Assistance"],
     path: "/our-programmes/iti-program",
   },
-  // {
-  //   title: "Advanced Diploma Programs",
-  //   description:
-  //     "Specialized advanced training for high-skill technical roles and leadership in industrial environments.",
-  //   comingSoon: false,
-  //   image:
-  //     "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421316/adv_diploma_gl7enc.jpg",
-  //   highlights: ["Advanced Skills", "Leadership Readiness", "Industry Endorsement"],
-  //   path: "/our-programmes/advanced-diploma-program",
-  // },
   {
-    title: "Industry-Aligned Skill Certification & Apprenticeship Programs",
+    title: "Workmen Upskilling & Reskilling Program",
     description:
-      "Training and certification designed with direct input from industry partners to maximize employability.",
-    comingSoon: false,
-    image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761914370/korba_cmy2er.jpg",
-    highlights: ["Industry Endorsed", "High Employability", "Global Standards"],
-    path: "/our-programmes/industry-alligned-certification",
-  },
-  // {
-  //   title: "Apprenticeship & Dual Training Programs",
-  //   description:
-  //     "Blending classroom learning with hands-on industrial training for real-world exposure and job readiness.",
-  //   comingSoon: false,
-  //   image:
-  //     "https://factly.in/wp-content/uploads//2022/04/National-Apprenticeship-Promotion-Scheme_Image-1.jpg",
-  //   highlights: ["On-the-Job Training", "Industry Exposure", "Skill Integration"],
-  //   path: "/our-programmes/apprenticeship-and-dual-training",
-  // },
-  {
-    title: "Workmen Upskilling & Reskilling Programs",
-    description:
-      "Helping the workforce adapt to evolving technologies, processes, and global industrial standards.",
-    comingSoon: false,
-    image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762422162/ChatGPT_Image_Nov_6_2025_03_12_00_PM_b0hrkz.png",
-    highlights: ["Technology Adaptation", "Skill Enhancement", "Career Longevity"],
+      "Upgrades existing workers to new technologies and skills, ensuring long-term career growth in dynamic industries.",
+    image: "/homepage/Programs/workmen.jpg",
+    duration: "1-6 months",
+    highlights: ["Technology Upgrade", "Role Transition Support", "Industry-Aligned Skills"],
     path: "/our-programmes/upskilling-and-reskilling-program",
   },
-  // {
-  //   title: "Work Integrated Training Programs (WITP)",
-  //   description:
-  //     "Structured programs allowing students to gain work experience while earning, bridging academia and industry.",
-  //   comingSoon: false,
-  //   image:
-  //     "https://res.cloudinary.com/dxzhnns58/image/upload/v1761914537/workers_rjwzq5.jpg",
-  //   highlights: ["Earn While You Learn", "Industry Mentorship", "Career Pathways"],
-  //   path: "/our-programmes/work-integrated-training-program",
-  // },
-
-  // ✅ Now also part of main grid (no more Coming Soon section)
   {
-    title: "Skill Development Bootcamps",
-    description: "Intensive short-term programs for rapid job entry.",
-    comingSoon: false,
+    title: "Women in Mining",
+    description:
+      "Empowering women with industry-ready skills, certifications, and safe pathways into mining and heavy industry roles.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762423419/bootcamp_mzu2xy.jpg",
-    highlights: ["Short-Term", "Job-Focused", "High Intensity"],
-    path: "/our-programmes/bootcamps",
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762167481/Gemini_Generated_Image_dm4793dm4793dm47_obiynh.png",
+    duration: "8-12 weeks",
+    highlights: ["Inclusive Training", "Certification Ready", "Workplace Safety Focus"],
+    path: "/our-programmes/women-in-mining",
   },
   {
-    title: "International Mobility Programs",
+    title: "Operator Licencing & Certification",
     description:
-      "Global-standard training for overseas job opportunities.",
-    comingSoon: false,
+      "Structured certification pathways for operators to gain formal licensing, improve safety compliance, and boost employability.",
     image:
-      "https://cdn.prod.website-files.com/67139b4944f3d6b890cda082/6720a95f025dc22684bab942_64f07126f5659751e457ca5a_workforce-management-system-mining-industry.jpeg",
-    highlights: ["Global Standards", "Overseas Opportunities", "International Exposure"],
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745242/IMG_9085_tkrncl_1_1_cc29gu.jpg",
+    duration: "8-12 weeks",
+    highlights: ["License Readiness", "Safety Compliance", "Practical Evaluation"],
+    path: "/our-programmes/operator-licencing",
+  },
+  {
+    title: "International Mobility Program",
+    description:
+      "Global-standard training designed for overseas opportunities, skill validation, and international job readiness.",
+    image: "/solutions_banner.webp",
+    duration: "18-24 weeks",
+    highlights: ["Global Standards", "Overseas Pathways", "International Readiness"],
     path: "/our-programmes/international-mobility",
   },
 ];
 
+const ACCENT = "#9333ea"; // purple-600
+const SECONDARY = "#22c55e"; // green-500
+
 const ProgrammeCategories: React.FC = () => {
   return (
-    <div className="w-full relative overflow-hidden">
-      <section
-        className="relative py-20 bg-black"
-        role="region"
-        aria-label="Programme Categories"
-      >
-        {/* Background Glow */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-[120px] opacity-70"></div>
-          <div className="absolute bottom-32 right-10 w-80 h-80 bg-green-500 rounded-full mix-blend-screen filter blur-[140px] opacity-65"></div>
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-green-500 rounded-full mix-blend-screen filter blur-[160px] opacity-70 -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-10 left-1/4 w-64 h-64 bg-purple-700 rounded-full mix-blend-screen filter blur-[130px] opacity-70"></div>
-        </div>
+    <section
+      className="relative w-full overflow-hidden bg-black py-20"
+      role="region"
+      aria-label="Programme Categories"
+    >
+      {/* Futuristic background system */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute -top-40 left-[-120px] h-[520px] w-[520px] rounded-full blur-[160px] opacity-40"
+          style={{ backgroundColor: `${ACCENT}55` }}
+        />
+        <div
+          className="absolute bottom-[-220px] right-[-120px] h-[620px] w-[620px] rounded-full blur-[190px] opacity-30"
+          style={{ backgroundColor: `${SECONDARY}44` }}
+        />
 
-        <div className="relative max-w-7xl mx-auto px-6 z-10">
-          {/* Header */}
-          <motion.h2
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl text-white font-black text-center mb-14 tracking-wide relative"
-          >
-            Programme Categories
-            <span className="absolute left-1/2 -bottom-2 -translate-x-1/2 w-24 h-1 bg-green-500 rounded-full"></span>
-          </motion.h2>
+        <div className="absolute inset-0 opacity-[0.10] [background-image:linear-gradient(rgba(147,51,234,0.30)_1px,transparent_1px),linear-gradient(90deg,rgba(147,51,234,0.30)_1px,transparent_1px)] [background-size:72px_72px]" />
+        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.10)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:18px_18px]" />
 
-          {/* Single Grid – 9 Active Programmes */}
-          {/* <motion.h3
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="text-xl md:text-2xl text-white font-black text-center mb-8 relative"
-          >
-            Active Programmes
-            <span className="absolute left-1/2 -bottom-1 -translate-x-1/2 w-16 h-1 bg-green-500 rounded-full"></span>
-          </motion.h3> */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.95)_100%)]" />
+      </div>
 
-          <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-4">
-            {programmes.map((programme, index) => (
-              <Link to={programme.path} key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: index * 0.08,
-                    type: "spring",
-                    stiffness: 100,
-                  }}
-                  viewport={{ once: true }}
-                  className="relative flex flex-col justify-between min-h-[260px] md:min-h-[280px] bg-gray-900/70 backdrop-blur-md border border-gray-800 rounded-2xl shadow-[0_6px_24px_rgba(239,68,68,0.2)] hover:shadow-[0_6px_24px_rgba(239,68,68,0.3)] overflow-hidden group hover:border-purple-500 transform perspective-1000 rotateX-5 rotateY-5 hover:rotateX-0 hover:rotateY-0 hover:scale-105 transition-all duration-300 before:absolute before:inset-0 before:bg-gray-900/75 before:rounded-2xl before:opacity-100 before:transition-opacity before:duration-500 hover:before:bg-gray-900/70 focus-visible:ring-2 focus-visible:ring-purple-500 cursor-pointer"
-                  style={{
-                    backgroundImage: `url(${programme.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div className="p-6 relative z-10 flex flex-col gap-3">
-                    <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-green-500 transition-colors">
-                      {programme.title}
-                    </h3>
-                    <p className="text-gray-100 text-sm font-medium leading-relaxed">
-                      {programme.description}
-                    </p>
-                    {programme.highlights && (
-                      <ul className="mt-1 space-y-2">
-                        {programme.highlights.map((point, i) => (
-                          <li
-                            key={i}
-                            className="flex items-center text-sm text-gray-100 font-medium"
-                          >
-                            <FaCheckCircle className="text-green-400 w-4 h-4 mr-2" />
-                            {point}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="mx-auto mb-14 max-w-3xl text-center"
+        >
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
+            <span
+              className="h-2 w-2 rounded-full animate-pulse"
+              style={{ backgroundColor: ACCENT }}
+            />
+            Programmes • Industry Readiness • Career Outcomes
+          </p>
+
+          <h2 className="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+            Programme{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(147,51,234,0.55))`,
+              }}
+            >
+              Categories
+            </span>
+          </h2>
+
+          <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed">
+            Choose the pathway that fits your goals — from foundational technical education
+            to certification, upskilling, and international mobility.
+          </p>
+
+          <div className="mt-6 mx-auto h-[3px] w-28 rounded-full bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
+        </motion.div>
+
+        {/* Grid (cards same height) */}
+        <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+          {programmes.map((programme, index) => (
+            <Link to={programme.path} key={index} className="group h-full">
+              <motion.article
+                initial={{ opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.06,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                viewport={{ once: true }}
+                className="
+                  relative h-full overflow-hidden rounded-[28px]
+                  border border-white/10 bg-white/5
+                  backdrop-blur-xl
+                  shadow-[0_0_0_1px_rgba(255,255,255,0.04)]
+                  transition-all duration-500
+                  hover:border-white/20 hover:shadow-[0_0_60px_rgba(147,51,234,0.18)]
+                "
+              >
+                {/* Image */}
+                <div className="relative h-[210px] w-full bg-black/40">
+                  <img
+                    src={programme.image}
+                    alt={programme.title}
+                    className="h-full w-full object-cover opacity-90 transition duration-700 group-hover:scale-[1.06]"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-transparent" />
+
+                  <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs text-white/75 backdrop-blur-xl">
+                    <span
+                      className="h-2 w-2 rounded-full"
+                      style={{ backgroundColor: SECONDARY }}
+                    />
+                    Active Programme
                   </div>
-                </motion.div>
-              </Link>
-            ))}
-          </div>
+
+                  <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs text-white/75 backdrop-blur-xl">
+                    <Clock className="h-4 w-4" style={{ color: ACCENT }} />
+                    {programme.duration}
+                  </div>
+
+                  <div className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs text-white/70 backdrop-blur-xl opacity-0 translate-y-1 transition duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                    View <ArrowUpRight className="h-4 w-4" />
+                  </div>
+                </div>
+
+                {/* Content (forces same height layout) */}
+                <div className="p-6 flex flex-col min-h-[290px]">
+                  <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-purple-300 transition-colors">
+                    {programme.title}
+                  </h3>
+
+                  <p className="mt-2 text-sm text-white/65 leading-relaxed line-clamp-3">
+                    {programme.description}
+                  </p>
+
+                  <ul className="mt-5 space-y-2">
+                    {programme.highlights?.slice(0, 3).map((point, i) => (
+                      <li
+                        key={i}
+                        className="flex items-center gap-2 text-sm text-white/80"
+                      >
+                        <FaCheckCircle className="h-4 w-4 text-green-400 shrink-0" />
+                        <span className="line-clamp-1">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Footer pinned to bottom */}
+                  <div className="mt-auto pt-6 flex items-center justify-between">
+                    <div className="text-xs text-white/45">
+                      View curriculum • outcomes • eligibility
+                    </div>
+
+                    <div
+                      className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-xs font-semibold
+                      border border-white/10 bg-black/40 text-white/80
+                      transition group-hover:text-white group-hover:border-white/20"
+                    >
+                      View Details <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Premium hover sweep */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
+                  <div
+                    className="absolute -left-24 -top-24 h-60 w-60 rounded-full blur-[90px]"
+                    style={{ backgroundColor: `${ACCENT}18` }}
+                  />
+                  <div
+                    className="absolute -bottom-24 -right-24 h-60 w-60 rounded-full blur-[100px]"
+                    style={{ backgroundColor: `${SECONDARY}14` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-20" />
+                </div>
+              </motion.article>
+            </Link>
+          ))}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 
