@@ -7,7 +7,6 @@ import {
   Award,
   Wrench,
   BookOpen,
-  Zap,
   CheckCircle,
   GraduationCap,
   Target,

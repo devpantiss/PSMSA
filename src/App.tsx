@@ -8,11 +8,11 @@ import AboutPage from "./pages/AboutPage";
 import AllProgramsPage from "./pages/AllProgramsPage";
 import ContactPage from "./pages/ContactPage";
 import EventsPage from "./pages/EventsPage";
-import RecognitionofPriorLearningPage from "./pages/Programmes/RecognitionofPriorLearningPage";
-import ApprenticeshipAndDualTrainingPage from "./pages/Programmes/ApprenticeshipAndDualTrainingPage";
+// import RecognitionofPriorLearningPage from "./pages/Programmes/RecognitionofPriorLearningPage";
+// import ApprenticeshipAndDualTrainingPage from "./pages/Programmes/ApprenticeshipAndDualTrainingPage";
 import DiplomaAndAdvancedDiplomaPage from "./pages/Programmes/DiplomaAndAdvancedDiplomaPage";
 import UpskillingAndReskillingPage from "./pages/Programmes/UpskillingAndReskillingPage";
-import IndustryAllignedCertificationPage from "./pages/Programmes/IndustryAllignedCertificationPage";
+// import IndustryAllignedCertificationPage from "./pages/Programmes/IndustryAllignedCertificationPage";
 import DepartmentsPage from "./pages/DepartmentsPage";
 import CurriculumPage from "./pages/CurriculumPage";
 import AcademicCalendarPage from "./pages/AcademicCalenderPage";
@@ -26,9 +26,11 @@ import Labs from "./pages/Labs";
 import Courses from "./pages/Courses";
 import Collaborations from "./pages/Collaborations";
 import ITIPage from "./pages/Programmes/ITIPage";
-import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
+// import AdvancedDiplomaPage from "./pages/Programmes/AdvancedDiplomaPage";
 import WorkIntegratedTrainingPage from "./pages/Programmes/WorkIntegratedTrainingPage";
 import ResearchESGKnowledgeHub from "./pages/ResearchESGKnowledgeHub";
+import WomenInMiningPage from "./pages/Programmes/WomenInMiningPage";
+import OperatorLicencingPage from "./pages/Programmes/OperatorLicencingPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -49,14 +51,13 @@ function LayoutWrapper() {
         <Route path="/our-programmes" element={<AllProgramsPage />} />
         <Route path="/contact-us" element={<ContactPage/>} />
         <Route path="/events" element={<EventsPage/>} />
-        <Route path="/our-programmes/recognition-of-prior-learning" element={<RecognitionofPriorLearningPage />} />
-        <Route path="/our-programmes/apprenticeship-and-dual-training" element={<ApprenticeshipAndDualTrainingPage />} />
         <Route path="/our-programmes/diploma-programs" element={<DiplomaAndAdvancedDiplomaPage />} />
         <Route path="/our-programmes/upskilling-and-reskilling-program" element={<UpskillingAndReskillingPage />} />
-        <Route path="/our-programmes/industry-alligned-certification" element={<IndustryAllignedCertificationPage />} />
         <Route path="/our-programmes/iti-program" element={<ITIPage />} />
-        <Route path="/our-programmes/advanced-diploma-program" element={<AdvancedDiplomaPage />} />
         <Route path="/our-programmes/work-integrated-training-program" element={<WorkIntegratedTrainingPage />} />
+        <Route path="/our-programmes/women-in-mining" element={<WomenInMiningPage />} />
+        <Route path="/our-programmes/operator-licensing" element={<OperatorLicencingPage />} />
+
         <Route path="/academics/our-departments" element={<DepartmentsPage />} />
         <Route path="/academics/our-curriculum" element={<CurriculumPage />} />
         <Route path="/academics/academic-calender" element={<AcademicCalendarPage />} />

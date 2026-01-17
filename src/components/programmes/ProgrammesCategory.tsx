@@ -52,7 +52,7 @@ const programmes = [
       "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745242/IMG_9085_tkrncl_1_1_cc29gu.jpg",
     duration: "8-12 weeks",
     highlights: ["License Readiness", "Safety Compliance", "Practical Evaluation"],
-    path: "/our-programmes/operator-licencing",
+    path: "/our-programmes/operator-licensing",
   },
   {
     title: "International Mobility Program",
