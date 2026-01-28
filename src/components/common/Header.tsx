@@ -101,11 +101,11 @@ const navLinks: NavLink[] = [
       //   path: "/academics/academic-calender",
       //   description: "Stay updated with important academic dates.",
       // },
-      // {
-      //   name: "Faculties",
-      //   path: "/academics/faculties",
-      //   description: "Stay updated with important academic dates.",
-      // },
+      {
+        name: "Faculties",
+        path: "/academics/faculties",
+        description: "Stay updated with important academic dates.",
+      },
       {
         name: "Courses",
         path: "/our-programmes",
@@ -122,9 +122,10 @@ const navLinks: NavLink[] = [
         description: "Stay updated with Courses.",
       },
       {
-        name: "Labs",
-        path: "/academics/labs",
-        description: "Witness a completely new approach for the Students Training.",
+        name: "Campus Life",
+        path: "/campus-life",
+        description:
+          "Get in touch with us. We're here to help you on your skilling journey.",
       },
       {
         name: "Training Methodology",
@@ -189,10 +190,9 @@ const navLinks: NavLink[] = [
   //     "Stay updated with upcoming seminars, workshops, fests, and industry talks.",
   // },
   {
-    name: "Campus Life",
-    path: "/campus-life",
-    description:
-      "Get in touch with us. We're here to help you on your skilling journey.",
+    name: "Labs",
+    path: "/academics/labs",
+    description: "Witness a completely new approach for the Students Training.",
   },
   {
     name: "Placements",
@@ -300,9 +300,8 @@ const Header: React.FC = () => {
           <img
             src="/LOGO.png"
             alt="Pantiss School for Mines, Steel & AluminiumLogo"
-            className={`w-auto drop-shadow-lg animate-pulse-logo ${
-              isScrolled ? "h-16" : "h-24"
-            } transition-all duration-300`}
+            className={`w-auto drop-shadow-lg animate-pulse-logo ${isScrolled ? "h-16" : "h-24"
+              } transition-all duration-300`}
           />
         </div>
 
@@ -330,12 +329,11 @@ const Header: React.FC = () => {
                     aria-haspopup="true"
                     aria-expanded={isOpen}
                     className={`relative flex items-center px-3 py-2 font-semibold rounded-md text-lg transition-colors duration-300
-                      ${
-                        isScrolled
-                          ? hasActiveChild || isActive(link.path)
-                            ? "text-green-600"
-                            : "text-gray-50 hover:text-green-600"
-                          : hasActiveChild || isActive(link.path)
+                      ${isScrolled
+                        ? hasActiveChild || isActive(link.path)
+                          ? "text-green-600"
+                          : "text-gray-50 hover:text-green-600"
+                        : hasActiveChild || isActive(link.path)
                           ? "text-green-600"
                           : "text-gray-300 hover:text-green-600"
                       }`}
@@ -349,12 +347,11 @@ const Header: React.FC = () => {
                   <a
                     href={link.path}
                     className={`relative flex items-center px-3 py-2 font-semibold rounded-md text-lg transition-colors duration-300
-                      ${
-                        isScrolled
-                          ? isActive(link.path)
-                            ? "text-green-600"
-                            : "text-gray-50 hover:text-green-600"
-                          : isActive(link.path)
+                      ${isScrolled
+                        ? isActive(link.path)
+                          ? "text-green-600"
+                          : "text-gray-50 hover:text-green-600"
+                        : isActive(link.path)
                           ? "text-green-600"
                           : "text-gray-300 hover:text-green-600"
                       }`}
@@ -369,22 +366,19 @@ const Header: React.FC = () => {
                 {/* Dropdown */}
                 {isOpen && hasSubmenu && (
                   <div
-                    className={`fixed left-1/2 ${
-                      isScrolled ? "top-20" : "top-40"
-                    } -translate-x-1/2 w-[90vw] max-w-6xl backdrop-blur-lg rounded-xl shadow-lg border z-[110] flex h-[60vh]
-                      ${
-                        isScrolled
-                          ? "bg-black/90 text-gray-100 border-gray-700"
-                          : "bg-gradient-to-br from-black/80 to-black/80 text-gray-100 border-gray-700"
+                    className={`fixed left-1/2 ${isScrolled ? "top-20" : "top-40"
+                      } -translate-x-1/2 w-[90vw] max-w-6xl backdrop-blur-lg rounded-xl shadow-lg border z-[110] flex h-[60vh]
+                      ${isScrolled
+                        ? "bg-black/90 text-gray-100 border-gray-700"
+                        : "bg-gradient-to-br from-black/80 to-black/80 text-gray-100 border-gray-700"
                       }`}
                     onMouseLeave={handleDropdownMouseLeave}
                     role="menu"
                     aria-label={`${link.name} submenu`}
                   >
                     <section
-                      className={`w-1/3 p-6 space-y-4 flex flex-col justify-center border-r ${
-                        isScrolled ? "border-gray-700" : "border-gray-600"
-                      }`}
+                      className={`w-1/3 p-6 space-y-4 flex flex-col justify-center border-r ${isScrolled ? "border-gray-700" : "border-gray-600"
+                        }`}
                     >
                       <h2
                         id={`submenu-${link.name}`}
@@ -396,11 +390,10 @@ const Header: React.FC = () => {
                     </section>
 
                     <div
-                      className={`${
-                        link.name === "Programs"
+                      className={`${link.name === "Programs"
                           ? "w-2/3 p-6 flex flex-col relative"
                           : "w-1/3 p-6 overflow-y-auto"
-                      }`}
+                        }`}
                     >
                       <nav
                         ref={navRef}
@@ -416,18 +409,17 @@ const Header: React.FC = () => {
                               href={sub.path}
                               onMouseEnter={() => setHoveredSubLink(sub.name)}
                               className={`block px-4 py-2 mb-2 rounded-md cursor-pointer text-lg font-semibold transition-colors duration-200 
-                                ${
-                                  isScrolled
-                                    ? isSelected
-                                      ? "bg-green-600 text-white shadow-lg"
-                                      : isHovered
-                                      ? "bg-gray-700 text-gray-200"
-                                      : "hover:bg-gray-700 hover:text-gray-300"
-                                    : isSelected
+                                ${isScrolled
+                                  ? isSelected
                                     ? "bg-green-600 text-white shadow-lg"
                                     : isHovered
-                                    ? "bg-green-600 text-white"
-                                    : "hover:bg-gray-700 hover:text-white"
+                                      ? "bg-gray-700 text-gray-200"
+                                      : "hover:bg-gray-700 hover:text-gray-300"
+                                  : isSelected
+                                    ? "bg-green-600 text-white shadow-lg"
+                                    : isHovered
+                                      ? "bg-green-600 text-white"
+                                      : "hover:bg-gray-700 hover:text-white"
                                 }`}
                               role="menuitem"
                               aria-current={isSelected ? "page" : undefined}
@@ -435,9 +427,8 @@ const Header: React.FC = () => {
                               {sub.name}
                               {link.name === "Programs" && (
                                 <div
-                                  className={`text-sm italic ${
-                                    isScrolled ? "text-gray-400" : "text-gray-300"
-                                  }`}
+                                  className={`text-sm italic ${isScrolled ? "text-gray-400" : "text-gray-300"
+                                    }`}
                                 >
                                   {sub.description}
                                 </div>
@@ -456,9 +447,8 @@ const Header: React.FC = () => {
 
                     {link.name !== "Programs" && (
                       <section
-                        className={`w-1/3 p-6 flex flex-col items-center justify-center space-y-4 border-l ${
-                          isScrolled ? "border-gray-700" : "border-gray-600"
-                        }`}
+                        className={`w-1/3 p-6 flex flex-col items-center justify-center space-y-4 border-l ${isScrolled ? "border-gray-700" : "border-gray-600"
+                          }`}
                       >
                         {(() => {
                           const activeSub =
@@ -468,9 +458,8 @@ const Header: React.FC = () => {
                           return (
                             <>
                               <p
-                                className={`text-center font-medium ${
-                                  isScrolled ? "text-gray-300" : "text-gray-200"
-                                }`}
+                                className={`text-center font-medium ${isScrolled ? "text-gray-300" : "text-gray-200"
+                                  }`}
                               >
                                 {activeSub.description}
                               </p>
@@ -497,11 +486,10 @@ const Header: React.FC = () => {
         {/* Mobile Hamburger */}
         <button
           type="button"
-          className={`${
-            isScrolled
+          className={`${isScrolled
               ? "text-gray-50 hover:text-green-600"
               : "text-gray-300 hover:text-green-600"
-          } lg:hidden focus:outline-none focus:ring-2 focus:ring-green-600 rounded-md`}
+            } lg:hidden focus:outline-none focus:ring-2 focus:ring-green-600 rounded-md`}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
           onClick={() => {
@@ -609,13 +597,11 @@ const Header: React.FC = () => {
       {/* Mobile menu */}
       {isMenuOpen && (
         <nav
-          className={`lg:hidden fixed ${
-            isScrolled ? "top-16" : "top-40"
-          } inset-x-0 backdrop-blur-md border rounded-b-lg z-[110] p-6 overflow-auto max-h-[calc(100vh-6rem)] 
-            ${
-              isScrolled
-                ? "bg-black/90 border-gray-700 text-gray-100"
-                : "bg-black/90 border-green-600 text-green-600"
+          className={`lg:hidden fixed ${isScrolled ? "top-16" : "top-40"
+            } inset-x-0 backdrop-blur-md border rounded-b-lg z-[110] p-6 overflow-auto max-h-[calc(100vh-6rem)] 
+            ${isScrolled
+              ? "bg-black/90 border-gray-700 text-gray-100"
+              : "bg-black/90 border-green-600 text-green-600"
             }`}
           role="menu"
         >
@@ -624,9 +610,8 @@ const Header: React.FC = () => {
               {link.subLinks ? (
                 <>
                   <button
-                    className={`block w-full text-left font-semibold text-xl mb-3 ${
-                      isScrolled ? "text-green-600" : "text-green-600"
-                    }`}
+                    className={`block w-full text-left font-semibold text-xl mb-3 ${isScrolled ? "text-green-600" : "text-green-600"
+                      }`}
                     onClick={() =>
                       setOpenDropdown(
                         openDropdown === link.name ? null : link.name
@@ -649,12 +634,11 @@ const Header: React.FC = () => {
                             key={sub.name}
                             href={sub.path}
                             className={`block px-4 py-2 rounded-md font-medium text-lg transition-colors duration-200 
-                              ${
-                                isScrolled
-                                  ? isSelected
-                                    ? "bg-green-600 text-white"
-                                    : "text-gray-300 hover:bg-gray-700 hover:text-gray-100"
-                                  : isSelected
+                              ${isScrolled
+                                ? isSelected
+                                  ? "bg-green-600 text-white"
+                                  : "text-gray-300 hover:bg-gray-700 hover:text-gray-100"
+                                : isSelected
                                   ? "bg-green-600 text-white"
                                   : "text-green-600 hover:bg-green-600 hover:text-white"
                               }`}
@@ -664,9 +648,8 @@ const Header: React.FC = () => {
                             {sub.name}
                             {link.name === "Programs" && (
                               <div
-                                className={`text-sm italic ${
-                                  isScrolled ? "text-gray-400" : "text-gray-300"
-                                }`}
+                                className={`text-sm italic ${isScrolled ? "text-gray-400" : "text-gray-300"
+                                  }`}
                               >
                                 {sub.description}
                               </div>
@@ -677,9 +660,8 @@ const Header: React.FC = () => {
                       {link.name !== "Programs" && (
                         <>
                           <p
-                            className={`mt-4 italic text-sm max-w-md ${
-                              isScrolled ? "text-gray-400" : "text-gray-300"
-                            }`}
+                            className={`mt-4 italic text-sm max-w-md ${isScrolled ? "text-gray-400" : "text-gray-300"
+                              }`}
                           >
                             {link.subLinks.find(
                               (sl) => sl.name === hoveredSubLink
@@ -706,11 +688,10 @@ const Header: React.FC = () => {
               ) : (
                 <a
                   href={link.path}
-                  className={`block px-4 py-3 rounded-md font-semibold text-xl ${
-                    isScrolled
+                  className={`block px-4 py-3 rounded-md font-semibold text-xl ${isScrolled
                       ? "text-green-600 hover:bg-gray-700 hover:text-gray-100"
                       : "text-green-600 hover:bg-green-600 hover:text-white"
-                  }`}
+                    }`}
                   onClick={() => setIsMenuOpen(false)}
                   aria-current={isActive(link.path) ? "page" : undefined}
                 >

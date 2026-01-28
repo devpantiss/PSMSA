@@ -27,7 +27,7 @@ export default function ElectricalLabImmersive() {
   const resetView = () => controlsRef.current?.reset?.();
 
   return (
-    <section className="relative w-full overflow-hidden bg-transparent py-16">
+    <section className="relative w-full overflow-hidden bg-transparent py-4">
       {/* Background cinematic grid + glow */}
       {/* <div className="pointer-events-none absolute inset-0">
         <div

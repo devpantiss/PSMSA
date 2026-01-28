@@ -63,7 +63,7 @@ const SKETCHFAB_PAGE =
 
 export default function ARVRLabShowcase() {
   return (
-    <section className="relative w-full overflow-hidden bg-transparent py-16">
+    <section className="relative w-full overflow-hidden bg-transparent py-4">
       {/* Ambient sci-fi background */}
       {/* <div className="pointer-events-none absolute inset-0"> */}
         {/* <div

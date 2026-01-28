@@ -65,9 +65,8 @@ export default function Why() {
           key={idx}
           src={src}
           alt={`Slide ${idx}`}
-          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            current === idx ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${current === idx ? "opacity-100" : "opacity-0"
+            }`}
         />
       ))}
 
@@ -92,7 +91,7 @@ export default function Why() {
             className="mt-6 px-6 py-2 border border-white hover:bg-white hover:text-black transition-all"
             aria-label="Learn More About Pantiss"
           >
-            Learn More About Pantiss
+            Explore Dashboard
           </button>
         </div>
 

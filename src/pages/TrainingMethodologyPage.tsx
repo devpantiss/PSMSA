@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ScrollLockedTrainingProcess from "../components/methodology/ScrollLockedTrainingProcess";
+import MethodologyActivities from "../components/methodology/MethodologyActivities";
 
 // Reusable section title component
 const SectionTitle: React.FC<{ title: string; subtitle?: string }> = ({
@@ -108,6 +109,7 @@ const TrainingMethodologyPage: React.FC = () => {
 
       <ScrollLockedTrainingProcess />
 
+      <MethodologyActivities />
       {/* Step-by-Step Process */}
       {/* <section className="py-20 bg-black">
         <SectionTitle

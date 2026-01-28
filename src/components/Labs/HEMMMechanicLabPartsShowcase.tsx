@@ -152,7 +152,7 @@ export default function HEMMMechanicLabPartsShowcase() {
   );
 
   return (
-    <section className="relative w-full overflow-hidden bg-transparent py-16">
+    <section className="relative w-full overflow-hidden bg-transparent py-4">
       {/* Sci-fi background */}
       <div className="pointer-events-none absolute inset-0">
         <div

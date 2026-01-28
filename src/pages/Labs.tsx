@@ -6,11 +6,12 @@ import LabsGrid from "../components/Labs/LabsGrid";
 import LabsImpact from "../components/Labs/LabsImpact";
 // import LabsCTA from "../components/Labs/LabsCTA";
 import FuturisticLabsShowcaseSection from "../components/Labs/FuturisticLabsShowcaseSection";
-import HEMMMechanicsShowcase from "../components/Labs/HEMMMechanicsShowcase";
-import ElectricalLabViewer from "../components/Labs/ElectricalLabViewer";
-import ARVRLabShowcase from "../components/Labs/ARVRLabShowcase";
+// import HEMMMechanicsShowcase from "../components/Labs/HEMMMechanicsShowcase";
+// import ElectricalLabViewer from "../components/Labs/ElectricalLabViewer";
+// import ARVRLabShowcase from "../components/Labs/ARVRLabShowcase";
 import LabsSimulatorPromoBanner from "../components/Labs/LabsSimulatorPromoBanner";
-import HEMMMechanicLabPartsShowcase from "../components/Labs/HEMMMechanicLabPartsShowcase";
+import TrainingLabsSection from "../components/Labs/TrainingLabsSection";
+// import HEMMMechanicLabPartsShowcase from "../components/Labs/HEMMMechanicLabPartsShowcase";
 
 // const ACCENT = "#4eeac8";
 
@@ -69,12 +70,13 @@ const Labs: React.FC = () => {
         <LabsHero />
         <LabsWhyItMatters />
         <LabsGrid />
-        <HEMMMechanicsShowcase />
+        <TrainingLabsSection />
+        {/* <HEMMMechanicsShowcase /> */}
         <FuturisticLabsShowcaseSection />
         <LabsSimulatorPromoBanner />
-        <HEMMMechanicLabPartsShowcase />
-        <ElectricalLabViewer />
-        <ARVRLabShowcase />
+        {/* <HEMMMechanicLabPartsShowcase /> */}
+        {/* <ElectricalLabViewer /> */}
+        {/* <ARVRLabShowcase /> */}
         {/* <TechStack /> */}
         <LabsImpact />
         {/* <LabsCTA /> */}

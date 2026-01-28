@@ -42,7 +42,7 @@ const FuturisticLabsShowcaseSection: React.FC = () => {
                 className="h-2 w-2 rounded-full animate-pulse"
                 style={{ backgroundColor: ACCENT }}
               />
-              Futuristic Lab Ecosystem • Real-World Training
+              Futuristic Lab Gallery • Real-World Training
             </p>
 
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">
@@ -53,7 +53,7 @@ const FuturisticLabsShowcaseSection: React.FC = () => {
                   backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(78,234,200,0.55))`,
                 }}
               >
-                Advanced Labs
+                Labs Gallery
               </span>
             </h2>
 
