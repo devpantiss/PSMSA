@@ -53,7 +53,7 @@ const INDUSTRIES: Industry[] = [
 export default function IndustriesWeEmpower() {
   const [active, setActive] = useState("bfsi");
 
-  const activeIndustry = INDUSTRIES.find((i) => i.id === active)!;
+  // const activeIndustry = INDUSTRIES.find((i) => i.id === active)!;
 
   return (
     <section className="relative w-full bg-black text-white overflow-hidden">

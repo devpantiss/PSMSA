@@ -117,7 +117,7 @@ const navLinks: NavLink[] = [
         description: "Stay updated with Courses.",
       },
       {
-        name: "Research ESG & Knowledge Hub",
+        name: "Research & Knowledge Hub",
         path: "/academics/knowledge-hub",
         description: "Stay updated with Courses.",
       },
@@ -215,7 +215,7 @@ const secondaryLinks = [
     icon: FaStar,
   },
   {
-    name: "Placements",
+    name: "Job Search Engine",
     path: "/awarding-body",
     icon: FaAward,
   },
