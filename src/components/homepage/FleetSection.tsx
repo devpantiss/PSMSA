@@ -1,8 +1,7 @@
-import React, { memo, useMemo, useEffect, useRef, useState } from "react";
-import OurFuturisticApproach from "./OurFuturisticApproach";
+import React, { memo } from "react";
 
-// Define the Vehicle interface
-interface Vehicle {
+/* ===================== TYPES ===================== */
+interface FleetVehicle {
   title: string;
   image: string;
   description: string;
@@ -10,16 +9,24 @@ interface Vehicle {
   assetNo: string;
   engineNo: string;
   chassisNo: string;
-  quantity: string; // Added quantity field
+  quantity: string;
 }
 
-// Static fleet data with quantities
-const fleetData: Vehicle[] = [
+interface InfraItem {
+  title: string;
+  image: string;
+  description: string;
+  quantity: string;
+  importFrom: string;
+  techSpecs: string;
+}
+
+/* ===================== FLEET DATA (UNCHANGED) ===================== */
+const fleetData: FleetVehicle[] = [
   {
     title: "Volvo 460 Dumper",
     image: "/fleet/volvo-460-tipper.avif",
-    description:
-      "A heavy-duty articulated dumper with a 46-ton capacity, designed for rugged terrains and efficient material transport.",
+    description: "A heavy-duty articulated dumper with a 46-ton capacity, designed for rugged terrains and efficient material transport.",
     registrationNo: "VOL-460-1234",
     assetNo: "A-001",
     engineNo: "ENG-460-7890",
@@ -29,8 +36,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Volvo Excavator",
     image: "/fleet/volvo-excavator.jpg",
-    description:
-      "A versatile EC480 excavator with advanced hydraulics, delivering precision and power for large-scale digging operations.",
+    description: "A versatile EC480 excavator with advanced hydraulics, delivering precision and power for large-scale digging operations.",
     registrationNo: "VOL-EXC-5678",
     assetNo: "A-002",
     engineNo: "ENG-480-2345",
@@ -40,8 +46,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Ace Hydra Crane",
     image: "/fleet/ace-hydra.webp",
-    description:
-      "A mobile hydraulic crane with a 14-ton lifting capacity, ideal for construction and industrial lifting tasks.",
+    description: "A mobile hydraulic crane with a 14-ton lifting capacity, ideal for construction and industrial lifting tasks.",
     registrationNo: "ACE-HYD-9012",
     assetNo: "A-003",
     engineNo: "ENG-014-6789",
@@ -51,8 +56,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Caterpillar Loader",
     image: "/fleet/caterpillar-loader.avif",
-    description:
-      "A robust 950M wheel loader with superior digging and loading capabilities for heavy-duty applications.",
+    description: "A robust 950M wheel loader with superior digging and loading capabilities for heavy-duty applications.",
     registrationNo: "CAT-LOD-3456",
     assetNo: "A-004",
     engineNo: "ENG-950-1234",
@@ -62,8 +66,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Caterpillar Haulpack",
     image: "/fleet/cat-haulpack.avif",
-    description:
-      "A high-capacity 777G haul truck built for mining, offering durability and efficiency in material hauling.",
+    description: "A high-capacity 777G haul truck built for mining, offering durability and efficiency in material hauling.",
     registrationNo: "CAT-HPK-7890",
     assetNo: "A-005",
     engineNo: "ENG-777-5678",
@@ -73,8 +76,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Propel Electric Tipper",
     image: "/fleet/propel-ev-tipper.jpeg",
-    description:
-      "An electric tipper truck designed for sustainable mining operations, combining efficiency with zero emissions.",
+    description: "An electric tipper truck designed for sustainable mining operations, combining efficiency with zero emissions.",
     registrationNo: "PRO-EV-2345",
     assetNo: "A-006",
     engineNo: "ENG-EV-9012",
@@ -84,8 +86,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Ace TC 6040 Tower Crane",
     image: "/fleet/ace-crane.jpg",
-    description:
-      "A high-performance tower crane with a 60-meter jib and 40-ton lifting capacity, ideal for heavy construction sites.",
+    description: "A high-performance tower crane with a 60-meter jib and 40-ton lifting capacity, ideal for heavy construction sites.",
     registrationNo: "ACE-TC-6040",
     assetNo: "A-007",
     engineNo: "ENG-TC-6040-5678",
@@ -95,8 +96,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Toyota Core IC Pneumatic Forklift",
     image: "/fleet/forklift.jpeg",
-    description:
-      "A mid-size IC pneumatic forklift designed for outdoor heavy lifting tasks, delivering excellent durability and performance.",
+    description: "A mid-size IC pneumatic forklift designed for outdoor heavy lifting tasks, delivering excellent durability and performance.",
     registrationNo: "TOY-IC-4321",
     assetNo: "A-008",
     engineNo: "ENG-IC-6789",
@@ -106,8 +106,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Komatsu Bulldozer",
     image: "/fleet/bulldozer.jpg",
-    description:
-      "A powerful bulldozer for earthmoving and grading, equipped with advanced blade control for precision work.",
+    description: "A powerful bulldozer for earthmoving and grading, equipped with advanced blade control for precision work.",
     registrationNo: "KOM-6789",
     assetNo: "A-009",
     engineNo: "ENG-BML-3456",
@@ -117,8 +116,7 @@ const fleetData: Vehicle[] = [
   {
     title: "Tata Prima 2830K",
     image: "/fleet/prima.jpg",
-    description:
-      "A robust 28-ton tipper truck built for construction and mining applications, offering high durability and performance.",
+    description: "A robust 28-ton tipper truck built for construction and mining applications, offering high durability and performance.",
     registrationNo: "TATA-PRIMA-2830K",
     assetNo: "A-010",
     engineNo: "ENG-PRIMA-2830",
@@ -127,163 +125,193 @@ const fleetData: Vehicle[] = [
   },
 ];
 
-// VehicleCard Component
-interface VehicleCardProps {
-  vehicle: Vehicle;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-}
-
-const VehicleCard = memo(
-  ({ vehicle, onMouseEnter, onMouseLeave }: VehicleCardProps) => {
-    const isComingSoon = vehicle.quantity.toLowerCase() === "coming soon";
-
-    return (
-      <div
-        className="relative w-80 h-[500px] group cursor-pointer bg-gradient-to-b from-black to-purple-900 rounded-xl overflow-hidden shadow-2xl border-2 border-green-600 flex flex-col"
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
-        {/* Top: Vehicle Name and Quantity */}
-        <div className="bg-purple-600/30 text-white text-center py-3">
-          <h3 className="text-xl font-bold">{vehicle.title}</h3>
-          <p className="text-sm text-green-600">Quantity: {vehicle.quantity}</p>
-        </div>
-
-        {/* Middle: Vehicle Image */}
-        <img
-          src={vehicle.image}
-          alt={vehicle.title}
-          className="h-full object-cover w-[600px] transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
-          decoding="async"
-        />
-
-        {/* Bottom: Trump Card Details or Coming Soon */}
-        <div className="bg-black/60 text-white text-sm p-4">
-          {isComingSoon ? (
-            <div className="flex items-center justify-center h-full">
-              <p className="text-xl font-bold text-green-500">Coming Soon</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <p className="font-semibold text-green-600">Registration No:</p>
-                <p>{vehicle.registrationNo}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-green-600">Asset No:</p>
-                <p>{vehicle.assetNo}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-green-600">Engine No:</p>
-                <p>{vehicle.engineNo}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-green-600">Chassis No:</p>
-                <p>{vehicle.chassisNo}</p>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    );
+/* ===================== FUTURISTIC DATA ===================== */
+const infraData: InfraItem[] = [
+  {
+    title: "Advanced Operator Training Simulators",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158602/WhatsApp_Image_2025-03-03_at_10.47.37_PM_ex1zpe.jpg",
+    description:
+      "High-fidelity mining and industrial machinery simulators.",
+    quantity: "2 Units",
+    importFrom: "Japan",
+    techSpecs: "Haptic Controls, 8K Display, CNC Integration",
   },
-  (prevProps, nextProps) => prevProps.vehicle.title === nextProps.vehicle.title
-);
-VehicleCard.displayName = "VehicleCard";
+  {
+    title: "Large Scale Shipping Simulator",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158602/WhatsApp_Image_2025-02-28_at_5.00.19_PM_frl41v.jpg",
+    description:
+      "AR-powered maritime and port logistics simulator.",
+    quantity: "4 Units",
+    importFrom: "South Korea",
+    techSpecs: "AR Cockpit, Weather Engine, DNV Certified",
+  },
+  {
+    title: "Infrastructure Equipment Simulator",
+    image:
+      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762159262/crane_empyz0.png",
+    description:
+      "Crane, dozer and excavator simulation platform.",
+    quantity: "Coming Soon",
+    importFrom: "USA",
+    techSpecs: "Motion Platform, 3D Terrain Engine",
+  },
+];
 
-// FleetSection Component
-const FleetSection: React.FC = () => {
-  const [isPaused, setIsPaused] = useState(false);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const scrollPositionRef = useRef(0); // Track scroll position persistently
-
-  const fleetList = useMemo(() => [...fleetData, ...fleetData], []);
-
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const scrollSpeed = 0.5;
-    let animationFrameId: number;
-
-    const scroll = () => {
-      if (!isPaused) {
-        scrollPositionRef.current += scrollSpeed;
-        container.scrollLeft = scrollPositionRef.current;
-
-        const totalWidth = fleetData.length * 320;
-        if (scrollPositionRef.current >= totalWidth) {
-          scrollPositionRef.current = 0;
-          container.scrollLeft = 0;
-        }
-      }
-      animationFrameId = requestAnimationFrame(scroll);
-    };
-
-    animationFrameId = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused]);
-
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-  };
-
-  const handleMouseLeave = () => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      scrollPositionRef.current = container.scrollLeft;
-    }
-    setIsPaused(false);
-  };
+/* ===================== FLEET CARD ===================== */
+const FleetCard = ({ v }: { v: FleetVehicle }) => {
+  const comingSoon = v.quantity.toLowerCase() === "coming soon";
 
   return (
-    <section className="py-16 bg-gradient-to-b from-black via-purple-900 to-black overflow-hidden">
-      {/* Heading */}
-      <div className="text-center mb-12">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Discover Our <span className="text-green-500">Elite Fleet</span>
+    <div className="w-[360px] shrink-0 bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden hover:border-purple-500/50 transition">
+      <div className="bg-purple-500/10 text-center py-3">
+        <h3 className="text-white font-semibold">{v.title}</h3>
+        <p className="text-purple-400 text-sm">Qty: {v.quantity}</p>
+      </div>
+
+      <div className="relative h-52">
+        <img src={v.image} className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70" />
+      </div>
+
+      <div className="p-5 text-sm text-zinc-300">
+        {comingSoon ? (
+          <p className="text-center text-purple-400 font-semibold">
+            Coming Soon
+          </p>
+        ) : (
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-purple-400">Registration</p>
+              <p>{v.registrationNo}</p>
+            </div>
+            <div>
+              <p className="text-purple-400">Asset No</p>
+              <p>{v.assetNo}</p>
+            </div>
+            <div>
+              <p className="text-purple-400">Engine No</p>
+              <p>{v.engineNo}</p>
+            </div>
+            <div>
+              <p className="text-purple-400">Chassis No</p>
+              <p>{v.chassisNo}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+/* ===================== INFRA CARD ===================== */
+const InfraCard = ({ i }: { i: InfraItem }) => {
+  const comingSoon = i.quantity.toLowerCase().includes("coming");
+
+  return (
+    <div className="w-[380px] shrink-0 bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden hover:border-purple-500/50 transition">
+      <div className="bg-purple-500/10 text-center py-3">
+        <h3 className="text-white font-semibold">{i.title}</h3>
+        <p className="text-purple-400 text-sm">{i.quantity}</p>
+      </div>
+
+      <div className="relative h-56">
+        <img src={i.image} className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70" />
+      </div>
+
+      <div className="p-5 text-sm text-zinc-300 space-y-3">
+        <p className="text-zinc-400">{i.description}</p>
+
+        {comingSoon ? (
+          <p className="text-center text-purple-400 font-semibold">
+            Coming Soon
+          </p>
+        ) : (
+          <>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-purple-400">Imported From</p>
+                <p>{i.importFrom}</p>
+              </div>
+              <div>
+                <p className="text-purple-400">Availability</p>
+                <p>{i.quantity}</p>
+              </div>
+            </div>
+            <p className="text-xs text-zinc-400">
+              {i.techSpecs}
+            </p>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+/* ===================== MARQUEE ===================== */
+const Marquee = ({ children }: { children: React.ReactNode }) => (
+  <div className="relative overflow-hidden">
+    <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-10" />
+    <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-10" />
+    <div className="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused]">
+      {children}
+    </div>
+  </div>
+);
+
+/* ===================== MAIN ===================== */
+const FleetSection: React.FC = () => {
+  return (
+    <section className="bg-black py-4 space-y-12">
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 46s linear infinite;
+        }
+      `}</style>
+
+      {/* FLEET */}
+      <div className="text-center">
+        <h2 className="text-5xl font-bold text-white">
+          Elite <span className="text-purple-400">Training Fleet</span>
         </h2>
       </div>
 
-      <OurFuturisticApproach />
-      {/* Scrollable Fleet Container */}
-      <p className="text-white my-10 text-lg max-w-3xl mx-auto">
-        Owned and Operated By Us, Engineered for excellence, our vehicles power
-        operations with unmatched reliability and innovation in the field of
-        Practical Skill Training.
-      </p>
-      <div className="relative max-w-[1440px] mx-auto">
-        <div
-          ref={scrollContainerRef}
-          className="flex overflow-x-hidden gap-6 px-4 pb-6"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          {fleetList.map((vehicle, index) => (
-            <div
-              key={`${vehicle.title}-${index}`}
-              className="flex-shrink-0 min-w-[320px]"
-            >
-              <VehicleCard
-                vehicle={vehicle}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              />
-            </div>
-          ))}
-        </div>
+      <Marquee>
+        {[...fleetData, ...fleetData].map((v, i) => (
+          <FleetCard key={i} v={v} />
+        ))}
+      </Marquee>
+
+      {/* DIVIDER */}
+      <div className="h-px bg-gradient-to-r from-transparent via-purple-500/40 to-transparent max-w-5xl mx-auto" />
+
+      {/* FUTURISTIC */}
+      <div className="text-center">
+        <h2 className="text-5xl font-bold text-white">
+          Futuristic <span className="text-purple-400">Infrastructure</span>
+        </h2>
       </div>
 
+      <Marquee>
+        {[...infraData, ...infraData].map((i, idx) => (
+          <InfraCard key={idx} i={i} />
+        ))}
+      </Marquee>
+
       {/* CTA */}
-      <div className="text-center mt-10">
-        <button className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-colors duration-300">
-          Explore Our Operations
+      <div className="text-center">
+        <button className="px-10 py-4 rounded-full bg-purple-600 hover:bg-purple-700 transition text-white font-semibold shadow-lg shadow-purple-500/20">
+          Explore Infrastructure & Fleet
         </button>
       </div>
     </section>
   );
 };
 
-export default memo(FleetSection, () => true);
+export default memo(FleetSection);

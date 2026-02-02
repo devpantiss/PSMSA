@@ -6,7 +6,7 @@ const HeroSection: React.FC = () => {
 
 
   return (
-    <div className="relative mt-28 text-white h-[750px] overflow-hidden">
+    <div className="relative mt-28 text-white h-[90vh] overflow-hidden">
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
@@ -25,11 +25,11 @@ const HeroSection: React.FC = () => {
       </video>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
 
       {/* Main Content */}
-      <div className="relative mt-10 flex mx-auto max-w-7xl flex-col md:flex-row items-center justify-center gap-y-8 md:gap-y-0 md:gap-x-12 px-8">
+      <div className="relative mt-10 pt-28 flex mx-auto max-w-7xl flex-col md:flex-row items-center justify-center gap-y-8 md:gap-y-0 md:gap-x-12 px-8">
         {/* Text Section */}
         <div className="lg:w-1/2 flex flex-col justify-center space-y-6 mt-16 animate-fadeIn">
           <h1 className="text-5xl lg:text-6xl font-bold text-center lg:text-left text-white leading-tight">

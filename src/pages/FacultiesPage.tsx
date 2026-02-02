@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useMemo, useState } from "react";
 
 /* -------------------------------------------------------------------------- */
 /*                                Faculty Data                                */
@@ -86,51 +87,46 @@ const faculties = [
 ];
 
 /* -------------------------------------------------------------------------- */
-/*                          Utility: Group by Department                       */
+/*                              Faculty Card                                  */
 /* -------------------------------------------------------------------------- */
 
-const groupByDepartment = (data: typeof faculties) => {
-  return data.reduce<Record<string, typeof faculties>>((acc, curr) => {
-    if (!acc[curr.department]) acc[curr.department] = [];
-    acc[curr.department].push(curr);
-    return acc;
-  }, {});
-};
-
-/* -------------------------------------------------------------------------- */
-/*                                Faculty Card                                 */
-/* -------------------------------------------------------------------------- */
-
-const FacultyCard = ({ faculty, index }: any) => (
+const FacultyCard = ({ faculty }: { faculty: any }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.08 }}
+    layout
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: 20 }}
+    transition={{ duration: 0.35 }}
     className="
-      bg-zinc-950 border border-zinc-800 rounded-2xl
-      shadow-md hover:shadow-purple-500/25
+      group bg-zinc-950 border border-zinc-800 rounded-2xl
+      overflow-hidden shadow-lg hover:shadow-emerald-500/20
       transition-all duration-300
-      overflow-hidden flex flex-col
-      h-[520px]
     "
   >
     {/* Image */}
-    <div className="h-[400px] w-full overflow-hidden">
+    <div className="relative h-[360px] overflow-hidden">
       <img
         src={faculty.image}
         alt={faculty.name}
-        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
     </div>
 
-    {/* Details */}
-    <div className="flex-1 p-5 text-center flex flex-col justify-center">
-      <h3 className="text-lg font-semibold text-purple-500">
+    {/* Info */}
+    <div className="p-6 text-center space-y-2">
+      <h3 className="text-lg font-semibold text-white">
         {faculty.name}
       </h3>
-      <p className="text-sm text-white">{faculty.designation}</p>
-      <p className="text-sm font-medium text-green-500 mt-1">
+
+      <span className="inline-block text-xs font-medium px-3 py-1 rounded-full
+        bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        {faculty.designation}
+      </span>
+
+      <p className="text-sm text-zinc-400">
         {faculty.department}
       </p>
     </div>
@@ -142,59 +138,81 @@ const FacultyCard = ({ faculty, index }: any) => (
 /* -------------------------------------------------------------------------- */
 
 const FacultiesPage = () => {
-  const facultyByDept = groupByDepartment(faculties);
+  const departments = useMemo(
+    () => Array.from(new Set(faculties.map(f => f.department))),
+    []
+  );
+
+  const [activeDept, setActiveDept] = useState(departments[0]);
+
+  const filteredFaculty = faculties.filter(
+    (f) => f.department === activeDept
+  );
 
   return (
-    <div className="min-h-screen bg-black py-20 px-6 lg:px-20 mt-32">
+    <div className="min-h-screen bg-black py-48 px-6 lg:px-20">
       {/* Page Title */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
         className="
-          text-4xl md:text-5xl font-extrabold text-center mb-20
-          bg-gradient-to-r from-purple-500 to-green-500
+          text-4xl md:text-5xl font-extrabold text-center mb-14
+          bg-gradient-to-r from-emerald-400 to-purple-500
           bg-clip-text text-transparent
         "
       >
         Our Faculty Members
       </motion.h1>
 
-      {/* Department Sections */}
-      <div className="space-y-24">
-        {Object.entries(facultyByDept).map(([department, members]) => (
-          <section key={department}>
-            {/* Department Heading */}
-            <motion.h2
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-2xl md:text-3xl font-bold text-green-500 mb-12"
+      {/* Department Tabs */}
+      <div className="flex flex-wrap justify-center gap-4 mb-16">
+        {departments.map((dept) => {
+          const active = dept === activeDept;
+          return (
+            <button
+              key={dept}
+              onClick={() => setActiveDept(dept)}
+              className={`
+                relative px-5 py-2 rounded-full text-sm font-medium
+                transition-all duration-300
+                ${
+                  active
+                    ? "text-white bg-emerald-500/15 border border-emerald-500/30"
+                    : "text-zinc-400 hover:text-white border border-zinc-800"
+                }
+              `}
             >
-              {department}
-            </motion.h2>
+              {dept}
 
-            {/* Faculty Grid */}
-            <div
-              className="
-                grid gap-10
-                grid-cols-1
-                sm:grid-cols-2
-                lg:grid-cols-4
-              "
-            >
-              {members.slice(0, 4).map((faculty, index) => (
-                <FacultyCard
-                  key={faculty.name}
-                  faculty={faculty}
-                  index={index}
+              {active && (
+                <motion.div
+                  layoutId="tab-indicator"
+                  className="absolute inset-0 rounded-full bg-emerald-500/10"
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 />
-              ))}
-            </div>
-          </section>
-        ))}
+              )}
+            </button>
+          );
+        })}
       </div>
+
+      {/* Faculty Grid */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeDept}
+          layout
+          className="
+            grid gap-10
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-4
+          "
+        >
+          {filteredFaculty.map((faculty) => (
+            <FacultyCard key={faculty.name} faculty={faculty} />
+          ))}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

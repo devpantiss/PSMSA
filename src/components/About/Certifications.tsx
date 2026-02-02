@@ -86,17 +86,6 @@ const Certifications: React.FC = () => {
       <div className="absolute inset-0 bg-black/75" />
 
       <div className="relative max-w-7xl mx-auto px-4 z-10">
-        {/* ===== Logo Strip ===== */}
-        <div className="mb-10 flex flex-wrap items-center justify-center gap-8">
-          {certificationsData.map((c, i) => (
-            <img
-              key={i}
-              src={c.logoUrl}
-              alt={c.title}
-              className="h-12 object-contain grayscale opacity-80 hover:opacity-100 transition"
-            />
-          ))}
-        </div>
 
         {/* ===== Heading ===== */}
         <div className="text-left mb-12">

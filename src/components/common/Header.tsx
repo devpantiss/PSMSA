@@ -127,11 +127,11 @@ const navLinks: NavLink[] = [
         description:
           "Get in touch with us. We're here to help you on your skilling journey.",
       },
-      {
-        name: "Training Methodology",
-        path: "/academics/training-methodology",
-        description: "Stay updated with important academic dates.",
-      },
+      // {
+      //   name: "Training Methodology",
+      //   path: "/academics/training-methodology",
+      //   description: "Stay updated with important academic dates.",
+      // },
     ],
   },
   // {

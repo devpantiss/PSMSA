@@ -1,251 +1,179 @@
-import React, { memo, useState, useMemo, useCallback, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FaGem, FaIndustry, FaBolt, FaTools, FaTruck, FaFire } from "react-icons/fa";
+import React, { memo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaGem,
+  FaIndustry,
+  FaBolt,
+  FaTools,
+  FaTruck,
+  FaFire,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+/* ===================== TYPES ===================== */
 interface Sector {
   title: string;
-  color: string;
   description: string;
   icon: React.FC<{ className?: string }>;
   backgroundImage: string;
 }
 
-const sectorData: Sector[] = [
+/* ===================== DATA ===================== */
+const sectors: Sector[] = [
   {
     title: "Mining Operations",
-    color: "bg-gray-800",
-    description: "Advanced training for safe and efficient resource extraction in mining operations, aligned with NSQF Levels 4-6.",
+    description:
+      "Advanced training for safe and efficient mining operations aligned with NSQF Levels 4–6.",
     icon: FaGem,
     backgroundImage: "/homepage/sectors/mining.jpg",
   },
   {
     title: "Fabrication & Welding",
-    color: "bg-blue-700",
-    description: "Specialized skills in metal fabrication and welding techniques for industrial applications, NSQF Levels 4-5.",
+    description:
+      "Precision fabrication and industrial welding for heavy manufacturing.",
     icon: FaIndustry,
     backgroundImage: "/homepage/sectors/weldermine.jpg",
   },
   {
     title: "Electricals",
-    color: "bg-yellow-600",
-    description: "Expertise in electrical systems, maintenance, and renewable energy integration, NSQF Levels 4-6.",
+    description:
+      "Electrical systems, diagnostics, and renewable energy integration.",
     icon: FaBolt,
     backgroundImage: "/homepage/sectors/electrician.jpg",
   },
   {
     title: "Mechanical Maintenance",
-    color: "bg-purple-700",
-    description: "Training in machinery maintenance and repair for optimal industrial performance, NSQF Levels 4-5.",
+    description:
+      "Industrial machinery maintenance and reliability engineering.",
     icon: FaTools,
     backgroundImage: "/homepage/sectors/HEMMmine.png",
   },
   {
     title: "HEMM Operations",
-    color: "bg-teal-600",
-    description: "Skills for operating Heavy Earth Moving Machinery in mining and construction, NSQF Levels 4-6.",
+    description:
+      "Certified training for Heavy Earth Moving Machinery operators.",
     icon: FaTruck,
     backgroundImage: "/homepage/sectors/HEMM.jpg",
   },
   {
     title: "Casting & Foundry",
-    color: "bg-orange-600",
-    description: "Proficiency in metal casting and foundry processes for precision manufacturing, NSQF Levels 4-5.",
+    description:
+      "Metal casting, foundry processes, and precision manufacturing.",
     icon: FaFire,
     backgroundImage: "/homepage/sectors/foundry.jpg",
   },
 ];
 
-const SectorItem = memo(
-  ({
-    sector,
-    isActive,
-    onMouseEnter,
-    onMouseLeave,
-  }: {
-    sector: Sector;
-    isActive: boolean;
-    onMouseEnter: () => void;
-    onMouseLeave: () => void;
-  }) => {
-    const IconComponent = sector.icon;
-
-    return (
-      <div
-        role="tab"
-        aria-expanded={isActive}
-        aria-label={`Expand ${sector.title} department`}
-        aria-controls={`panel-${sector.title}`}
-        className={`
-          relative flex-1 transition-[flex,opacity] duration-500 ease-in-out
-          ${isActive ? "flex-[6] sm:flex-[5]" : "flex-[1.5] sm:flex-[1.2]"}
-          cursor-pointer flex items-center justify-center overflow-hidden ${sector.color}
-          border border-gray-700/50 backdrop-blur-lg group hover:border-green-600/70
-          shadow-[0_4px_16px_rgba(101,163,13,0.15)] will-change-[flex,opacity]
-        `}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onMouseEnter();
-          }
-        }}
-        tabIndex={0}
-      >
-        <img
-          src={isActive ? sector.backgroundImage : sector.backgroundImage.replace("w_800", "w_200")}
-          alt={`${sector.title} background`}
-          className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-500"
-          loading="lazy"
-          decoding="async"
-        />
-        <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/30 transition-all duration-500"></div>
-
-        {!isActive && (
-          <div
-            className="
-              relative z-20 transform bg-gray-900/60 p-3 sm:p-4 rounded-md
-              text-white text-xl sm:text-2xl font-extrabold tracking-wide uppercase
-              opacity-80 transition-opacity duration-500 group-hover:opacity-100
-              scale-90 sm:scale-100 will-change-[opacity,transform]
-            "
-            style={{ transform: "rotate(-90deg)" }}
-          >
-            {sector.title}
-          </div>
-        )}
-
-        {isActive && (
-          <div
-            id={`panel-${sector.title}`}
-            className="
-              relative z-20 text-center p-4 sm:p-6 lg:p-8 bg-gray-900/50 backdrop-blur-lg
-              rounded-lg shadow-[0_8px_32px_rgba(101,163,13,0.2)] transition-opacity duration-500
-              opacity-100 will-change-opacity
-            "
-          >
-            <div className="flex justify-center mb-3 sm:mb-4">
-              <IconComponent className="text-4xl sm:text-5xl text-white group-hover:text-green-600 transition-colors duration-300" />
-            </div>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold uppercase text-white mb-2 sm:mb-3">
-              {sector.title}
-            </h3>
-            <p className="text-sm sm:text-base text-gray-200 max-w-xs sm:max-w-sm mx-auto leading-relaxed">
-              {sector.description}
-            </p>
-          </div>
-        )}
-      </div>
-    );
-  },
-  (prevProps, nextProps) =>
-    prevProps.isActive === nextProps.isActive && prevProps.sector.title === nextProps.sector.title
-);
-SectorItem.displayName = "SectorItem";
-
+/* ===================== MAIN ===================== */
 const SectorsAccordion: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  const handleMouseEnter = useCallback((index: number) => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      setTimeoutId(null);
-    }
-    requestAnimationFrame(() => {
-      setActiveIndex(index);
-    });
-  }, [timeoutId]);
-
-  const handleMouseLeave = useCallback(() => {
-    const id = setTimeout(() => {
-      setActiveIndex(null);
-    }, 300);
-    setTimeoutId(id);
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [timeoutId]);
-
-  const accordionItems = useMemo(() => {
-    return sectorData.map((sector, index) => (
-      <SectorItem
-        key={sector.title}
-        sector={sector}
-        isActive={activeIndex === index}
-        onMouseEnter={() => handleMouseEnter(index)}
-        onMouseLeave={handleMouseLeave}
-      />
-    ));
-  }, [activeIndex, handleMouseEnter, handleMouseLeave]);
+  const visibleIndex = hoverIndex ?? activeIndex;
 
   return (
-    <section className="relative w-full py-12 sm:py-16 lg:py-20 bg-black overflow-hidden">
-      {/* Vibrant Blurred Scattered Colorful Circles */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-8 sm:top-12 left-4 sm:left-16 w-48 sm:w-80 h-48 sm:h-80 bg-gradient-to-br from-green-600/20 to-purple-600/20 rounded-full blur-4xl opacity-60 animate-pulse"></div>
-        <div className="absolute bottom-8 sm:bottom-12 right-4 sm:right-16 w-56 sm:w-96 h-56 sm:h-96 bg-gradient-to-br from-purple-600/20 to-green-600/20 rounded-full blur-4xl opacity-60 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/3 left-1/5 w-40 sm:w-72 h-40 sm:h-72 bg-gradient-to-br from-green-600/20 to-purple-600/20 rounded-full blur-4xl opacity-50 animate-pulse delay-600"></div>
-        <div className="absolute bottom-1/4 right-1/5 w-36 sm:w-64 h-36 sm:h-64 bg-gradient-to-br from-purple-600/20 to-green-600/20 rounded-full blur-4xl opacity-50 animate-pulse delay-1200"></div>
+    <section className="relative py-28 bg-black overflow-hidden">
+      {/* Ambient Background */}
+      <div className="absolute inset-0">
+        <div className="absolute -top-48 -left-48 w-[700px] h-[700px] bg-green-500/10 blur-[160px]" />
+        <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-purple-600/10 blur-[180px]" />
       </div>
 
-      {/* Subtle Grid Pattern Overlay */}
-      <div
-        className="absolute inset-0 opacity-5 z-0"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(147,51,234,0.3) 1px, transparent 0)`,
-          backgroundSize: "40px 40px",
-        }}
-      />
-
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 sm:mb-8 tracking-tight"
-        >
-          Our <span className="bg-green-600 bg-clip-text text-transparent">Top Departments</span>
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="text-sm sm:text-base lg:text-lg text-gray-200 mb-8 sm:mb-10 max-w-3xl mx-auto"
-        >
-          Delivering industry-specific expertise for impactful results at SkillNet.
-        </motion.p>
-
-        <div
-          role="tablist"
-          aria-label="Top Departments Accordion"
-          className="flex w-full h-[300px] sm:h-[350px] lg:h-[400px] rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(147,51,234,0.2)]"
-        >
-          {accordionItems}
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            Our <span className="text-green-500">Core Departments</span>
+          </h2>
+          <p className="mt-4 text-gray-400 max-w-3xl mx-auto text-lg">
+            Carefully designed departments delivering industry-ready expertise.
+          </p>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-        >
+
+        {/* Accordion */}
+        <div className="flex h-[440px] w-full rounded-3xl overflow-hidden border border-white/10 bg-white/[0.02] backdrop-blur-xl">
+          {sectors.map((sector, index) => {
+            const Icon = sector.icon;
+            const isActive = visibleIndex === index;
+
+            return (
+              <div
+                key={sector.title}
+                onMouseEnter={() => setHoverIndex(index)}
+                onMouseLeave={() => setHoverIndex(null)}
+                onClick={() => setActiveIndex(index)}
+                role="button"
+                tabIndex={0}
+                className={`
+                  relative overflow-hidden cursor-pointer
+                  transition-[flex] duration-500 ease-out
+                  ${isActive ? "flex-[5]" : "flex-[1]"}
+                  border-r border-white/10 last:border-r-0
+                `}
+              >
+                {/* Background Image */}
+                <img
+                  src={sector.backgroundImage}
+                  alt={sector.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+
+                {/* Collapsed Label */}
+                {!isActive && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="rotate-[-90deg] text-white/80 font-semibold tracking-[0.2em] text-sm">
+                      {sector.title}
+                    </span>
+                  </div>
+                )}
+
+                {/* Expanded Card */}
+                <AnimatePresence>
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 30 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="absolute inset-0 flex items-center justify-center p-10"
+                    >
+                      <div className="relative max-w-md w-full bg-white/[0.06] backdrop-blur-2xl border border-white/15 rounded-2xl p-8 text-center shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
+                        {/* Icon Halo */}
+                        <div className="mx-auto mb-5 w-16 h-16 rounded-full bg-green-500/15 flex items-center justify-center shadow-inner">
+                          <Icon className="text-3xl text-green-400" />
+                        </div>
+
+                        <h3 className="text-2xl font-semibold text-white mb-3">
+                          {sector.title}
+                        </h3>
+
+                        <div className="h-px w-16 mx-auto mb-4 bg-gradient-to-r from-transparent via-green-500/50 to-transparent" />
+
+                        <p className="text-gray-300 leading-relaxed text-sm">
+                          {sector.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-16">
           <Link
             to="/academics"
-            className="inline-block mt-6 sm:mt-8 px-4 sm:px-6 py-2 sm:py-3 bg-green-600 rounded-md text-white font-semibold hover:from-green-700 hover:to-purple-700 transition-all duration-300 focus:ring-2 focus:ring-green-600 focus:outline-none"
-            aria-label="Explore all departments"
+            className="inline-flex px-9 py-4 rounded-full bg-green-600 hover:bg-green-700 transition text-white font-semibold shadow-lg shadow-green-600/20"
           >
-            Explore All
+            Explore All Departments
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default memo(SectorsAccordion, () => true);
+export default memo(SectorsAccordion);
