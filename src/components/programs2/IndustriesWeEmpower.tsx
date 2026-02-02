@@ -22,115 +22,169 @@ const PROGRAMS: Program[] = [
     id: "diploma_polytechnic",
     name: "Diploma / Polytechnic Programs",
     description:
-      "Structured diploma programmes designed to build strong technical foundations with extensive lab, workshop, and on-field exposure aligned to PSU and core industries.",
+      "Comprehensive diploma programmes designed to build strong technical foundations with extensive lab, workshop, and on-field exposure aligned to core industries and PSU requirements.",
     duration: "2–3 Years",
     modules: [
       "Core engineering fundamentals",
-      "Lab & workshop-based skill training",
-      "Industrial safety & compliance",
-      "AR/VR & simulator-based practice",
-      "Industry projects & assessments",
+      "Workshop & laboratory-based training",
+      "Industrial safety & statutory compliance",
+      "AR/VR & simulator-based practical exposure",
+      "Industry projects & skill assessments",
     ],
     outcomes: [
       "Strong technical and practical foundation",
-      "Job-ready diploma engineers",
-      "Eligibility for PSU & private sector roles",
+      "Industry-ready diploma engineers",
+      "Eligibility for PSU and private sector roles",
     ],
     certification: "State / AICTE Approved Diploma Certificate",
     pdfUrl: "/pdfs/Diploma-Polytechnic-Curriculum.pdf",
     image:
       "https://images.unsplash.com/photo-1581091215367-59ab6c1c9b66?auto=format&fit=crop&w=1600&q=80",
   },
+
   {
     id: "iti",
     name: "Industrial Training Institute (ITI)",
     description:
-      "NCVT/SCVT aligned trade programs focused on hands-on skill development for core industrial roles.",
+      "NCVT/SCVT-aligned trade programmes focused on hands-on skill development for high-demand industrial and technical roles.",
     duration: "1–2 Years",
     modules: [
-      "Trade-specific theory & practicals",
+      "Trade-specific theory and practicals",
       "Hands-on workshop training",
       "Industrial tools & equipment handling",
-      "Safety, quality & productivity practices",
+      "Safety, quality and productivity practices",
     ],
     outcomes: [
       "Trade-level job readiness",
       "Eligibility for apprenticeships",
-      "Industry-recognized trade competence",
+      "Industry-recognised technical competence",
     ],
     certification: "NCVT / SCVT Trade Certificate",
     pdfUrl: "/pdfs/ITI-Curriculum.pdf",
     image:
       "https://images.unsplash.com/photo-1581091870627-3a9c2c1a79f7?auto=format&fit=crop&w=1600&q=80",
   },
+
   {
-    id: "advanced_diploma",
-    name: "Advanced Diploma Program",
+    id: "upskilling_reskilling",
+    name: "Workmen Upskilling & Reskilling Programs",
     description:
-      "High-skill advanced programs for supervisory, specialist, and high-responsibility technical roles.",
-    duration: "12–18 Months",
+      "Short-duration programs designed to upgrade existing workforce skills and enable transition to new technologies, machinery, and operational roles.",
+    duration: "1–6 Months",
     modules: [
-      "Advanced domain specialization",
-      "Supervisory & leadership skills",
-      "Industrial process optimization",
-      "Live industry projects",
+      "Skill gap assessment & role mapping",
+      "Advanced machinery and tools training",
+      "Modern industrial processes",
+      "Productivity, safety & quality enhancement",
     ],
     outcomes: [
-      "Advanced technical expertise",
-      "Readiness for supervisory roles",
-      "Higher employability & salary potential",
+      "Improved workforce productivity",
+      "Multi-skilling capability",
+      "Career transition readiness",
     ],
-    certification: "Advanced Diploma Certificate",
-    pdfUrl: "/pdfs/Advanced-Diploma-Curriculum.pdf",
+    certification: "Industry Aligned Skill Upgrade Certificate",
+    pdfUrl: "/pdfs/Upskilling-Reskilling.pdf",
+    image:
+      "https://images.unsplash.com/photo-1581093458791-9f3c3900df47?auto=format&fit=crop&w=1600&q=80",
+  },
+
+  {
+    id: "women_in_mining",
+    name: "Women in Mining Program",
+    description:
+      "Targeted skilling initiatives designed to enable women’s participation in mining and heavy industry roles through safety-first, certified training pathways.",
+    duration: "8–12 Weeks",
+    modules: [
+      "Mining operations fundamentals",
+      "Safety systems & statutory compliance",
+      "Equipment handling & plant operations",
+      "Workplace readiness & confidence building",
+    ],
+    outcomes: [
+      "Certified entry into mining roles",
+      "Improved gender diversity in workforce",
+      "Safe and compliant deployment readiness",
+    ],
+    certification: "Industry Certified Mining Program",
+    pdfUrl: "/pdfs/Women-in-Mining-Curriculum.pdf",
+    image:
+      "https://images.unsplash.com/photo-1542339147-17b88b5f7a9f?auto=format&fit=crop&w=1600&q=80",
+  },
+
+  {
+    id: "operator_licensing",
+    name: "Operator Licensing Program",
+    description:
+      "Formal licensing and certification programs designed to enhance safety compliance and employability of heavy equipment and plant operators.",
+    duration: "6–12 Weeks",
+    modules: [
+      "Equipment-specific operational training",
+      "Simulator & on-ground practicals",
+      "Safety standards & statutory norms",
+      "Operator assessment & certification",
+    ],
+    outcomes: [
+      "Licensed and certified operators",
+      "Improved operational safety",
+      "Higher employability across sites",
+    ],
+    certification: "Government / OEM Certified Operator License",
+    pdfUrl: "/pdfs/Operator-Licensing-Curriculum.pdf",
     image:
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80",
   },
+
   {
-    id: "industry_cert",
-    name: "Industry Aligned Certification Programs",
+    id: "international_mobility",
+    name: "International Mobility Program",
     description:
-      "Short-term certification programs co-designed with industry partners to meet immediate skill demand.",
-    duration: "1–3 Months",
+      "Global workforce programs preparing candidates for overseas employment in mining, energy, infrastructure and allied sectors.",
+    duration: "3–9 Months",
     modules: [
-      "High-demand job role skills",
-      "Hands-on industry practices",
-      "Assessment & certification",
+      "International skill standards",
+      "Language & cultural orientation",
+      "Global safety & compliance norms",
+      "Trade testing & overseas deployment prep",
     ],
     outcomes: [
-      "Rapid employability",
-      "Industry-validated skills",
-      "Direct hiring pipeline access",
+      "International job readiness",
+      "Global certification alignment",
+      "Overseas placement opportunities",
     ],
-    certification: "Industry Recognized Certificate",
-    pdfUrl: "/pdfs/Industry-Aligned-Certification.pdf",
+    certification: "International Skill Certification",
+    pdfUrl: "/pdfs/International-Mobility.pdf",
     image:
-      "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 
 /* ===================== COMPONENT ===================== */
 
 export default function ProgrammeSyllabusExplorer() {
-  const [active, setActive] = useState(PROGRAMS[0].id);
-  const activeProgram = PROGRAMS.find((p) => p.id === active)!;
+  const [activeId, setActiveId] = useState<string | null>(null);
+
+  const activeProgram = PROGRAMS.find((p) => p.id === activeId);
+
+  const handleToggle = (id: string) => {
+    setActiveId((prev) => (prev === id ? null : id));
+  };
 
   return (
     <section className="relative w-full bg-black text-white overflow-hidden">
-      {/* Ambient background */}
+      {/* ===== Ambient Background ===== */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(168,85,247,0.25),transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_85%,rgba(147,51,234,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(168,85,247,0.22),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_85%,rgba(147,51,234,0.16),transparent_60%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          {/* LEFT */}
-          <div className="lg:col-span-6">
-            <h2 className="text-[52px] leading-[1] font-light tracking-tight">
+      <div className="relative mx-auto max-w-7xl px-6 py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          {/* ===================== LEFT ===================== */}
+          <div className="lg:col-span-5">
+            <h2 className="text-[48px] leading-[1.05] font-light tracking-tight">
               PROGRAMMES
-              <br />
-              & CURRICULUM
+              <br />& CURRICULUM
             </h2>
 
             <p className="mt-6 max-w-md text-sm leading-relaxed text-white/60">
@@ -139,34 +193,37 @@ export default function ProgrammeSyllabusExplorer() {
             </p>
 
             {/* Image */}
-            <div className="relative mt-10 h-[380px] overflow-hidden">
-              <img
-                key={activeProgram.id}
-                src={activeProgram.image}
-                alt={activeProgram.name}
-                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="relative mt-12 h-[340px] overflow-hidden rounded-sm">
+              {activeProgram ? (
+                <img
+                  key={activeProgram.id}
+                  src={activeProgram.image}
+                  alt={activeProgram.name}
+                  className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0" />
+              )}
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
             </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="lg:col-span-6">
-            <div className="border-t border-white/20">
+          {/* ===================== RIGHT ===================== */}
+          <div className="lg:col-span-7">
+            <div className="border-t border-white/15">
               {PROGRAMS.map((program) => {
-                const isActive = program.id === active;
+                const isActive = program.id === activeId;
 
                 return (
-                  <div key={program.id} className="border-b border-white/20">
+                  <div key={program.id} className="border-b border-white/15">
                     {/* Header */}
                     <button
-                      onClick={() => setActive(program.id)}
+                      onClick={() => handleToggle(program.id)}
                       className={[
-                        "w-full flex items-center justify-between px-6 py-6 text-left",
+                        "w-full flex items-center justify-between px-6 py-7 text-left",
                         "transition-colors duration-300",
-                        isActive
-                          ? "bg-purple-500/10"
-                          : "hover:bg-white/5",
+                        isActive ? "bg-purple-500/10" : "hover:bg-white/5",
                       ].join(" ")}
                     >
                       <span className="text-base tracking-wide">
@@ -184,13 +241,13 @@ export default function ProgrammeSyllabusExplorer() {
                         isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
                       ].join(" ")}
                     >
-                      <div className="overflow-hidden px-6 pb-6">
-                        <p className="text-sm text-white/65 leading-relaxed">
+                      <div className="overflow-hidden px-6 pb-8">
+                        <p className="text-sm text-white/65 leading-relaxed max-w-xl">
                           {program.description}
                         </p>
 
                         {/* Meta */}
-                        <div className="mt-4 grid grid-cols-2 gap-6 text-xs tracking-widest text-white/70">
+                        <div className="mt-5 grid grid-cols-2 gap-8 text-xs tracking-widest text-white/70">
                           <div>
                             <p className="text-white/40">DURATION</p>
                             <p className="mt-1">{program.duration}</p>
@@ -202,7 +259,7 @@ export default function ProgrammeSyllabusExplorer() {
                         </div>
 
                         {/* Modules */}
-                        <div className="mt-6">
+                        <div className="mt-7">
                           <p className="text-xs tracking-widest text-white/50">
                             KEY MODULES
                           </p>
@@ -214,7 +271,7 @@ export default function ProgrammeSyllabusExplorer() {
                         </div>
 
                         {/* Outcomes */}
-                        <div className="mt-6">
+                        <div className="mt-7">
                           <p className="text-xs tracking-widest text-white/50">
                             LEARNING OUTCOMES
                           </p>
@@ -229,7 +286,7 @@ export default function ProgrammeSyllabusExplorer() {
                         <a
                           href={program.pdfUrl}
                           download
-                          className="inline-flex items-center gap-3 mt-6 border border-white/20 px-6 py-3 text-xs tracking-widest text-white/85 hover:bg-white/5 transition"
+                          className="inline-flex items-center gap-3 mt-7 border border-white/20 px-6 py-3 text-xs tracking-widest text-white/85 hover:bg-white/5 transition"
                         >
                           DOWNLOAD SYLLABUS
                           <Download className="h-4 w-4" />

@@ -91,11 +91,11 @@ const navLinks: NavLink[] = [
       //   path: "/academics/our-departments",
       //   description: "Explore specialized schools across PSU.",
       // },
-      {
-        name: "Curriculum",
-        path: "/academics/our-curriculum",
-        description: "Learn about our holistic and industry-aligned curriculum.",
-      },
+      // {
+      //   name: "Curriculum",
+      //   path: "/academics/our-curriculum",
+      //   description: "Learn about our holistic and industry-aligned curriculum.",
+      // },
       // {
       //   name: "Academic Calendar",
       //   path: "/academics/academic-calender",
@@ -108,7 +108,7 @@ const navLinks: NavLink[] = [
       },
       {
         name: "Courses",
-        path: "/our-programmes",
+        path: "/programs",
         description: "Stay updated with Courses.",
       },
       {
