@@ -1,63 +1,122 @@
 import { useState } from "react";
+import { Download } from "lucide-react";
 
-type Industry = {
+/* ===================== TYPES ===================== */
+
+type Program = {
   id: string;
-  title: string;
+  name: string;
   description: string;
+  duration: string;
+  modules: string[];
+  outcomes: string[];
+  certification: string;
+  pdfUrl: string;
   image: string;
 };
 
-const INDUSTRIES: Industry[] = [
+/* ===================== DATA ===================== */
+
+const PROGRAMS: Program[] = [
   {
-    id: "bfsi",
-    title: "BFSI",
+    id: "diploma_polytechnic",
+    name: "Diploma / Polytechnic Programs",
     description:
-      "Driving digital and behavioural transformation for leading banks and financial institutions.\nDuring an intervention with a leading bank, 85% of participants reported improved decision-making capabilities.",
+      "Structured diploma programmes designed to build strong technical foundations with extensive lab, workshop, and on-field exposure aligned to PSU and core industries.",
+    duration: "2–3 Years",
+    modules: [
+      "Core engineering fundamentals",
+      "Lab & workshop-based skill training",
+      "Industrial safety & compliance",
+      "AR/VR & simulator-based practice",
+      "Industry projects & assessments",
+    ],
+    outcomes: [
+      "Strong technical and practical foundation",
+      "Job-ready diploma engineers",
+      "Eligibility for PSU & private sector roles",
+    ],
+    certification: "State / AICTE Approved Diploma Certificate",
+    pdfUrl: "/pdfs/Diploma-Polytechnic-Curriculum.pdf",
     image:
-      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1581091215367-59ab6c1c9b66?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    id: "healthcare",
-    title: "HEALTHCARE",
+    id: "iti",
+    name: "Industrial Training Institute (ITI)",
     description:
-      "Equipping frontline and management teams with skills for a rapidly evolving healthcare ecosystem.\nStrategically planned innovations reduced onboarding time by 40% for a leading hospital chain.",
+      "NCVT/SCVT aligned trade programs focused on hands-on skill development for core industrial roles.",
+    duration: "1–2 Years",
+    modules: [
+      "Trade-specific theory & practicals",
+      "Hands-on workshop training",
+      "Industrial tools & equipment handling",
+      "Safety, quality & productivity practices",
+    ],
+    outcomes: [
+      "Trade-level job readiness",
+      "Eligibility for apprenticeships",
+      "Industry-recognized trade competence",
+    ],
+    certification: "NCVT / SCVT Trade Certificate",
+    pdfUrl: "/pdfs/ITI-Curriculum.pdf",
     image:
-      "https://images.unsplash.com/photo-1640984756059-7303641db7cd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBob2xlfGVufDB8MHwwfHx8Mg%3D%3D",
+      "https://images.unsplash.com/photo-1581091870627-3a9c2c1a79f7?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    id: "technology",
-    title: "TECHNOLOGY",
+    id: "advanced_diploma",
+    name: "Advanced Diploma Program",
     description:
-      "Building future-ready talent in IT and GCCs with AI-powered platforms and skilling models.\nEnabled 15,000+ professionals to upskill on cloud and AI technologies.",
+      "High-skill advanced programs for supervisory, specialist, and high-responsibility technical roles.",
+    duration: "12–18 Months",
+    modules: [
+      "Advanced domain specialization",
+      "Supervisory & leadership skills",
+      "Industrial process optimization",
+      "Live industry projects",
+    ],
+    outcomes: [
+      "Advanced technical expertise",
+      "Readiness for supervisory roles",
+      "Higher employability & salary potential",
+    ],
+    certification: "Advanced Diploma Certificate",
+    pdfUrl: "/pdfs/Advanced-Diploma-Curriculum.pdf",
     image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaG5vbG9neXxlbnwwfDB8MHx8fDI%3D",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80",
   },
   {
-    id: "manufacturing",
-    title: "MANUFACTURING",
+    id: "industry_cert",
+    name: "Industry Aligned Certification Programs",
     description:
-      "Upskilling workforce for operational excellence and leadership in an Industry 4.0 world.\nImproved production efficiency by 30% in a leading auto manufacturing company.",
+      "Short-term certification programs co-designed with industry partners to meet immediate skill demand.",
+    duration: "1–3 Months",
+    modules: [
+      "High-demand job role skills",
+      "Hands-on industry practices",
+      "Assessment & certification",
+    ],
+    outcomes: [
+      "Rapid employability",
+      "Industry-validated skills",
+      "Direct hiring pipeline access",
+    ],
+    certification: "Industry Recognized Certificate",
+    pdfUrl: "/pdfs/Industry-Aligned-Certification.pdf",
     image:
-      "https://images.unsplash.com/photo-1598302936625-6075fbd98dd7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFudWZhY3R1cmluZ3xlbnwwfDB8MHx8fDI%3D",
-  },
-  {
-    id: "retail",
-    title: "RETAIL",
-    description:
-      "Transforming customer-facing teams and leadership for the digital-first retail landscape.\nTrained 10,000+ retail associates across 200+ locations for a leading retail chain.",
-    image:
-      "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJldGFpbHxlbnwwfDB8MHx8fDI%3D",
+      "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80",
   },
 ];
 
-export default function IndustriesWeEmpower() {
-  const [active, setActive] = useState("bfsi");
+/* ===================== COMPONENT ===================== */
 
-  // const activeIndustry = INDUSTRIES.find((i) => i.id === active)!;
+export default function ProgrammeSyllabusExplorer() {
+  const [active, setActive] = useState(PROGRAMS[0].id);
+  const activeProgram = PROGRAMS.find((p) => p.id === active)!;
 
   return (
     <section className="relative w-full bg-black text-white overflow-hidden">
-      {/* Purple ambient background */}
+      {/* Ambient background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(168,85,247,0.25),transparent_55%)]" />
@@ -68,57 +127,40 @@ export default function IndustriesWeEmpower() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* LEFT */}
           <div className="lg:col-span-6">
-            <h2 className="text-[54px] leading-[1] font-light tracking-tight">
-              INDUSTRIES
+            <h2 className="text-[52px] leading-[1] font-light tracking-tight">
+              PROGRAMMES
               <br />
-              WE EMPOWER
+              & CURRICULUM
             </h2>
 
             <p className="mt-6 max-w-md text-sm leading-relaxed text-white/60">
-              We bring tailored learning solutions to industries that are shaping
-              the future. With deep domain expertise and contextual
-              interventions, we help organizations unlock the full potential of
-              their workforce.
+              Explore structured skilling programmes designed for industrial
+              deployment, compliance and long-term career progression.
             </p>
 
-            {/* Image container */}
-            <div className="relative mt-10 h-[360px] overflow-hidden bg-black">
-              {INDUSTRIES.map((industry) => {
-                const isActive = industry.id === active;
-
-                return (
-                  <img
-                    key={industry.id}
-                    src={industry.image}
-                    alt={industry.title}
-                    className={[
-                        "absolute inset-0 h-full w-full object-cover",
-                        "brightness-105 contrast-110 saturate-110",
-                        "transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                        isActive
-                          ? "opacity-100 scale-100"
-                          : "opacity-0 scale-[1.03]",
-                      ].join(" ")}                      
-                  />
-                );
-              })}
+            {/* Image */}
+            <div className="relative mt-10 h-[380px] overflow-hidden">
+              <img
+                key={activeProgram.id}
+                src={activeProgram.image}
+                alt={activeProgram.name}
+                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
           </div>
 
           {/* RIGHT */}
           <div className="lg:col-span-6">
             <div className="border-t border-white/20">
-              {INDUSTRIES.map((industry) => {
-                const isActive = industry.id === active;
+              {PROGRAMS.map((program) => {
+                const isActive = program.id === active;
 
                 return (
-                  <div
-                    key={industry.id}
-                    className="border-b border-white/20"
-                  >
+                  <div key={program.id} className="border-b border-white/20">
                     {/* Header */}
                     <button
-                      onClick={() => setActive(industry.id)}
+                      onClick={() => setActive(program.id)}
                       className={[
                         "w-full flex items-center justify-between px-6 py-6 text-left",
                         "transition-colors duration-300",
@@ -127,31 +169,71 @@ export default function IndustriesWeEmpower() {
                           : "hover:bg-white/5",
                       ].join(" ")}
                     >
-                      <span className="tracking-wide text-base">
-                        {industry.title}
+                      <span className="text-base tracking-wide">
+                        {program.name}
                       </span>
-                      <span className="text-2xl font-light">
+                      <span className="text-xl font-light">
                         {isActive ? "−" : "+"}
                       </span>
                     </button>
 
-                    {/* Smooth accordion body */}
+                    {/* Accordion Body */}
                     <div
                       className={[
                         "grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                         isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
                       ].join(" ")}
                     >
-                      <div className="overflow-hidden">
-                        <p
-                          className={[
-                            "px-6 pb-6 text-sm leading-relaxed text-white/60 whitespace-pre-line",
-                            "transition-opacity duration-300",
-                            isActive ? "opacity-100" : "opacity-0",
-                          ].join(" ")}
-                        >
-                          {industry.description}
+                      <div className="overflow-hidden px-6 pb-6">
+                        <p className="text-sm text-white/65 leading-relaxed">
+                          {program.description}
                         </p>
+
+                        {/* Meta */}
+                        <div className="mt-4 grid grid-cols-2 gap-6 text-xs tracking-widest text-white/70">
+                          <div>
+                            <p className="text-white/40">DURATION</p>
+                            <p className="mt-1">{program.duration}</p>
+                          </div>
+                          <div>
+                            <p className="text-white/40">CERTIFICATION</p>
+                            <p className="mt-1">{program.certification}</p>
+                          </div>
+                        </div>
+
+                        {/* Modules */}
+                        <div className="mt-6">
+                          <p className="text-xs tracking-widest text-white/50">
+                            KEY MODULES
+                          </p>
+                          <ul className="mt-3 space-y-2 text-sm text-white/70">
+                            {program.modules.map((m) => (
+                              <li key={m}>• {m}</li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Outcomes */}
+                        <div className="mt-6">
+                          <p className="text-xs tracking-widest text-white/50">
+                            LEARNING OUTCOMES
+                          </p>
+                          <ul className="mt-3 space-y-2 text-sm text-white/70">
+                            {program.outcomes.map((o) => (
+                              <li key={o}>• {o}</li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Download */}
+                        <a
+                          href={program.pdfUrl}
+                          download
+                          className="inline-flex items-center gap-3 mt-6 border border-white/20 px-6 py-3 text-xs tracking-widest text-white/85 hover:bg-white/5 transition"
+                        >
+                          DOWNLOAD SYLLABUS
+                          <Download className="h-4 w-4" />
+                        </a>
                       </div>
                     </div>
                   </div>

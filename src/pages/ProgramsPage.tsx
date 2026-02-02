@@ -1,18 +1,20 @@
-import React from 'react'
-import SkillShapeScaleSection from '../components/programs2/SkillShapeScaleSection'
-import OurExpertiseStackSection from '../components/programs2/OurExpertiseStackSection'
-import LearningPartnerSection from '../components/programs2/LearningPartnerSection'
-import IndustriesWeEmpower from '../components/programs2/IndustriesWeEmpower'
+import React from "react";
+import SkillShapeScaleSection from "../components/programs2/SkillShapeScaleSection";
+import OurExpertiseStackSection from "../components/programs2/OurExpertiseStackSection";
+import LearningPartnerSection from "../components/programs2/LearningPartnerSection";
+import IndustriesWeEmpower from "../components/programs2/IndustriesWeEmpower";
+import ProgrammesHero from "../components/programs2/ProgrammesHero";
 
 const ProgramsPage: React.FC = () => {
   return (
     <div>
-        <SkillShapeScaleSection />
-        <OurExpertiseStackSection />
-        <LearningPartnerSection />
-        <IndustriesWeEmpower />
+      <ProgrammesHero />
+      <SkillShapeScaleSection />
+      <OurExpertiseStackSection />
+      <LearningPartnerSection />
+      <IndustriesWeEmpower />
     </div>
-  )
-}
+  );
+};
 
-export default ProgramsPage
+export default ProgramsPage;
