@@ -1,39 +1,40 @@
-import React from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import React, { useState } from "react";
+import { Sparkles } from "lucide-react";
+import ElectricalLabImmersive from "./ElectricalLabViewer";
 
 const ACCENT = "#4eeac8";
+const PARALLAX_BG = "/Lab_banner.jpg"; // 👈 same bg image style as promo banner
 
-type LabsSimulatorPromoBannerProps = {
-  backgroundImage?: string;
-  badgeText?: string;
-  title?: string;
-  subtitle?: string;
-  ctaText?: string;
-  ctaHref?: string;
-};
+/* ===================== TAB CONFIG ===================== */
 
-const LabsSimulatorPromoBanner: React.FC<LabsSimulatorPromoBannerProps> = ({
-  backgroundImage = "/Lab_banner.jpg",
-  badgeText = "Featured Lab Experience",
-  title = "Simulator Training Lab",
-  subtitle = "A high-impact learning environment built to replicate real job-site conditions with precision and safety.",
-  ctaText = "Explore Simulator Modules",
-  ctaHref = "/labs",
-}) => {
+const LAB_TABS = [
+  { key: "electrical", label: "Electrical Lab", component: <ElectricalLabImmersive /> },
+  { key: "welder", label: "Welder Lab", component: <ElectricalLabImmersive /> },
+  { key: "hemm", label: "HEMM Lab", component: <ElectricalLabImmersive /> },
+  { key: "arvr", label: "AR / VR Lab", component: <ElectricalLabImmersive /> },
+  { key: "simulator", label: "Simulator Lab", component: <ElectricalLabImmersive /> },
+];
+
+/* ===================== COMPONENT ===================== */
+
+const VirtualLabsTourSection: React.FC = () => {
+  const [activeTab, setActiveTab] = useState(LAB_TABS[0]);
+
   return (
-    <section className="relative w-full overflow-hidden py-14 md:py-20">
-      {/* ===== Fixed Parallax Background ===== */}
+    <section className="relative w-full overflow-hidden bg-black py-16 md:py-20">
+
+      {/* ===================== FIXED PARALLAX IMAGE ===================== */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url('${backgroundImage}')` }}
+        style={{ backgroundImage: `url('${PARALLAX_BG}')` }}
       />
 
-      {/* ===== Dark overlay (keeps it blackish) ===== */}
+      {/* ===================== DARK OVERLAY ===================== */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/55 to-black/85" />
 
-      {/* ===== Subtle futuristic accent (simple) ===== */}
+      {/* ===================== ORIGINAL FUTURISTIC EFFECTS ===================== */}
       <div className="pointer-events-none absolute inset-0">
-        {/* glow */}
+        {/* glow orbs */}
         <div
           className="absolute -top-40 left-[-180px] h-[520px] w-[520px] rounded-full blur-[180px]"
           style={{ backgroundColor: `${ACCENT}18` }}
@@ -43,125 +44,91 @@ const LabsSimulatorPromoBanner: React.FC<LabsSimulatorPromoBannerProps> = ({
           style={{ backgroundColor: `${ACCENT}14` }}
         />
 
-        {/* thin grid */}
-        <div className="absolute inset-0 opacity-[0.10] [background-image:linear-gradient(rgba(255,255,255,0.10)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:72px_72px]" />
+        {/* grid */}
+        <div
+          className="absolute inset-0 opacity-[0.10]
+          [background-image:linear-gradient(rgba(255,255,255,0.10)_1px,transparent_1px),
+          linear-gradient(90deg,rgba(255,255,255,0.10)_1px,transparent_1px)]
+          [background-size:72px_72px]"
+        />
 
         {/* vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.92)_100%)]" />
       </div>
 
-      {/* ===== Content ===== */}
+      {/* ===================== CONTENT ===================== */}
       <div className="relative mx-auto max-w-7xl px-6">
-        <div
-          className="
-            grid items-center gap-10
-            rounded-[28px] border border-white/10
-            bg-black/40 backdrop-blur-2xl
-            p-8 md:p-12
-            shadow-[0_0_70px_rgba(78,234,200,0.10)]
-            md:grid-cols-2
-          "
-        >
-          {/* LEFT: Text */}
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+        <div className="rounded-[28px] border border-white/10 bg-black/40 backdrop-blur-2xl p-8 md:p-12">
+
+          {/* HEADER */}
+          <div className="mb-10">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
               <span
                 className="h-2 w-2 rounded-full animate-pulse"
                 style={{ backgroundColor: ACCENT }}
               />
-              {badgeText}
-            </div>
+              Virtual Tour • Training Infrastructure
+            </p>
 
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">
-              {title}{" "}
+            <h2 className="mt-4 text-3xl md:text-5xl font-semibold text-white">
+              Explore Our{" "}
               <span
                 className="bg-clip-text text-transparent"
                 style={{
                   backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(78,234,200,0.55))`,
                 }}
               >
-                Showcase
+                Training Labs
               </span>
             </h2>
 
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
-              {subtitle}
+            <p className="mt-4 max-w-3xl text-sm md:text-base text-white/70">
+              Navigate through Pantiss Skill Universe’s state-of-the-art labs via
+              an interactive virtual tour experience.
             </p>
-
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a
-                href={ctaHref}
-                className="
-                  inline-flex items-center gap-2
-                  rounded-2xl px-6 py-3
-                  text-sm font-semibold text-black
-                  transition hover:scale-[1.03]
-                "
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(78,234,200,0.65))`,
-                  boxShadow: `0 0 45px rgba(78,234,200,0.18)`,
-                }}
-              >
-                {ctaText}
-                <ArrowRight className="h-4 w-4" />
-              </a>
-
-              <div className="inline-flex items-center gap-2 text-xs text-white/55">
-                <Sparkles className="h-4 w-4" style={{ color: ACCENT }} />
-                Built for Industry-grade readiness
-              </div>
-            </div>
           </div>
 
-          {/* RIGHT: Minimal “glass preview” block */}
-          <div className="relative">
-            <div
-              className="
-                relative overflow-hidden rounded-[24px]
-                border border-white/10 bg-black/35
-                backdrop-blur-xl
-                aspect-[16/10]
-              "
-            >
-              {/* image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url('${backgroundImage}')`,
-                  filter: "brightness(0.9) contrast(1.1) saturate(1.05)",
-                  transform: "scale(1.06)",
-                }}
-              />
+          {/* TABS */}
+          <div className="flex flex-wrap gap-3 mb-10">
+            {LAB_TABS.map((tab) => {
+              const isActive = tab.key === activeTab.key;
 
-              {/* overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+              return (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab)}
+                  className={`
+                    rounded-2xl px-5 py-2 text-sm font-semibold transition
+                    border backdrop-blur-xl
+                    ${
+                      isActive
+                        ? "bg-white text-black border-transparent"
+                        : "bg-white/5 text-white/70 border-white/10 hover:border-white/20"
+                    }
+                  `}
+                  style={
+                    isActive
+                      ? {
+                          backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(78,234,200,0.65))`,
+                          boxShadow: `0 0 40px rgba(78,234,200,0.25)`,
+                        }
+                      : {}
+                  }
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
 
-              {/* corner accent */}
-              <div
-                className="absolute left-5 top-5 h-2 w-2 rounded-full"
-                style={{ backgroundColor: ACCENT }}
-              />
-              <div
-                className="absolute left-8 top-5 h-2 w-2 rounded-full opacity-60"
-                style={{ backgroundColor: ACCENT }}
-              />
-
-              {/* bottom label */}
-              <div className="absolute bottom-5 left-5 right-5">
-                <div className="rounded-2xl border border-white/10 bg-black/55 px-4 py-3 text-sm text-white/80 backdrop-blur-xl">
-                  <span className="font-semibold text-white">Simulator:</span>{" "}
-                  Live training scenarios • Safe practice • Repeatable outcomes
-                </div>
-              </div>
-
-              {/* subtle neon edge */}
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.08), 0 0 80px ${ACCENT}10`,
-                }}
-              />
+          {/* TAB CONTENT */}
+          <div className="relative rounded-[22px] border border-white/10 bg-black/50 p-6 md:p-8 backdrop-blur-xl">
+            <div className="flex items-center gap-2 mb-4 text-xs text-white/55">
+              <Sparkles className="h-4 w-4" style={{ color: ACCENT }} />
+              Virtual walkthrough content
             </div>
+
+            {activeTab.component}
           </div>
         </div>
       </div>
@@ -169,4 +136,4 @@ const LabsSimulatorPromoBanner: React.FC<LabsSimulatorPromoBannerProps> = ({
   );
 };
 
-export default LabsSimulatorPromoBanner;
+export default VirtualLabsTourSection;

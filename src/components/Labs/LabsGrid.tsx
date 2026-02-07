@@ -1,47 +1,44 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ScanEye, Sparkles } from "lucide-react";
 
+/* ===================== CONSTANTS ===================== */
+
 const ACCENT = "#4eeac8";
+
+/* ===================== LAB DATA ===================== */
 
 const labs = [
   {
     id: "operator",
     title: "Operator Training Simulator Lab",
     desc: "Heavy equipment & mining simulators",
-    image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158602/WhatsApp_Image_2025-03-03_at_10.47.37_PM_ex1zpe.jpg",
+    video: "/lab/operator.mp4",
   },
   {
     id: "arvr",
     title: "AR/VR Electrical Lab",
     desc: "Immersive electrical & safety training",
-    image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762160341/WhatsApp_Image_2025-11-03_at_2.21.32_PM_cepy4c.jpg",
+    video: "/lab/electrical.mp4",
   },
   {
     id: "welding",
     title: "Welding & Fabrication Lab",
     desc: "Advanced industrial welding systems",
-    image:
-      "https://www.ferris.edu/CET/design-mfg/welding/laboratory-facilities/images/labs-classrooms-home.jpg",
+    video: "/lab/welder.mp4",
   },
   {
     id: "shipping",
     title: "Shipping & Logistics Simulator",
     desc: "Port, cargo & maritime simulations",
-    image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158602/WhatsApp_Image_2025-02-28_at_5.00.19_PM_frl41v.jpg",
+    video: "/lab/shipping.mp4",
   },
 ];
 
-const AUTO_SLIDE_INTERVAL = 4500;
+/* ===================== COMPONENT ===================== */
 
 const LabsGridSplitCarousel: React.FC = () => {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  // progress animation key
   const [progressKey, setProgressKey] = useState(0);
 
   const activeLab = useMemo(() => labs[index], [index]);
@@ -56,48 +53,16 @@ const LabsGridSplitCarousel: React.FC = () => {
     setProgressKey((k) => k + 1);
   };
 
-  useEffect(() => {
-    if (paused) return;
-
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % labs.length);
-      setProgressKey((k) => k + 1);
-    }, AUTO_SLIDE_INTERVAL);
-
-    return () => clearInterval(timer);
-  }, [paused]);
-
   return (
     <section className="relative overflow-hidden bg-transparent py-16 md:py-20">
-      {/* ===== Futuristic Background Layer ===== */}
-      {/* <div className="pointer-events-none absolute inset-0"> */}
-        {/* neon glows */}
-        {/* <div
-          className="absolute -top-52 left-1/2 h-[760px] w-[760px] -translate-x-1/2 rounded-full blur-[240px]"
-          style={{ backgroundColor: `${ACCENT}16` }}
-        /> */}
-        {/* <div
-          className="absolute bottom-[-360px] right-[-240px] h-[820px] w-[820px] rounded-full blur-[260px]"
-          style={{ backgroundColor: `${ACCENT}12` }}
-        /> */}
-
-        {/* grid */}
-        {/* <div className="absolute inset-0 opacity-[0.10] [background-image:linear-gradient(rgba(255,255,255,0.10)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:56px_56px]" /> */}
-
-        {/* scanlines */}
-        {/* <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.22)_1px,transparent_1px)] [background-size:100%_9px]" /> */}
-
-        {/* vignette */}
-        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.07),transparent_60%)]" /> */}
-      {/* </div> */}
-
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* ================= LEFT — TEXT PANEL ================= */}
+
+          {/* ================= LEFT PANEL ================= */}
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
               <span
-                className="h-2 w-2 rounded-full animate-pulse"
+                className="h-2 w-2 rounded-full"
                 style={{ backgroundColor: ACCENT }}
               />
               TRAINING CORE • FUTURE READY
@@ -120,10 +85,9 @@ const LabsGridSplitCarousel: React.FC = () => {
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
               Pantiss Skill Universe operates next-generation training labs that
               replicate real industrial environments using simulators, AR/VR systems,
-              and industry-grade equipment — enabling safe, scalable and job-ready learning.
+              and industry-grade equipment — enabling safe, scalable, job-ready learning.
             </p>
 
-            {/* micro highlights */}
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {[
                 { title: "Immersive Simulations", meta: "Operator-ready training" },
@@ -142,26 +106,11 @@ const LabsGridSplitCarousel: React.FC = () => {
             </div>
           </div>
 
-          {/* ================= RIGHT — HUD SLIDER ================= */}
-          <div
-            className="relative"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-          >
-            {/* HUD Card Shell */}
+          {/* ================= RIGHT — VIDEO CAROUSEL ================= */}
+          <div className="relative">
             <div className="relative overflow-hidden rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl">
-              {/* Neon frame glow */}
-              <div className="pointer-events-none absolute inset-0">
-                <div
-                  className="absolute inset-0 opacity-70"
-                  style={{
-                    boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.06), 0 0 80px ${ACCENT}16`,
-                  }}
-                />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_55%,rgba(0,0,0,0.86)_100%)]" />
-              </div>
 
-              {/* Top HUD bar */}
+              {/* Top HUD */}
               <div className="relative z-10 flex items-center justify-between border-b border-white/10 bg-black/35 px-5 py-4">
                 <div className="flex items-center gap-3">
                   <div
@@ -181,11 +130,11 @@ const LabsGridSplitCarousel: React.FC = () => {
 
                 <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-2 text-xs text-white/70">
                   <Sparkles className="h-4 w-4" style={{ color: ACCENT }} />
-                  SYSTEM ACTIVE
+                  MANUAL MODE
                 </div>
               </div>
 
-              {/* Slide Area */}
+              {/* VIDEO SLIDE */}
               <div className="relative h-[380px] overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -193,23 +142,21 @@ const LabsGridSplitCarousel: React.FC = () => {
                     initial={{ x: "120%", opacity: 0, scale: 0.98 }}
                     animate={{ x: "0%", opacity: 1, scale: 1 }}
                     exit={{ x: "-60%", opacity: 0, scale: 0.985 }}
-                    transition={{
-                      duration: 0.85,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
+                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0"
                   >
-                    {/* Image */}
-                    <img
-                      src={activeLab.image}
-                      alt={activeLab.title}
+                    <video
+                      src={activeLab.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
                       className="absolute inset-0 h-full w-full object-cover"
                     />
 
-                    {/* overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent" />
 
-                    {/* content */}
                     <div className="relative z-10 flex h-full flex-col justify-end p-7">
                       <p
                         className="text-xs uppercase tracking-[0.35em]"
@@ -236,57 +183,35 @@ const LabsGridSplitCarousel: React.FC = () => {
                         </p>
                       </div>
                     </div>
-
-                    {/* subtle neon ring */}
-                    <div
-                      className="pointer-events-none absolute inset-0 rounded-[30px]"
-                      style={{
-                        boxShadow: `inset 0 0 0 1px rgba(78,234,200,0.16)`,
-                      }}
-                    />
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Controls */}
+                {/* CONTROLS */}
                 <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between">
                   <button
                     onClick={goPrev}
-                    className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-black/60 px-4 py-2 text-sm text-white/80 backdrop-blur-xl transition hover:bg-black/75"
+                    className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-black/60 px-4 py-2 text-sm text-white/80 backdrop-blur-xl"
                   >
-                    <ChevronLeft className="h-4 w-4" />
-                    Prev
+                    <ChevronLeft className="h-4 w-4" /> Prev
                   </button>
-
-                  <div className="rounded-full border border-white/10 bg-black/60 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
-                    {paused ? "PAUSED" : "AUTO SCROLL"}
-                  </div>
 
                   <button
                     onClick={goNext}
-                    className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-black/60 px-4 py-2 text-sm text-white/80 backdrop-blur-xl transition hover:bg-black/75"
+                    className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-black/60 px-4 py-2 text-sm text-white/80 backdrop-blur-xl"
                   >
-                    Next
-                    <ChevronRight className="h-4 w-4" />
+                    Next <ChevronRight className="h-4 w-4" />
                   </button>
                 </div>
               </div>
 
-              {/* Progress bar */}
+              {/* PROGRESS BAR (MANUAL RESET) */}
               <div className="relative z-10 border-t border-white/10 bg-black/35 px-5 py-4">
-                <div className="flex items-center justify-between text-xs text-white/50">
-                  <span>Slide Progress</span>
-                  <span>{paused ? "HOLD" : "RUNNING"}</span>
-                </div>
-
                 <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
                   <motion.div
                     key={progressKey}
                     initial={{ width: "0%" }}
-                    animate={{ width: paused ? "0%" : "100%" }}
-                    transition={{
-                      duration: paused ? 0 : AUTO_SLIDE_INTERVAL / 1000,
-                      ease: "linear",
-                    }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
                     className="h-full rounded-full"
                     style={{
                       backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(78,234,200,0.35))`,
@@ -296,9 +221,8 @@ const LabsGridSplitCarousel: React.FC = () => {
               </div>
             </div>
 
-            {/* Small helper text */}
             <p className="mt-4 text-center text-xs text-white/45">
-              Hover to pause • Use controls to explore labs manually
+              Use controls to explore labs
             </p>
           </div>
         </div>

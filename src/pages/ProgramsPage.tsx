@@ -4,6 +4,7 @@ import OurExpertiseStackSection from "../components/programs2/OurExpertiseStackS
 import LearningPartnerSection from "../components/programs2/LearningPartnerSection";
 import IndustriesWeEmpower from "../components/programs2/IndustriesWeEmpower";
 import ProgrammesHero from "../components/programs2/ProgrammesHero";
+import JobRolesMarquee from "../components/programs2/JobRolesMarquee";
 
 const ProgramsPage: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const ProgramsPage: React.FC = () => {
       <ProgrammesHero />
       <SkillShapeScaleSection />
       <OurExpertiseStackSection />
+      <JobRolesMarquee />
       <LearningPartnerSection />
       <IndustriesWeEmpower />
     </div>

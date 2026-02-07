@@ -3,14 +3,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
     Truck,
     Wrench,
-    Cpu,
+    // Cpu,
     Sparkles,
 } from "lucide-react";
 
 /* === Imported Lab Components === */
 import HEMMMechanicsShowcase from "./HEMMMechanicsShowcase";
 import HEMMMechanicLabPartsShowcase from "./HEMMMechanicLabPartsShowcase";
-import ElectricalLabImmersive from "./ElectricalLabViewer";
+// import ElectricalLabImmersive from "./ElectricalLabViewer";
 import ARVRLabShowcase from "./ARVRLabShowcase";
 
 type LabKey = "fleet" | "parts" | "electrical" | "arvr";
@@ -33,12 +33,12 @@ const TABS: {
             icon: <Wrench className="h-4 w-4" />,
             description: "Mechanic systems & components",
         },
-        {
-            key: "electrical",
-            label: "Electrical Lab",
-            icon: <Cpu className="h-4 w-4" />,
-            description: "Immersive electrical diagnostics",
-        },
+        // {
+        //     key: "electrical",
+        //     label: "Electrical Lab",
+        //     icon: <Cpu className="h-4 w-4" />,
+        //     description: "Immersive electrical diagnostics",
+        // },
         {
             key: "arvr",
             label: "AR / VR Lab",
@@ -126,7 +126,7 @@ export default function TrainingLabsSection() {
                         >
                             {activeTab === "fleet" && <HEMMMechanicsShowcase />}
                             {activeTab === "parts" && <HEMMMechanicLabPartsShowcase />}
-                            {activeTab === "electrical" && <ElectricalLabImmersive />}
+                            {/* {activeTab === "electrical" && <ElectricalLabImmersive />} */}
                             {activeTab === "arvr" && <ARVRLabShowcase />}
                         </motion.div>
                     </AnimatePresence>
