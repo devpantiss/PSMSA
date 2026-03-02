@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import {
   Briefcase,
   IndianRupee,
@@ -104,19 +104,33 @@ const StatCard = ({
 }) => {
   const Icon = stat.icon;
   const [index, setIndex] = useState(0);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (!stat.rotatingValues) return;
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!stat.rotatingValues || !isVisible) return;
 
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % stat.rotatingValues!.length);
     }, 1800);
 
     return () => clearInterval(interval);
-  }, [stat.rotatingValues]);
+  }, [stat.rotatingValues, isVisible]);
 
   return (
     <div
+      ref={cardRef}
       className="
         bg-neutral-900
         border border-neutral-800
@@ -326,4 +340,4 @@ const PlacementsShowcaseSection: React.FC = () => {
   );
 };
 
-export default PlacementsShowcaseSection;
+export default memo(PlacementsShowcaseSection);

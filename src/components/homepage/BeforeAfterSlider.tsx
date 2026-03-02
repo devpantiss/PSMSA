@@ -1,4 +1,4 @@
-// import React from "react";
+import { memo } from "react";
 import {
   ReactCompareSlider,
   ReactCompareSliderImage,
@@ -9,7 +9,7 @@ type Props = {
   afterImage: string;
 };
 
-export default function SkillUniverseBeforeAfterSection({
+function SkillUniverseBeforeAfterSection({
   beforeImage,
   afterImage,
 }: Props) {
@@ -112,3 +112,5 @@ export default function SkillUniverseBeforeAfterSection({
     </section>
   );
 }
+
+export default memo(SkillUniverseBeforeAfterSection);

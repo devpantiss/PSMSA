@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback, memo } from "react";
 import { useLocation } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import {
@@ -237,10 +237,17 @@ const Header: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 300);
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 300);
+          ticking = false;
+        });
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -252,17 +259,17 @@ const Header: React.FC = () => {
     }
   }, [openDropdown]);
 
-  const isActive = (path?: string) => !!path && location.pathname === path;
+  const isActive = useCallback((path?: string) => !!path && location.pathname === path, [location.pathname]);
 
-  const handleNavMouseEnter = (name: string) => {
+  const handleNavMouseEnter = useCallback((name: string) => {
     if (navLinks.find((link) => link.name === name)?.subLinks) {
       setOpenDropdown(name);
     }
-  };
+  }, []);
 
-  const handleDropdownMouseLeave = () => {
+  const handleDropdownMouseLeave = useCallback(() => {
     setOpenDropdown(null);
-  };
+  }, []);
 
   const announcementTexts = [
     "Call +91 9874875876 for inquiries   ",
@@ -706,4 +713,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

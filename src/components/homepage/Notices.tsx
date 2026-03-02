@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 interface EventRow {
   event: string;
@@ -103,4 +103,4 @@ const Notices: React.FC = () => {
   );
 };
 
-export default Notices;
+export default memo(Notices);

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useRef, useEffect } from "react";
 import Marquee from "react-fast-marquee";
 import GlobalPlacement from "./GlobalPlacement";
 
@@ -149,15 +149,35 @@ const StudentCard = memo(({ student }: { student: Student }) => (
 
 // Main Section
 const PlacementsSection: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="bg-black">
       <div className="relative py-16 overflow-hidden">
         {/* Background Video */}
         <video
-          autoPlay
+          ref={videoRef}
           loop
           muted
           playsInline
+          preload="none"
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
           <source

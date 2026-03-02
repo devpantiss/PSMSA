@@ -9,6 +9,7 @@ import Why from "../components/homepage/Why";
 import ProgramPreview from "../components/homepage/ProgramPreview";
 import Notices from "../components/homepage/Notices";
 import BeforeAfterSlider from "../components/homepage/BeforeAfterSlider";
+import Fleet from "../components/homepage/Fleet";
 // import ImpactSection from "../components/homepage/ImpactSection";
 
 const HomePage: React.FC = () => {
@@ -22,6 +23,7 @@ const HomePage: React.FC = () => {
       {/* <GlobalPlacement /> */}
       {/* <OurFuturisticApproach /> */}
       {/* <ImpactSection /> */}
+      <Fleet />
       <FleetSection />
       <BeforeAfterSlider
         beforeImage="/before.png"

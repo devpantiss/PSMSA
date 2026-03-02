@@ -1,7 +1,26 @@
-import React from "react";
+import React, { memo, useRef, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 
 const GlobalPlacement: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       className="relative w-full overflow-hidden flex items-center justify-center"
@@ -9,12 +28,13 @@ const GlobalPlacement: React.FC = () => {
     >
       {/* --- Background Video --- */}
       <video
+        ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762412314/3125427-uhd_3840_2160_25fps_goajqw.mp4" // 🔁 replace with your hosted video link
-        autoPlay
+        src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762412314/3125427-uhd_3840_2160_25fps_goajqw.mp4"
         loop
         muted
         playsInline
+        preload="none"
       />
 
       {/* --- Overlay for readability --- */}
@@ -83,6 +103,8 @@ const GlobalPlacement: React.FC = () => {
                 src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762413812/ChatGPT_Image_Nov_6_2025_12_53_13_PM_ngcmc0.png"
                 alt="World map showing placement regions"
                 className="h-full rounded-2xl ring-2 ring-purple-600 object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -92,4 +114,4 @@ const GlobalPlacement: React.FC = () => {
   );
 };
 
-export default GlobalPlacement;
+export default memo(GlobalPlacement);

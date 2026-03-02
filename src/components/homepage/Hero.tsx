@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 const HeroSection: React.FC = () => {
 
-
   return (
     <div className="relative mt-28 text-white h-[90vh] overflow-hidden">
       {/* Background Video */}
@@ -14,6 +13,7 @@ const HeroSection: React.FC = () => {
         loop
         muted
         playsInline
+        preload="metadata"
         poster="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1742991998/video-poster_kzq1zq.jpg"
         aria-hidden="true"
       >
@@ -46,23 +46,20 @@ const HeroSection: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Inline style instead of module-level DOM injection */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 1s ease-out forwards;
+          will-change: opacity, transform;
+        }
+      `}</style>
     </div>
   );
 };
-
-// Inject fade-in animation
-const styles = `
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .animate-fadeIn {
-    animation: fadeIn 1s ease-out forwards;
-    will-change: opacity, transform;
-  }
-`;
-const styleSheet = document.createElement("style");
-styleSheet.innerText = styles;
-document.head.appendChild(styleSheet);
 
 export default memo(HeroSection);

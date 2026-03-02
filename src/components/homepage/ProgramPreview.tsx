@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -245,4 +245,4 @@ const ProgrammeCategories: React.FC = () => {
   );
 };
 
-export default ProgrammeCategories;
+export default memo(ProgrammeCategories);

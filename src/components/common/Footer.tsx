@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   FaLinkedin,
   FaFacebook,
@@ -32,6 +32,8 @@ const Footer: React.FC = () => {
             src="/mines-logo.png" // Replace with actual logo path
             alt="Pantiss Logo"
             className="h-20 mb-4"
+            loading="lazy"
+            decoding="async"
           />
           <p className="text-sm text-gray-300 leading-relaxed">
             <strong>Pantiss School of Mines and Shipping</strong> is a premier
@@ -124,4 +126,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

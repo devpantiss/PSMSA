@@ -171,7 +171,7 @@ const FleetCard = ({ v }: { v: FleetVehicle }) => {
       </div>
 
       <div className="relative h-52">
-        <img src={v.image} className="h-full w-full object-cover" />
+        <img src={v.image} className="h-full w-full object-cover" loading="lazy" decoding="async" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70" />
       </div>
 

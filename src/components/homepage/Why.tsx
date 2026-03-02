@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { motion } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import {
@@ -47,7 +47,7 @@ const sidebarItems = [
   },
 ];
 
-export default function Why() {
+function Why() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -65,6 +65,8 @@ export default function Why() {
           key={idx}
           src={src}
           alt={`Slide ${idx}`}
+          loading="lazy"
+          decoding="async"
           className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${current === idx ? "opacity-100" : "opacity-0"
             }`}
         />
@@ -141,3 +143,5 @@ export default function Why() {
     </div>
   );
 }
+
+export default memo(Why);

@@ -116,6 +116,8 @@ const SectorsAccordion: React.FC = () => {
                   src={sector.backgroundImage}
                   alt={sector.title}
                   className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
 
