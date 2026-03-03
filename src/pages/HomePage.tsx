@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
       {/* <OurFuturisticApproach /> */}
       {/* <ImpactSection /> */}
       <Fleet />
-      {/* <FleetSection /> */}
+      <FleetSection />
       <BeforeAfterSlider
         beforeImage="/before.png"
         afterImage="/after.png"
