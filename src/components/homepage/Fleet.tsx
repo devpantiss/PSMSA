@@ -7,7 +7,7 @@ const vehicles = [
   {
     id: 1,
     name: "Volvo 460 Dumper",
-    carImage: "/fleet2/volvo_360.png",
+    carImage: "/fleet3/volv.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "Payload", value: "41T" },
@@ -21,7 +21,7 @@ const vehicles = [
   {
     id: 2,
     name: "Volvo Excavator",
-    carImage: "/fleet2/volvo_exca.png",
+    carImage: "/fleet3/ex.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "Bucket", value: "2.1m³" },
@@ -35,7 +35,7 @@ const vehicles = [
   {
     id: 3,
     name: "Tata Prima 2830K",
-    carImage: "/fleet2/tata_prima.png",
+    carImage: "/fleet3/prime.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "GVW", value: "28T" },
@@ -49,7 +49,7 @@ const vehicles = [
   {
     id: 4,
     name: "Komatsu Bulldozer",
-    carImage: "/fleet2/komatshu.png",
+    carImage: "/fleet3/bull.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "Power", value: "215HP" },
@@ -63,7 +63,7 @@ const vehicles = [
   {
     id: 5,
     name: "Toyota Pneumatic Forklift",
-    carImage: "/fleet2/toyo_forklift.png",
+    carImage: "/fleet3/fork.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "Capacity", value: "5T" },
@@ -77,7 +77,7 @@ const vehicles = [
   {
     id: 6,
     name: "Propel Electric Tipper",
-    carImage: "/fleet2/propel.png",
+    carImage: "/fleet3/prop.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "Drive", value: "Electric" },
@@ -91,7 +91,7 @@ const vehicles = [
   {
     id: 7,
     name: "Caterpillar Haulpack",
-    carImage: "/fleet2/haul_pack.png",
+    carImage: "/fleet3/haul-pack.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "Payload", value: "90T+" },
@@ -105,7 +105,7 @@ const vehicles = [
   {
     id: 8,
     name: "Caterpillar Loader",
-    carImage: "/fleet2/Loader.png",
+    carImage: "/fleet3/kom_loader.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "Bucket", value: "5m³" },
@@ -119,7 +119,7 @@ const vehicles = [
   {
     id: 9,
     name: "Ace Hydra Crane",
-    carImage: "/fleet2/hydra.png",
+    carImage: "/fleet3/hydra_crane.png",
     bg: "/fleet2/mines.jpg",
     stats: [
       { label: "Lift", value: "15T" },
@@ -257,7 +257,7 @@ export default function Fleet() {
               exit="exit"
               src={vehicle.carImage}
               alt={vehicle.name}
-              className="absolute -bottom-16 w-[640px] object-contain drop-shadow-[0_60px_160px_rgba(0,0,0,0.9)]"
+              className="absolute -bottom-2 w-[640px] object-contain drop-shadow-[0_60px_160px_rgba(0,0,0,0.9)]"
             />
           </AnimatePresence>
         </div>
