@@ -1,230 +1,159 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { FaTools, FaIndustry, FaBriefcase, FaGlobe } from "react-icons/fa";
 
-const ACCENT = "#7c3aed"; // purple-600
-const SOFT = "#4eeac8"; // teal secondary
+const ACCENT_PURPLE = "#7c3aed"; 
+const ACCENT_TEAL = "#4eeac8";
 
 const steps = [
   {
     icon: <FaTools />,
     title: "Skill Training",
     desc: "Industry-aligned hands-on training with labs, simulators, and workshops",
+    color: ACCENT_PURPLE
   },
   {
     icon: <FaIndustry />,
     title: "Industry Exposure",
     desc: "Live projects, plant visits, and paid apprenticeships",
+    color: ACCENT_PURPLE
   },
   {
     icon: <FaBriefcase />,
     title: "Placement",
     desc: "Structured hiring, employer matching, and onboarding support",
+    color: ACCENT_PURPLE
   },
   {
     icon: <FaGlobe />,
     title: "Career Growth",
     desc: "Domestic placements, overseas mobility, and long-term progression",
+    color: ACCENT_PURPLE
   },
 ];
 
+const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className={`relative ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 const PlacementPipeline: React.FC = () => {
   return (
-    <section className="relative overflow-hidden py-28">
-      {/* Parallax Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: "url('/banner.jpg')" }}
-      />
-
-      {/* Cinematic Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/85" />
-
-      {/* Futuristic ambient + patterns */}
-      <div className="pointer-events-none absolute inset-0">
-        {/* glow blobs */}
-        <div
-          className="absolute -top-56 left-1/3 h-[740px] w-[740px] -translate-x-1/2 rounded-full blur-[240px]"
-          style={{ backgroundColor: `${ACCENT}22` }}
-        />
-        <div
-          className="absolute bottom-[-340px] right-[-280px] h-[780px] w-[780px] rounded-full blur-[250px]"
-          style={{ backgroundColor: `${SOFT}16` }}
-        />
-
-        {/* diagonal beams */}
-        <div
-          className="absolute inset-0 opacity-[0.14]"
-          style={{
-            backgroundImage: `
-              linear-gradient(115deg, rgba(124,58,237,0.22), transparent 55%),
-              linear-gradient(295deg, rgba(78,234,200,0.14), transparent 60%)
-            `,
-          }}
-        />
-
-        {/* scanlines */}
-        <div className="absolute inset-0 opacity-[0.10] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:100%_7px]" />
-
-        {/* vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_45%,rgba(0,0,0,0.93)_100%)]" />
-      </div>
-
-      {/* Content */}
+    <section className="relative py-32 overflow-hidden">
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* Heading */}
-        <div className="mx-auto mb-20 max-w-3xl text-center">
-          <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/70 backdrop-blur-xl">
-            <span
-              className="h-2 w-2 rounded-full animate-pulse"
-              style={{ backgroundColor: ACCENT }}
-            />
-            Career Journey Framework
-          </p>
-
-          <h2 className="mt-5 text-4xl font-extrabold tracking-tight text-white md:text-5xl">
-            The{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${SOFT}, ${ACCENT})`,
-              }}
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+           <div className="order-2 md:order-1 max-w-md text-gray-500 text-sm font-medium uppercase tracking-[0.2em] leading-relaxed">
+            A structured, outcome-driven journey from skill acquisition to sustainable global careers.
+          </div>
+          <div className="order-1 md:order-2 text-right">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-end gap-3 text-purple-500 font-black uppercase tracking-[0.4em] text-xs mb-6"
             >
-              Pantiss Placement Pipeline
-            </span>
-          </h2>
-
-          <p className="mt-4 text-lg text-white/70">
-            A structured, outcome-driven journey from skill acquisition to sustainable
-            careers.
-          </p>
-
-          <div
-            className="mx-auto mt-8 h-[3px] w-28 rounded-full"
-            style={{
-              backgroundImage: `linear-gradient(90deg, ${ACCENT}, transparent)`,
-            }}
-          />
+              The Pathway
+              <div className="w-10 h-px bg-purple-500" />
+            </motion.div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none italic mb-6">
+              Placement <span className="text-purple-600">Pipeline</span>
+            </h2>
+            <div className="h-1.5 w-32 bg-purple-600 rounded-full ml-auto" />
+          </div>
         </div>
 
-        {/* Pipeline */}
+        {/* Pipeline Grid */}
         <div className="relative">
-          {/* Connector line (desktop) */}
-          <div className="pointer-events-none absolute left-0 right-0 top-[52%] hidden md:block">
-            <div
-              className="mx-auto h-[2px] w-[92%] rounded-full opacity-70"
-              style={{
-                backgroundImage: `linear-gradient(90deg, transparent, ${ACCENT}, ${SOFT}, transparent)`,
-                boxShadow: `0 0 40px ${ACCENT}22`,
-              }}
-            />
+          {/* Connector line - Purple dominant */}
+          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent hidden lg:block -translate-y-1/2 pointer-events-none overflow-hidden">
+             {/* Moving Light Particles */}
+             <motion.div 
+               animate={{ x: ["-100%", "200%"] }}
+               transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+               className="w-40 h-full bg-gradient-to-r from-transparent via-purple-400 to-transparent"
+             />
           </div>
 
-          <div className="grid gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
             {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.45, delay: i * 0.06 }}
-                className="group relative"
-              >
-                {/* Card wrapper: ensures equal height */}
-                <div className="h-full">
-                  <div
-                    className="
-                      relative flex h-full min-h-[320px] flex-col
-                      overflow-hidden rounded-3xl
-                      border border-white/10 bg-white/5
-                      p-8 text-center backdrop-blur-xl
-                      transition hover:border-white/20
-                    "
-                  >
-                    {/* hover glow */}
-                    <div
-                      className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full blur-[90px] opacity-0 transition duration-500 group-hover:opacity-100"
-                      style={{ backgroundColor: `${ACCENT}28` }}
-                    />
-                    <div
-                      className="pointer-events-none absolute -left-16 -bottom-16 h-44 w-44 rounded-full blur-[90px] opacity-0 transition duration-500 group-hover:opacity-100"
-                      style={{ backgroundColor: `${SOFT}20` }}
-                    />
-
-                    {/* Step number badge */}
-                    <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 z-100">
-                      <div
-                        className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-black/60 text-xs font-bold text-white shadow-xl"
-                        style={{
-                          boxShadow: `0 0 30px ${ACCENT}22`,
-                        }}
-                      >
-                        {i + 1}
-                      </div>
-                    </div>
-
-                    {/* Icon */}
-                    <div
-                      className="
-                        mx-auto mb-6 grid h-16 w-16 place-items-center
-                        rounded-2xl border border-white/10 bg-black/50
-                        text-2xl transition group-hover:scale-[1.06]
-                      "
-                      style={{
-                        color: SOFT,
-                        boxShadow: `0 0 40px ${SOFT}18`,
-                      }}
-                    >
-                      {step.icon}
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-lg font-semibold text-white">
-                      {step.title}
-                    </h3>
-
-                    {/* Accent line */}
-                    <div
-                      className="mx-auto mt-4 h-[2px] w-12 rounded-full"
-                      style={{
-                        backgroundImage: `linear-gradient(90deg, ${ACCENT}, transparent)`,
-                      }}
-                    />
-
-                    {/* Desc (flex-grow keeps spacing consistent) */}
-                    <p className="mt-4 flex-1 text-sm leading-relaxed text-white/70">
-                      {step.desc}
-                    </p>
-
-                    {/* Bottom micro detail (adds premium structure) */}
-                    <div className="mt-6 text-[11px] uppercase tracking-[0.24em] text-white/40">
-                      Step {i + 1} of {steps.length}
-                    </div>
-
-                    {/* Shine sweep */}
-                    <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                      <div
-                        className="absolute -left-24 top-0 h-full w-44 rotate-12 blur-2xl"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, transparent, rgba(124,58,237,0.22), transparent)",
-                        }}
-                      />
-                    </div>
+              <TiltCard key={step.title} className="group">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="relative p-10 rounded-[3rem] bg-zinc-900/40 border border-white/5 backdrop-blur-3xl h-full flex flex-col items-center text-center transition-all duration-500 hover:border-purple-500/30 group-hover:bg-zinc-900/60 "
+                >
+                  {/* Step Number Badge */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center text-xs font-black text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-all">
+                    0{i + 1}
                   </div>
-                </div>
 
+                  {/* Icon */}
+                  <div 
+                    className="w-20 h-20 rounded-3xl flex items-center justify-center mb-8 bg-black/50 border border-white/5 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110"
+                    style={{ color: step.color }}
+                  >
+                    <div className="text-3xl">{step.icon}</div>
+                  </div>
+
+                  <h3 className="text-xl font-black text-white uppercase tracking-tighter mb-4 italic transition-colors group-hover:text-purple-400">
+                    {step.title}
+                  </h3>
+                  
+                  <p className="text-sm text-gray-500 leading-relaxed font-medium tracking-wide text-pretty">
+                    {step.desc}
+                  </p>
+
+                  {/* Decorative Elements */}
+                  <div className="mt-auto pt-8 flex items-center gap-1 opacity-20 group-hover:opacity-100 transition-opacity">
+                      {[...Array(5)].map((_, i) => (
+                        <div key={i} className="w-1 h-4 bg-purple-500/50 rounded-full" />
+                      ))}
+                    </div>
+                </motion.div>
+                
                 {/* Node dot on connector line (desktop) */}
-                <div className="pointer-events-none absolute left-1/2 top-[52%] hidden -translate-x-1/2 md:block">
-                  <div
-                    className="h-3 w-3 rounded-full"
-                    style={{
-                      backgroundColor: SOFT,
-                      boxShadow: `0 0 20px ${SOFT}55`,
-                    }}
-                  />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block -z-10">
+                   <div className="w-4 h-4 rounded-full bg-purple-500 blur-sm opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_20px_#7c3aed]" />
                 </div>
-              </motion.div>
+              </TiltCard>
             ))}
           </div>
         </div>

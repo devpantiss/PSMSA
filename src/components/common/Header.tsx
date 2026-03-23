@@ -75,12 +75,12 @@ const navLinks: NavLink[] = [
   //     },
   //   ],
   // },
-  {
-    name: "Admissions",
-    path: "/admissions",
-    description:
-      "Stay updated with upcoming seminars, workshops, fests, and industry talks.",
-  },
+  // {
+  //   name: "Admissions",
+  //   path: "/admissions",
+  //   description:
+  //     "Stay updated with upcoming seminars, workshops, fests, and industry talks.",
+  // },
   {
     name: "Academics",
     description:
@@ -107,14 +107,14 @@ const navLinks: NavLink[] = [
         description: "Stay updated with important academic dates.",
       },
       {
-        name: "Courses",
-        path: "/programs",
+        name: "Admissions",
+        path: "/academics/admissions",
         description: "Stay updated with Courses.",
       },
       {
         name: "Statutory & Safety Compliance",
-        path: "#",
-        description: "Stay updated with Courses.",
+        path: "/academics/statutory-safety-compliance",
+        description: "Industry certifications, safety protocols, and regulatory compliance.",
       },
       {
         name: "Research & Knowledge Hub",

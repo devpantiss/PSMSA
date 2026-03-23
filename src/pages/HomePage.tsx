@@ -8,7 +8,7 @@ import CampusExperienceSection from "../components/homepage/CampusExperienceSect
 import Why from "../components/homepage/Why";
 import ProgramPreview from "../components/homepage/ProgramPreview";
 import Notices from "../components/homepage/Notices";
-import BeforeAfterSlider from "../components/homepage/BeforeAfterSlider";
+// import BeforeAfterSlider from "../components/homepage/BeforeAfterSlider";
 import Fleet from "../components/homepage/Fleet";
 // import ImpactSection from "../components/homepage/ImpactSection";
 
@@ -25,10 +25,10 @@ const HomePage: React.FC = () => {
       {/* <ImpactSection /> */}
       <Fleet />
       <FleetSection />
-      <BeforeAfterSlider
+      {/* <BeforeAfterSlider
         beforeImage="/before.png"
         afterImage="/after.png"
-      />
+      /> */}
       <Notices />
       <CampusExperienceSection />
 

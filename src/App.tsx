@@ -18,7 +18,7 @@ const CurriculumPage = React.lazy(() => import("./pages/CurriculumPage"));
 const AcademicCalendarPage = React.lazy(() => import("./pages/AcademicCalenderPage"));
 const FacultiesPage = React.lazy(() => import("./pages/FacultiesPage"));
 const TrainingMethodologyPage = React.lazy(() => import("./pages/TrainingMethodologyPage"));
-const AdmissionsPage = React.lazy(() => import("./pages/AdmissionsPage"));
+// const AdmissionsPage = React.lazy(() => import("./pages/AdmissionsPage"));
 const CampusInfrastructurePage = React.lazy(() => import("./pages/InfrastructurePage"));
 const TrainingCentersPage = React.lazy(() => import("./pages/TrainingCentersPage"));
 const CampusLife = React.lazy(() => import("./pages/CampusLife"));
@@ -32,6 +32,7 @@ const WomenInMiningPage = React.lazy(() => import("./pages/Programmes/WomenInMin
 const OperatorLicencingPage = React.lazy(() => import("./pages/Programmes/OperatorLicencingPage"));
 const ProgramsPage = React.lazy(() => import("./pages/ProgramsPage"));
 const KnowledgeHub = React.lazy(() => import("./pages/Knowledge"));
+const StatutorySafetyCompliance = React.lazy(() => import("./pages/StatutorySafetyCompliance"));
 
 // ─── Lightweight loading fallback ───
 const PageLoader = () => (
@@ -72,7 +73,7 @@ function LayoutWrapper() {
           <Route path="/academics/academic-calender" element={<AcademicCalendarPage />} />
           <Route path="/academics/faculties" element={<FacultiesPage />} />
           <Route path="/academics/training-methodology" element={<TrainingMethodologyPage />} />
-          <Route path="/admissions" element={<AdmissionsPage />} />
+          {/* <Route path="/admissions" element={<AdmissionsPage />} /> */}
           <Route path="/Infra" element={<CampusInfrastructurePage />} />
           <Route path="/training-centers" element={<TrainingCentersPage />} />
           <Route path="/campus-life" element={<CampusLife />} />
@@ -82,7 +83,8 @@ function LayoutWrapper() {
           <Route path="/knowledge-hub" element={<KnowledgeHub />} />
 
 
-          <Route path="/programs" element={<ProgramsPage />} />
+          <Route path="/academics/admissions" element={<ProgramsPage />} />
+          <Route path="/academics/statutory-safety-compliance" element={<StatutorySafetyCompliance />} />
 
 
         </Routes>
