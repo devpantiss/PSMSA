@@ -33,7 +33,7 @@ const MediaContainer = ({ feat }: { feat: typeof lifestyleFeatures[0] }) => {
 
   const handleMouseEnter = () => {
     if (feat.mediaType === 'video' && videoRef.current) {
-       videoRef.current.play().catch(e => console.log('Autoplay blocked'));
+       videoRef.current.play().catch(_e => console.log('Autoplay blocked'));
     }
   }
 
@@ -118,7 +118,7 @@ const StudentLifeGallery: React.FC = () => {
 
         {/* Video/Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {lifestyleFeatures.map((feat, i) => (
+          {lifestyleFeatures.map((feat, _i) => (
              <MediaContainer key={feat.title} feat={feat} />
           ))}
         </div>
