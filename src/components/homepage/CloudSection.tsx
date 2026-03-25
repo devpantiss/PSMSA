@@ -52,8 +52,7 @@ const WorkCloud: React.FC = () => {
           </ul>
           <div className="mt-6 flex justify-center">
             <div className="bg-orange-500 w-16 h-16 rounded-full flex items-center justify-center">
-              <img
-                src="https://img.icons8.com/ios-filled/50/FFFFFF/wrench.png"
+              <img loading="lazy" decoding="async"                 src="https://img.icons8.com/ios-filled/50/FFFFFF/wrench.png"
                 alt="Tool Icon"
                 className="h-8 w-8"
               />

@@ -62,7 +62,7 @@ const MediaContainer = ({ feat }: { feat: typeof lifestyleFeatures[0] }) => {
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-40"
         />
       ) : (
-        <img 
+        <img loading="lazy" decoding="async" 
           src={feat.src} 
           alt={feat.title}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-40"

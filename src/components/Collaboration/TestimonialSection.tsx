@@ -118,8 +118,7 @@ const PlacementSuccessStories: React.FC = () => {
                   {/* Student Image */}
                   <div className="absolute -top-12 left-8">
                     <div className="relative">
-                      <img
-                        src={t.image}
+                      <img loading="lazy" decoding="async"                         src={t.image}
                         alt={t.name}
                         className="w-24 h-24 rounded-3xl object-cover border-2 border-white/10 shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-purple-500/50"
                       />

@@ -160,8 +160,7 @@ export default function Fleet() {
     <div className="w-full h-screen bg-black flex items-center justify-center">
       <div className="relative w-full h-[720px] rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)] border border-white/10">
         {/* BACKGROUND */}
-        <img
-          src={vehicle.bg}
+        <img loading="lazy" decoding="async"           src={vehicle.bg}
           alt="mine"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -209,8 +208,7 @@ export default function Fleet() {
                   : "border-white/20 bg-black/30 opacity-70"
               }`}
             >
-              <img
-                src={v.carImage}
+              <img loading="lazy" decoding="async"                 src={v.carImage}
                 alt={v.name}
                 className="w-full h-full object-contain"
               />

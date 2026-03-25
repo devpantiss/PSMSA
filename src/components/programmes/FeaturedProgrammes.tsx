@@ -129,7 +129,7 @@ const ProgrammeCard = ({ programme }: ProgrammeCardProps) => {
     ">
       {/* Image */}
       <div className="relative h-80 overflow-hidden">
-        <img 
+        <img loading="lazy" decoding="async" 
           src={programme.imageUrl} 
           alt={programme.title}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"

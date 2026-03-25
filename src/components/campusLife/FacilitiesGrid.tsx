@@ -106,7 +106,7 @@ const HoverVideoContainer = ({ fac }: { fac: typeof facilities[0] }) => {
       <div className="group relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-zinc-900">
         
         {/* Poster Image */}
-        <img 
+        <img loading="lazy" decoding="async" 
           src={fac.poster} 
           alt={fac.title}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 group-hover:opacity-0"

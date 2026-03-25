@@ -21,8 +21,7 @@ const DirectorsDeskSection: React.FC = () => {
           {/* Left: Director's Photo and Info */}
           <div className="flex flex-col items-center lg:items-start animate-slide-up" style={{ animationDelay: "0.2s" }}>
             <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-lg overflow-hidden shadow-xl border-2 border-purple-600/30">
-              <img
-                src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735040843/stalin_sir_wbrcxh.jpg" // Placeholder for Shri Stalin Nayak
+              <img loading="lazy" decoding="async"                 src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1735040843/stalin_sir_wbrcxh.jpg" // Placeholder for Shri Stalin Nayak
                 alt="Shri Stalin Nayak, Director of Pantiss School"
                 className="w-full h-full object-cover"
               />

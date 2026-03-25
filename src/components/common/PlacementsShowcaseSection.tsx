@@ -268,8 +268,7 @@ const PlacementsShowcaseSection: React.FC = () => {
                 <div className="flex items-center gap-6">
                   {/* Avatar */}
                   <div className="relative">
-                    <img
-                      src={student.image}
+                    <img loading="lazy" decoding="async"                       src={student.image}
                       alt={student.name}
                       className="
                 w-24 h-24

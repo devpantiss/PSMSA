@@ -93,8 +93,7 @@ const EsteemedVisitors: React.FC = () => {
           {visitors.map((visitor, index) => (
             <div key={index} className="px-4">
               <div className="text-center bg-orange-600 rounded-2xl overflow-hidden shadow-md transition transform hover:scale-105 h-[360px] duration-300">
-                <img
-                  src={visitor.image}
+                <img loading="lazy" decoding="async"                   src={visitor.image}
                   alt={visitor.name}
                   className="w-full h-[250px] object-cover"
                 />

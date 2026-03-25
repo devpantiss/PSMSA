@@ -45,8 +45,7 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
             }}
           >
             {colImages.map((img, idx) => (
-              <img
-                key={idx}
+              <img loading="lazy" decoding="async"                 key={idx}
                 src={img}
                 alt={`Image ${colIdx}-${idx}`}
                 className="aspect-[970/700] w-full rounded-lg object-cover ring ring-gray-950/5"

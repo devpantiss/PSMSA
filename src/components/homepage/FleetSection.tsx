@@ -217,7 +217,7 @@ const InfraCard = ({ i }: { i: InfraItem }) => {
       </div>
 
       <div className="relative h-56">
-        <img src={i.image} className="h-full w-full object-cover" />
+        <img loading="lazy" decoding="async" src={i.image} className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70" />
       </div>
 

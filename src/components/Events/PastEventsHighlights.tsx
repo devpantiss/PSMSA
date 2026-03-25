@@ -72,8 +72,7 @@ const PastEventsHighlights: React.FC = () => {
               key={event.id}
               className="relative group rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 animate-slide-up"
             >
-              <img
-                src={event.image}
+              <img loading="lazy" decoding="async"                 src={event.image}
                 alt={event.title}
                 className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
               />

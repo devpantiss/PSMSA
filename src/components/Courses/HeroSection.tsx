@@ -5,8 +5,7 @@ const HeroSection = () => {
     <section className="relative bg-slate-900 text-white overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-slate-900/60 z-10" />
-        <img
-          src="/homepage/aluminium.jpg"
+        <img loading="lazy" decoding="async"           src="/homepage/aluminium.jpg"
           alt="Pantiss Campus"
           className="w-full h-full object-cover"
         />

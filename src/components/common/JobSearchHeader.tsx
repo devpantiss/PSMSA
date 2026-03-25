@@ -60,8 +60,7 @@ const JobSearchHeader: React.FC = () => {
       <div className="container mx-auto max-w-7xl flex items-center justify-between py-0 px-6">
         {/* Logo Image */}
         <div className="flex items-center">
-          <img
-            src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1743853206/Pantiss_School-Photoroom_pq3crh.png"
+          <img loading="lazy" decoding="async"             src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1743853206/Pantiss_School-Photoroom_pq3crh.png"
             alt="SkillNet Job Search Logo"
             className="h-20 w-auto animate-pulse-logo"
           />

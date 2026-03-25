@@ -340,8 +340,7 @@ const Rotating3DLabsCarousel: React.FC = () => {
 
             {/* image */}
             <div className="relative aspect-[16/9] w-full bg-black">
-              <img
-                src={activeImage}
+              <img loading="lazy" decoding="async"                 src={activeImage}
                 alt="Lab Full Preview"
                 className="h-full w-full object-cover"
               />

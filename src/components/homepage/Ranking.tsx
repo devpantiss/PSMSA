@@ -9,7 +9,7 @@ interface RankingCardProps {
 const RankingCard: React.FC<RankingCardProps> = ({ logo, description }) => {
   return (
     <div className="w-[450px] mx-4 p-6 ring-2 ring-green-500 rounded-2xl shadow-sm bg-black/30 backdrop-blur-md">
-      <img src={logo} alt="Accreditation Logo" className="h-24 mb-4 mx-auto" />
+      <img loading="lazy" decoding="async" src={logo} alt="Accreditation Logo" className="h-24 mb-4 mx-auto" />
       <div className="w-full flex flex-wrap">
         <p className="text-sm text-gray-50 w-full text-center mt-2">
           {description}

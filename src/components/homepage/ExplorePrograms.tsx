@@ -19,8 +19,7 @@ const ExplorePrograms: React.FC = () => {
             in making
           </h2>
 
-          <img
-            src="https://www.lpu.in/lpu-assets/images/home-page/history-in-making/history-in-making.webp"
+          <img loading="lazy" decoding="async"             src="https://www.lpu.in/lpu-assets/images/home-page/history-in-making/history-in-making.webp"
             alt="Students Group"
             className="w-full h-auto rounded-lg mb-4"
           />

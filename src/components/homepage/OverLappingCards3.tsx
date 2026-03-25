@@ -43,8 +43,7 @@ const OverLappingCards3: React.FC = () => {
             <li>Guidance on Skill Requirements</li>
           </ul>
           <div className="relative">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" // Icon: Compass (exploration)
+            <img loading="lazy" decoding="async"               src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" // Icon: Compass (exploration)
               alt="exploration-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
             />
@@ -61,8 +60,7 @@ const OverLappingCards3: React.FC = () => {
             <li>Certification Guidance</li>
           </ul>
           <div className="relative">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2040/2040730.png" // Icon: Graduation cap (skill development)
+            <img loading="lazy" decoding="async"               src="https://cdn-icons-png.flaticon.com/512/2040/2040730.png" // Icon: Graduation cap (skill development)
               alt="skill-development-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
             />
@@ -80,8 +78,7 @@ const OverLappingCards3: React.FC = () => {
             <li>Post-Placement Guidance</li>
           </ul>
           <div className="relative">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Icon: Career path (job placement)
+            <img loading="lazy" decoding="async"               src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Icon: Career path (job placement)
               alt="job-placement-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
             />

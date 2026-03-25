@@ -1,43 +1,30 @@
-import React from "react";
+import React, { Suspense } from "react";
 import HeroSection from "../components/homepage/Hero";
-import SectorsAccordion from "../components/homepage/SectorsAccordion";
-import FleetSection from "../components/homepage/FleetSection";
-import PlacementsSection from "../components/homepage/PlacementsSection";
-import CampusExperienceSection from "../components/homepage/CampusExperienceSection";
-// import OurFuturisticApproach from "../components/homepage/OurFuturisticApproach";
-import Why from "../components/homepage/Why";
-import ProgramPreview from "../components/homepage/ProgramPreview";
-import Notices from "../components/homepage/Notices";
-// import BeforeAfterSlider from "../components/homepage/BeforeAfterSlider";
-import Fleet from "../components/homepage/Fleet";
-// import ImpactSection from "../components/homepage/ImpactSection";
+
+const SectorsAccordion = React.lazy(() => import("../components/homepage/SectorsAccordion"));
+const FleetSection = React.lazy(() => import("../components/homepage/FleetSection"));
+const PlacementsSection = React.lazy(() => import("../components/homepage/PlacementsSection"));
+const CampusExperienceSection = React.lazy(() => import("../components/homepage/CampusExperienceSection"));
+const Why = React.lazy(() => import("../components/homepage/Why"));
+const ProgramPreview = React.lazy(() => import("../components/homepage/ProgramPreview"));
+const Notices = React.lazy(() => import("../components/homepage/Notices"));
+const Fleet = React.lazy(() => import("../components/homepage/Fleet"));
 
 const HomePage: React.FC = () => {
   return (
     <div>
       <HeroSection />
-      <SectorsAccordion />
-      <Why />
-      <ProgramPreview />
-      <PlacementsSection />
-      {/* <GlobalPlacement /> */}
-      {/* <OurFuturisticApproach /> */}
-      {/* <ImpactSection /> */}
-      <Fleet />
-      <FleetSection />
-      {/* <BeforeAfterSlider
-        beforeImage="/before.png"
-        afterImage="/after.png"
-      /> */}
-      <Notices />
-      <CampusExperienceSection />
-
-      {/* <SolutionCards />
-      <OverLappingCards2 />
-      <Ranking />
-      <SkillDevelopmentSection />
-      <TestimonialSection />
-      <ExplorePrograms /> */}
+      
+      <Suspense fallback={<div className="min-h-[200px]" />}>
+        <SectorsAccordion />
+        <Why />
+        <ProgramPreview />
+        <PlacementsSection />
+        <Fleet />
+        <FleetSection />
+        <Notices />
+        <CampusExperienceSection />
+      </Suspense>
     </div>
   );
 };

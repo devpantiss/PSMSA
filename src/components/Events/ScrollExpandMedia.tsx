@@ -210,8 +210,7 @@
 //                 {mediaType === 'video' ? (
 //                   mediaSrc.includes('youtube.com') ? (
 //                     <div className='relative w-full h-full pointer-events-none'>
-//                       <iframe
-//                         width='100%'
+//                       <iframe loading="lazy" decoding="async" //                         width='100%'
 //                         height='100%'
 //                         src={
 //                           mediaSrc.includes('embed')

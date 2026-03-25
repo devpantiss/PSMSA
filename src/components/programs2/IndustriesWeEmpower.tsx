@@ -134,8 +134,7 @@ export default function ProgrammeSyllabusExplorer() {
             {/* IMAGE OR 3D MODEL */}
             <div className="relative mt-12 h-[360px] overflow-hidden rounded-lg border border-white/10 bg-black">
               {activeProgram ? (
-                <img
-                  key={activeProgram.id}
+                <img loading="lazy" decoding="async"                   key={activeProgram.id}
                   src={activeProgram.image}
                   alt={activeProgram.name}
                   className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"

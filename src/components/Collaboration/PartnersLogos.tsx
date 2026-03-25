@@ -101,8 +101,7 @@ const PartnersLogos: React.FC = () => {
                   {/* Hover Sweep */}
                   <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   
-                  <img
-                    src={partner.logo}
+                  <img loading="lazy" decoding="async"                     src={partner.logo}
                     alt={partner.name}
                     className="max-h-full max-w-full object-contain opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
                   />

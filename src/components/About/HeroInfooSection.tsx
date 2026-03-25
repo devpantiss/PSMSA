@@ -58,8 +58,7 @@ const FoundersSection: React.FC = () => {
               {/* Image */}
               <div className="flex justify-center md:justify-start">
                 <div className="relative h-[450px] rounded-xl overflow-hidden shadow-xl shadow-black/50">
-                  <img
-                    src={founder.image}
+                  <img loading="lazy" decoding="async"                     src={founder.image}
                     alt={founder.name}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   />

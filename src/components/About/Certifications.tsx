@@ -107,8 +107,7 @@ const Certifications: React.FC = () => {
               <div className="flex h-[520px] flex-col overflow-hidden border border-gray-700 bg-gray-900/80 backdrop-blur transition hover:shadow-[0_0_28px_rgba(220,38,38,0.45)]">
                 {/* Image */}
                 <div className="relative h-[300px]">
-                  <img
-                    src={cert.imageUrl}
+                  <img loading="lazy" decoding="async"                     src={cert.imageUrl}
                     alt={cert.title}
                     className="h-full w-full object-cover"
                   />
@@ -120,8 +119,7 @@ const Certifications: React.FC = () => {
                   <div
                     className="flex h-14 w-32 items-center justify-center rounded-md px-3 transition hover:scale-105"
                   >
-                    <img
-                      src={cert.logoUrl}
+                    <img loading="lazy" decoding="async"                       src={cert.logoUrl}
                       alt={cert.title}
                       className="max-h-10 max-w-full object-contain"
                     />

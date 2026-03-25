@@ -205,7 +205,7 @@ const navLinks: NavLink[] = [
 const secondaryLinks = [
   {
     name: "ERP",
-    path: "/campus-login",
+    path: "https://erp-dusky-one.vercel.app/",
     icon: FaSignInAlt,
   },
   {
@@ -303,8 +303,7 @@ const Header: React.FC = () => {
       >
         {/* Logo */}
         <div className="flex items-center transition-all duration-300">
-          <img
-            src="/LOGO.png"
+          <img loading="lazy" decoding="async"             src="/LOGO.png"
             alt="Pantiss School for Mines, Steel & AluminiumLogo"
             className={`w-auto drop-shadow-lg animate-pulse-logo ${isScrolled ? "h-16" : "h-24"
               } transition-all duration-300`}
@@ -547,6 +546,8 @@ const Header: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.path}
+                  target={link.name === "ERP" ? "_blank" : undefined}
+                  rel={link.name === "ERP" ? "noopener noreferrer" : undefined}
                   className="flex items-center hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded"
                 >
                   <IconComponent className="mr-2" /> {link.name}
@@ -586,6 +587,8 @@ const Header: React.FC = () => {
                     <a
                       key={link.name}
                       href={link.path}
+                      target={link.name === "ERP" ? "_blank" : undefined}
+                      rel={link.name === "ERP" ? "noopener noreferrer" : undefined}
                       className="flex items-center p-2 rounded hover:bg-purple-600 transition-colors duration-200"
                       onClick={() => setIsSecondaryMenuOpen(false)}
                     >
@@ -676,8 +679,7 @@ const Header: React.FC = () => {
                           {link.subLinks.find(
                             (sl) => sl.name === hoveredSubLink
                           )?.image || link.subLinks[0].image ? (
-                            <img
-                              src={
+                            <img loading="lazy" decoding="async"                               src={
                                 link.subLinks.find(
                                   (sl) => sl.name === hoveredSubLink
                                 )?.image || link.subLinks[0].image

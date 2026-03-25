@@ -120,8 +120,7 @@ const UpcomingEvents: React.FC = () => {
           {filteredEvents.map((event) => (
             <div key={event.id} className="px-3">
               <div className="bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 animate-slide-up border border-gray-700">
-                <img
-                  src={event.image}
+                <img loading="lazy" decoding="async"                   src={event.image}
                   alt={event.title}
                   className="w-full h-56 object-cover"
                 />

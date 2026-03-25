@@ -43,8 +43,7 @@ const OverLappingCards: React.FC = () => {
             <li>Safety Drills & Scenarios</li>
           </ul>
           <div className="relative">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2592/2592972.png" // Icon for mining tools
+            <img loading="lazy" decoding="async"               src="https://cdn-icons-png.flaticon.com/512/2592/2592972.png" // Icon for mining tools
               alt="mining-tools-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
             />
@@ -61,8 +60,7 @@ const OverLappingCards: React.FC = () => {
             <li>Performance-Based Assessments</li>
           </ul>
           <div className="relative">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2921/2921128.png" // Icon for simulation/training
+            <img loading="lazy" decoding="async"               src="https://cdn-icons-png.flaticon.com/512/2921/2921128.png" // Icon for simulation/training
               alt="simulation-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
             />
@@ -80,8 +78,7 @@ const OverLappingCards: React.FC = () => {
             <li>Progress Tracking Dashboard</li>
           </ul>
           <div className="relative">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Icon for career/support
+            <img loading="lazy" decoding="async"               src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Icon for career/support
               alt="support-icon"
               className="absolute right-4 -bottom-32 w-24 h-24"
             />

@@ -129,8 +129,7 @@ const CoursesBody = (): JSX.Element => {
     >
       {/* Image */}
       <div className="relative h-40 overflow-hidden">
-        <img
-          src={course.image}
+        <img loading="lazy" decoding="async"           src={course.image}
           alt={course.title}
           className="h-full w-full object-cover opacity-80 group-hover:scale-105 transition duration-500"
         />

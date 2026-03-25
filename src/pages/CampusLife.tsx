@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { motion, useScroll, useSpring } from "framer-motion";
 import HeroSection from '../components/campusLife/HeroSection'
-import CampusIntro from '../components/campusLife/LifePillars' // Kept filename for ease, but component is renamed
-import FacilitiesGrid from '../components/campusLife/FacilitiesGrid'
-import InteractiveEcosystem from '../components/campusLife/PracticeTrack' // Kept filename
-import StudentLifeGallery from '../components/campusLife/StudentLifeGallery'
-import PromotionalBanner from '../components/campusLife/IndustryExposure' // Kept filename
-import CampusTestimonials from '../components/campusLife/CampusTestimonials'
-import CTASection from '../components/campusLife/CTASection'
+
+const CampusIntro = React.lazy(() => import('../components/campusLife/LifePillars'))
+const FacilitiesGrid = React.lazy(() => import('../components/campusLife/FacilitiesGrid'))
+const InteractiveEcosystem = React.lazy(() => import('../components/campusLife/PracticeTrack'))
+const StudentLifeGallery = React.lazy(() => import('../components/campusLife/StudentLifeGallery'))
+const PromotionalBanner = React.lazy(() => import('../components/campusLife/IndustryExposure'))
+const CampusTestimonials = React.lazy(() => import('../components/campusLife/CampusTestimonials'))
+const CTASection = React.lazy(() => import('../components/campusLife/CTASection'))
 
 const CampusLife: React.FC = () => {
   const { scrollYProgress } = useScroll();
@@ -28,13 +29,16 @@ const CampusLife: React.FC = () => {
 
       <div className="relative z-10">
         <HeroSection />
-        <CampusIntro />
-        <FacilitiesGrid />
-        <InteractiveEcosystem />
-        <StudentLifeGallery />
-        <PromotionalBanner />
-        <CampusTestimonials />
-        <CTASection />
+        
+        <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-t-2 border-teal-500 animate-spin" /></div>}>
+          <CampusIntro />
+          <FacilitiesGrid />
+          <InteractiveEcosystem />
+          <StudentLifeGallery />
+          <PromotionalBanner />
+          <CampusTestimonials />
+          <CTASection />
+        </Suspense>
       </div>
     </div>
   )

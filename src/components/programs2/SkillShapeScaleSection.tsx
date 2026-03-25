@@ -172,8 +172,7 @@ export default function PSMSAOurProgrammesHero() {
                           className="h-full w-full px-6 py-6"
                         >
                           <div className="relative h-[260px] w-full overflow-hidden border border-white/10 bg-black/20">
-                            <img
-                              src={panel.image}
+                            <img loading="lazy" decoding="async"                               src={panel.image}
                               alt={panel.id}
                               className="h-full w-full object-cover"
                             />

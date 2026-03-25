@@ -28,8 +28,7 @@ const WhySkillNetSection: React.FC = () => {
           <Card
             icon={
               <div className="bg-orange-100 p-4 rounded-full">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/2592/2592972.png" // Mining tools icon
+                <img loading="lazy" decoding="async"                   src="https://cdn-icons-png.flaticon.com/512/2592/2592972.png" // Mining tools icon
                   alt="mining-tools-icon"
                   className="w-10 h-10"
                 />
@@ -41,8 +40,7 @@ const WhySkillNetSection: React.FC = () => {
           <Card
             icon={
               <div className="bg-orange-100 p-4 rounded-full">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/2921/2921128.png" // Simulation/training icon
+                <img loading="lazy" decoding="async"                   src="https://cdn-icons-png.flaticon.com/512/2921/2921128.png" // Simulation/training icon
                   alt="simulation-icon"
                   className="w-10 h-10"
                 />
@@ -54,8 +52,7 @@ const WhySkillNetSection: React.FC = () => {
           <Card
             icon={
               <div className="bg-orange-100 p-4 rounded-full">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Career/support icon
+                <img loading="lazy" decoding="async"                   src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" // Career/support icon
                   alt="career-icon"
                   className="w-10 h-10"
                 />

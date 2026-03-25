@@ -288,7 +288,7 @@ const DualTrainingSchoolsCarousel: React.FC = () => {
               <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
                 {/* Image Section */}
                 <div className="relative h-64 md:h-80 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src={currentSchool.image}
                     alt={currentSchool.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

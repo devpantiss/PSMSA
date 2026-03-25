@@ -206,8 +206,7 @@ const EventsCalendar: React.FC = () => {
     return (
       <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
         <div className="bg-black rounded-xl p-8 max-w-md w-full mx-4 shadow-2xl animate-fade-in">
-          <img
-            src={event.image}
+          <img loading="lazy" decoding="async"             src={event.image}
             alt={event.title}
             className="w-full h-48 object-cover rounded-lg mb-6 border-4 border-green-600"
           />

@@ -101,8 +101,7 @@ const MouSection: React.FC = () => {
                   
                   {/* Partner Image with Overlay */}
                   <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={partner.image}
+                    <img loading="lazy" decoding="async"                       src={partner.image}
                       alt={partner.name}
                       className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-700"
                     />
@@ -110,8 +109,7 @@ const MouSection: React.FC = () => {
                     
                     {/* Logo Overlay */}
                     <div className="absolute top-6 left-6 p-3 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-md transition-transform group-hover:scale-105">
-                      <img
-                        src={partner.logo}
+                      <img loading="lazy" decoding="async"                         src={partner.logo}
                         alt={partner.name + " logo"}
                         className="h-8 w-auto object-contain grayscale invert opacity-80 group-hover:grayscale-0 group-hover:invert-0 group-hover:opacity-100 transition-all"
                       />

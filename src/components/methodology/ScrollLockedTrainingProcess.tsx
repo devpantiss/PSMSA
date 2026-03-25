@@ -218,8 +218,7 @@ const ScrollLockedTrainingProcess: React.FC = () => {
               >
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                  <img
-                    src={step.image}
+                  <img loading="lazy" decoding="async"                     src={step.image}
                     alt={step.title}
                     className="h-full w-full object-cover"
                   />

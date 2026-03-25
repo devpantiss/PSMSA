@@ -53,29 +53,25 @@ const Customers: React.FC = () => {
         <Slider {...settings} className="gap-x-4">
           {/* Example logo items */}
           <div className="px-4">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/330px-DTE_pic_hrwr2q.jpg"
+            <img loading="lazy" decoding="async"               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/330px-DTE_pic_hrwr2q.jpg"
               alt="Max Healthcare"
               className="h-16 lg:h-24 mx-auto object-contain"
             />
           </div>
           <div className="px-4">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/CBC_logo.svg_ixkcmg.png"
+            <img loading="lazy" decoding="async"               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055079/CBC_logo.svg_ixkcmg.png"
               alt="Nash"
               className="h-16 lg:h-24 mx-auto object-contain"
             />
           </div>
           <div className="px-4">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055539/the-telegraph-logo-vector-removebg-preview_ovbazt.png"
+            <img loading="lazy" decoding="async"               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055539/the-telegraph-logo-vector-removebg-preview_ovbazt.png"
               alt="Panasonic"
               className="h-16 lg:h-24 mx-auto object-contain"
             />
           </div>
           <div className="px-4">
-            <img
-              src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/pngwing.com_7_ixeqav.png"
+            <img loading="lazy" decoding="async"               src="https://res.cloudinary.com/dgtc2fvgu/image/upload/v1726055080/pngwing.com_7_ixeqav.png"
               alt="RPG"
               className="h-16 lg:h-24 mx-auto object-contain"
             />

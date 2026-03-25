@@ -4,12 +4,12 @@ const AboutHero: React.FC = () => {
   return (
     <section className="relative w-full h-[100vh] bg-black text-white">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('/About/about_hero.jpg')",
-        }}
+      <img
+        src="/About/about_hero.jpg"
+        alt="About us background"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
       {/* Overlay for black tint */}
