@@ -121,12 +121,6 @@ const navLinks: NavLink[] = [
         path: "/academics/knowledge-hub",
         description: "Stay updated with Courses.",
       },
-      {
-        name: "Campus Life",
-        path: "/campus-life",
-        description:
-          "Get in touch with us. We're here to help you on your skilling journey.",
-      },
       // {
       //   name: "Training Methodology",
       //   path: "/academics/training-methodology",
@@ -189,6 +183,11 @@ const navLinks: NavLink[] = [
   //   description:
   //     "Stay updated with upcoming seminars, workshops, fests, and industry talks.",
   // },
+{
+        name: "Campus Life",
+        path: "/campus-life",
+        description: "Get in touch with us. We're here to help you on your skilling journey.",
+      },
   {
     name: "Labs",
     path: "/academics/labs",

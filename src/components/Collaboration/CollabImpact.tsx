@@ -3,7 +3,7 @@ import { motion, useInView, useSpring, useMotionValue } from "framer-motion";
 import { TrendingUp, Users, Trophy, Globe } from "lucide-react";
 
 const ACCENT_PURPLE = "#7c3aed"; 
-const ACCENT_TEAL = "#4eeac8";
+// const ACCENT_TEAL = "#4eeac8";
 
 const stats = [
   { label: "Placement Rate", value: 92, suffix: "%", icon: <TrendingUp className="h-6 w-6" />, color: ACCENT_PURPLE },

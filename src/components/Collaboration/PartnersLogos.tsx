@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Partner {
@@ -7,8 +7,8 @@ interface Partner {
   category: "government" | "industry" | "education" | "technology";
 }
 
-const ACCENT_TEAL = "#4eeac8";
-const ACCENT_PURPLE = "#7c3aed";
+// const ACCENT_TEAL = "#4eeac8";
+// const ACCENT_PURPLE = "#7c3aed";
 
 const partners: Partner[] = [
   { name: "UGC", logo: "https://msu-website-all-objects.s3.ap-south-1.amazonaws.com/logos/UGC.webp", category: "government" },

@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { FaTools, FaIndustry, FaBriefcase, FaGlobe } from "react-icons/fa";
 
 const ACCENT_PURPLE = "#7c3aed"; 
-const ACCENT_TEAL = "#4eeac8";
+// const ACCENT_TEAL = "#4eeac8";
 
 const steps = [
   {
