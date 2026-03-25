@@ -208,7 +208,7 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
             <div className="rounded-2xl bg-white/5 p-6 border border-white/10">
               <h3 className="text-2xl font-bold text-white mb-4"></h3>
               <div className="aspect-video rounded-xl overflow-hidden bg-black">
-                <iframe loading="lazy" decoding="async"                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                <iframe loading="lazy"                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                   title="Certification Program Intro"
                   className="w-full h-full"
                   allowFullScreen

@@ -34,7 +34,7 @@ const ProgramOverviewVideo: React.FC<ProgramOverviewVideoProps> = ({
       className="relative w-full min-h-screen bg-black overflow-hidden"
     >
       {/* Video */}
-      <iframe loading="lazy" decoding="async"         src={videoSrc}
+      <iframe loading="lazy"         src={videoSrc}
         title="Program Overview Video"
         className="absolute inset-0 w-full h-full"
         frameBorder="0"
