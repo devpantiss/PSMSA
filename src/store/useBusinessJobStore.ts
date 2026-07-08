@@ -15,6 +15,40 @@ interface JobFormData {
   rolesAndResponsibilities: string[];
 }
 
+interface JobResponse {
+  _id: string;
+  designation: string;
+  companyName?: string;
+  jobLocation: string;
+  jobPostedDate: string;
+  isActive: boolean;
+  description?: string;
+  salary?: number;
+  experienceRequired?: number;
+  qualificationRequired?: string;
+  noOfOpenings?: number;
+  genderSpecifics?: 'Male' | 'Female' | 'Any';
+  rolesAndResponsibilities?: string[];
+}
+
+interface ApplicationResponse {
+  _id: string;
+  jobId: { _id: string };
+  jobSeekerId: {
+    _id: string;
+    name: string;
+    email: string;
+    mobile?: string;
+    resume?: string;
+    skills?: string[];
+    experience?: number;
+    education?: unknown;
+  };
+  businessId: { _id: string };
+  status: 'Pending' | 'Accepted' | 'Rejected';
+  appliedDate: string;
+}
+
 interface BusinessJobState {
   jobs: PostedJob[];
   applicants: { [jobId: string]: Application[] };
@@ -51,7 +85,7 @@ export const useBusinessJobStore = create<BusinessJobState>((set, get) => ({
       const response = await axios.get('http://localhost:5000/api/jobs/business', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const jobs: PostedJob[] = response.data.map((job: any) => ({
+      const jobs: PostedJob[] = (response.data as JobResponse[]).map((job) => ({
         id: job._id,
         title: job.designation,
         companyName: job.companyName || 'Unknown Company',
@@ -208,7 +242,7 @@ export const useBusinessJobStore = create<BusinessJobState>((set, get) => ({
       const response = await axios.get(`http://localhost:5000/api/applications/job/${jobId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const applications: Application[] = response.data.map((app: any) => ({
+      const applications: Application[] = (response.data as ApplicationResponse[]).map((app) => ({
         _id: app._id,
         jobId: app.jobId._id,
         jobSeekerId: app.jobSeekerId._id,

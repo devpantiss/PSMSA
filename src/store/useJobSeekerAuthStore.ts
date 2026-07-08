@@ -20,6 +20,8 @@ interface JobSeekerState {
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+type ApiError = AxiosError<{ message?: string }>;
+
 // Initialize token and authentication state from localStorage
 const authData = localStorage.getItem('job-seeker-auth');
 let initialToken: string | null = null;
@@ -92,13 +94,14 @@ export const useJobSeekerStore = create<JobSeekerState>((set) => ({
       console.log('sendEmailOTP response:', response.data);
       set({ isLoading: false });
       return { success: true };
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as ApiError;
       console.error('sendEmailOTP error:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
+        message: err.message,
+        response: err.response?.data,
+        status: err.response?.status,
       });
-      const errorMessage = error.response?.data?.message || 'Failed to send OTP';
+      const errorMessage = err.response?.data?.message || 'Failed to send OTP';
       set({ error: errorMessage, isLoading: false });
       return { success: false, error: errorMessage };
     }
@@ -112,13 +115,14 @@ export const useJobSeekerStore = create<JobSeekerState>((set) => ({
       console.log('verifyEmailOTP response:', response.data);
       set({ isLoading: false });
       return { success: true };
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as ApiError;
       console.error('verifyEmailOTP error:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
+        message: err.message,
+        response: err.response?.data,
+        status: err.response?.status,
       });
-      const errorMessage = error.response?.data?.message || 'OTP verification failed';
+      const errorMessage = err.response?.data?.message || 'OTP verification failed';
       set({ error: errorMessage, isLoading: false });
       return { success: false, error: errorMessage };
     }
@@ -139,13 +143,14 @@ export const useJobSeekerStore = create<JobSeekerState>((set) => ({
       }
       localStorage.setItem('job-seeker-auth', JSON.stringify({ token }));
       set({ token, isAuthenticated: true, isLoading: false });
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as ApiError;
       console.error('initiateSignup error:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
+        message: err.message,
+        response: err.response?.data,
+        status: err.response?.status,
       });
-      const errorMessage = error.response?.data?.message || 'Signup failed';
+      const errorMessage = err.response?.data?.message || 'Signup failed';
       set({ error: errorMessage, isLoading: false });
       throw new Error(errorMessage);
     }
@@ -158,13 +163,14 @@ export const useJobSeekerStore = create<JobSeekerState>((set) => ({
       const response = await axios.post(`${API_URL}/jobseeker/send-mobile-otp`, { mobile }, { timeout: 10000 });
       console.log('sendMobileOTP response:', response.data);
       set({ isLoading: false });
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as ApiError;
       console.error('sendMobileOTP error:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
+        message: err.message,
+        response: err.response?.data,
+        status: err.response?.status,
       });
-      const errorMessage = error.response?.data?.message || 'Failed to send mobile OTP';
+      const errorMessage = err.response?.data?.message || 'Failed to send mobile OTP';
       set({ error: errorMessage, isLoading: false });
       throw new Error(errorMessage);
     }
@@ -177,13 +183,14 @@ export const useJobSeekerStore = create<JobSeekerState>((set) => ({
       const response = await axios.post(`${API_URL}/jobseeker/forgot-password`, { email }, { timeout: 10000 });
       console.log('forgotPassword response:', response.data);
       set({ isLoading: false });
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as ApiError;
       console.error('forgotPassword error:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
+        message: err.message,
+        response: err.response?.data,
+        status: err.response?.status,
       });
-      const errorMessage = error.response?.data?.message || 'Failed to send reset OTP';
+      const errorMessage = err.response?.data?.message || 'Failed to send reset OTP';
       set({ error: errorMessage, isLoading: false });
       throw new Error(errorMessage);
     }
@@ -200,13 +207,14 @@ export const useJobSeekerStore = create<JobSeekerState>((set) => ({
       );
       console.log('resetPassword response:', response.data);
       set({ isLoading: false });
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as ApiError;
       console.error('resetPassword error:', {
-        message: error.message,
-        response: error.response?.data,
-        status: error.response?.status,
+        message: err.message,
+        response: err.response?.data,
+        status: err.response?.status,
       });
-      const errorMessage = error.response?.data?.message || 'Password reset failed';
+      const errorMessage = err.response?.data?.message || 'Password reset failed';
       set({ error: errorMessage, isLoading: false });
       throw new Error(errorMessage);
     }

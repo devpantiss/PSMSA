@@ -1,4 +1,4 @@
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useRef, useState, type ComponentRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls, useGLTF } from "@react-three/drei";
 import {
@@ -22,7 +22,7 @@ function ElectricalLabModel() {
 export default function ElectricalLabImmersive() {
   const [isOpen, setIsOpen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
-  const controlsRef = useRef<any>(null);
+  const controlsRef = useRef<ComponentRef<typeof OrbitControls>>(null);
 
   const resetView = () => controlsRef.current?.reset?.();
 

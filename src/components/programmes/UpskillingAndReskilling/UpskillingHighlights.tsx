@@ -9,7 +9,6 @@ interface Highlight {
   icon: React.ReactNode;
 }
 
-interface UpskillReskillHighlightsProps {}
 
 // Define highlights data with unique icons
 const highlights: Highlight[] = [
@@ -66,7 +65,7 @@ const headingVariants: Variants = {
   },
 };
 
-const UpskillReskillHighlights: React.FC<UpskillReskillHighlightsProps> = () => {
+const UpskillReskillHighlights: React.FC = () => {
   return (
     <section
       className="relative py-24 bg-black overflow-hidden"

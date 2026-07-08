@@ -18,7 +18,6 @@ interface Sector {
   skills: string[];
 }
 
-interface ITIOverviewProps {}
 
 // Define sectors data with unique impact data for each (ITI-focused)
 const sectors: Sector[] = [
@@ -165,7 +164,7 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   </button>
 );
 
-const ITIOverview: React.FC<ITIOverviewProps> = () => {
+const ITIOverview: React.FC = () => {
   // State to track current slide for dynamic impact data
   const [currentSlide, setCurrentSlide] = useState(0);
 

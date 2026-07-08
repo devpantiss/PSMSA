@@ -18,7 +18,6 @@ interface Sector {
   skills: string[];
 }
 
-interface AdvancedDiplomaOverviewProps {}
 
 // Advanced Diploma — 7 sectors tailored to your request
 const sectors: Sector[] = [
@@ -155,7 +154,7 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   </button>
 );
 
-const AdvancedDiplomaOverview: React.FC<AdvancedDiplomaOverviewProps> = () => {
+const AdvancedDiplomaOverview: React.FC = () => {
   // State to track current slide for dynamic impact data
   const [currentSlide, setCurrentSlide] = useState(0);
 

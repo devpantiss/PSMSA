@@ -1,7 +1,9 @@
 import { create } from 'zustand';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { JobSeeker } from '../types/jobSeeker';
 import toast from 'react-hot-toast';
+
+type ApiError = AxiosError<{ message?: string }>;
 
 interface JobSeekerProfileStore {
   profile: JobSeeker | null;
@@ -36,8 +38,9 @@ export const useJobSeekerProfileStore = create<JobSeekerProfileStore>((set) => (
       });
       console.log('fetchProfile: Fetched profile:', response.data);
       set({ profile: response.data, loading: false });
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to fetch profile';
+    } catch (error) {
+      const err = error as ApiError;
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to fetch profile';
       console.error('fetchProfile Error:', errorMessage);
       set({ error: errorMessage, loading: false });
       toast.error(errorMessage, {
@@ -59,8 +62,9 @@ export const useJobSeekerProfileStore = create<JobSeekerProfileStore>((set) => (
       });
       console.log('fetchPublicProfile: Fetched profile:', response.data);
       set({ profile: response.data, loading: false });
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to fetch job seeker profile';
+    } catch (error) {
+      const err = error as ApiError;
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to fetch job seeker profile';
       console.error('fetchPublicProfile Error:', errorMessage, error);
       set({ error: errorMessage, loading: false });
       toast.error(errorMessage, {
@@ -106,8 +110,9 @@ export const useJobSeekerProfileStore = create<JobSeekerProfileStore>((set) => (
       toast.success('Profile updated successfully', {
         style: { background: '#1f2937', color: '#e5e7eb', border: '1px solid #7c3aed' },
       });
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || error.message || 'Failed to update profile';
+    } catch (error) {
+      const err = error as ApiError;
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to update profile';
       console.error('updateProfile Error:', errorMessage);
       set({ error: errorMessage, loading: false });
       toast.error(errorMessage, {

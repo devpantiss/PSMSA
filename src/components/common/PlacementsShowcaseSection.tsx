@@ -8,6 +8,7 @@ import {
   MapPin,
   CheckCircle,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 /* -----------------------------
    DATA
@@ -86,6 +87,13 @@ const placementStats = [
   },
 ];
 
+type PlacementStat = {
+  label: string;
+  value?: string;
+  rotatingValues?: string[];
+  icon: LucideIcon;
+};
+
 /* -----------------------------
    STAT CARD
 ----------------------------- */
@@ -94,12 +102,7 @@ const StatCard = ({
   stat,
   delay,
 }: {
-  stat: {
-    label: string;
-    value?: string;
-    rotatingValues?: string[];
-    icon: any;
-  };
+  stat: PlacementStat;
   delay: number;
 }) => {
   const Icon = stat.icon;

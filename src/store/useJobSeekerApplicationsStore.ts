@@ -45,7 +45,7 @@ export const useJobSeekerApplicationsStore = create<ApplicationsState>((set) => 
         if (!token || typeof token !== 'string') {
           throw new Error('Authentication token not found or invalid. Please log in again.');
         }
-      } catch (parseError) {
+      } catch {
         throw new Error('Invalid authentication data format. Please log in again.');
       }
 

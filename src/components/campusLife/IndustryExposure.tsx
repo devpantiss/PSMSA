@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const PromotionalBanner: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative py-32 px-6 bg-[#050505] overflow-hidden">
+    <section ref={sectionRef} className="relative py-32 px-6 bg-[#050505] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Cinematic Video Banner */}
@@ -12,12 +37,12 @@ const PromotionalBanner: React.FC = () => {
           {/* Background Looping Video */}
           <div className="absolute inset-0 z-0">
              <video
+                ref={videoRef}
                 src="https://cdn.coverr.co/videos/coverr-mining-excavator-working-1875/1080p.mp4"
-                autoPlay
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="metadata"
                 className="w-full h-full object-cover scale-105 opacity-40 group-hover:opacity-50 transition-opacity duration-1000 grayscale"
              />
              

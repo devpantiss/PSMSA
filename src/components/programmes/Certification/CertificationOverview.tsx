@@ -18,7 +18,6 @@ interface Sector {
   skills: string[];
 }
 
-interface CertificationOverviewProps {}
 
 // Updated sectors — 7 industry-aligned certification programmes
 const sectors: Sector[] = [
@@ -155,7 +154,7 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   </button>
 );
 
-const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
+const CertificationOverview: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const sliderSettings = {
@@ -172,7 +171,7 @@ const CertificationOverview: React.FC<CertificationOverviewProps> = () => {
     },
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    customPaging: (_i: number) => (
+    customPaging: () => (
       <button className="w-2 h-2 sm:w-3 sm:h-3 mx-1 rounded-full bg-white/30 hover:bg-white/60" />
     ),
     dotsClass: "slick-dots !bottom-[-30px] sm:!bottom-[-40px] !flex !justify-center !space-x-2",

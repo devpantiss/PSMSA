@@ -140,7 +140,7 @@ const CoreIndustriesJobRolesMarquee: React.FC = () => {
                         color: accent,
                       }}
                     >
-                      {React.cloneElement(category.icon as any, {
+                      {React.cloneElement(category.icon as React.ReactElement<{ className?: string }>, {
                         className:
                           "w-5 h-5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3",
                       })}

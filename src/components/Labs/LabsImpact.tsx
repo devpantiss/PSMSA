@@ -105,6 +105,100 @@ function useInView<T extends HTMLElement>(threshold = 0.25) {
   return { ref, inView };
 }
 
+type ParsedStat = (typeof stats)[number] & {
+  parsed: ReturnType<typeof parseStatValue>;
+};
+
+const ImpactStatCard = ({
+  stat,
+  inView,
+  duration,
+}: {
+  stat: ParsedStat;
+  inView: boolean;
+  duration: number;
+}) => {
+  const count = useCountUp(stat.parsed.numeric, inView, duration);
+
+  return (
+    <div
+      className="
+        group relative overflow-hidden rounded-3xl
+        border border-white/10 bg-white/5 backdrop-blur-xl
+        p-6 text-center
+        transition-all duration-500
+        hover:-translate-y-1 hover:border-white/20
+      "
+      style={{
+        boxShadow: `0 0 0 1px rgba(255,255,255,0.04), 0 0 70px rgba(78,234,200,0.08)`,
+      }}
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(120deg, transparent 20%, rgba(78,234,200,0.16), transparent 80%)",
+            transform: "translateX(-60%)",
+            animation: "impactSweep 1.1s ease forwards",
+          }}
+        />
+      </div>
+
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute left-1/2 top-1/2 h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[60px] opacity-0 transition duration-500 group-hover:opacity-100"
+          style={{
+            backgroundColor: `${ACCENT}18`,
+            animation: inView ? "impactPulse 2.4s ease-in-out infinite" : "none",
+          }}
+        />
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100">
+        <div
+          className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            backgroundColor: ACCENT,
+            animation: "impactPing 0.9s ease-out forwards",
+            boxShadow: `0 0 26px ${ACCENT}55`,
+          }}
+        />
+      </div>
+
+      <div
+        className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-black/40"
+        style={{
+          color: ACCENT,
+          boxShadow: `0 0 40px rgba(78,234,200,0.16)`,
+        }}
+      >
+        {stat.icon}
+      </div>
+
+      <p className="mt-5 text-4xl font-extrabold tracking-tight text-white tabular-nums">
+        <span
+          className="bg-clip-text text-transparent"
+          style={{
+            backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(255,255,255,0.85))`,
+          }}
+        >
+          {formatStatValue(count, stat.value)}
+        </span>
+      </p>
+
+      <p className="mt-2 text-sm text-white/70">{stat.label}</p>
+
+      <div
+        className="mx-auto mt-5 h-[2px] w-16 rounded-full opacity-80"
+        style={{
+          backgroundImage: `linear-gradient(90deg, transparent, ${ACCENT}, transparent)`,
+        }}
+      />
+    </div>
+  );
+};
+
 /* ---------------- COMPONENT ---------------- */
 
 const LabsImpact: React.FC = () => {
@@ -167,95 +261,14 @@ const LabsImpact: React.FC = () => {
 
         {/* Cards */}
         <div className="grid gap-6 md:grid-cols-4">
-          {parsed.map((s, idx) => {
-            const count = useCountUp(s.parsed.numeric, inView, 1150 + idx * 120);
-
-            return (
-              <div
-                key={s.label}
-                className="
-                  group relative overflow-hidden rounded-3xl
-                  border border-white/10 bg-white/5 backdrop-blur-xl
-                  p-6 text-center
-                  transition-all duration-500
-                  hover:-translate-y-1 hover:border-white/20
-                "
-                style={{
-                  boxShadow: `0 0 0 1px rgba(255,255,255,0.04), 0 0 70px rgba(78,234,200,0.08)`,
-                }}
-              >
-                {/* Hover sweep (sound-like visual micro interaction) */}
-                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(120deg, transparent 20%, rgba(78,234,200,0.16), transparent 80%)",
-                      transform: "translateX(-60%)",
-                      animation: "impactSweep 1.1s ease forwards",
-                    }}
-                  />
-                </div>
-
-                {/* Data pulse (subtle internal movement) */}
-                <div className="pointer-events-none absolute inset-0">
-                  <div
-                    className="absolute left-1/2 top-1/2 h-[240px] w-[240px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[60px] opacity-0 transition duration-500 group-hover:opacity-100"
-                    style={{
-                      backgroundColor: `${ACCENT}18`,
-                      animation: inView ? "impactPulse 2.4s ease-in-out infinite" : "none",
-                    }}
-                  />
-                </div>
-
-                {/* Ripple blip (like a soft "ping") */}
-                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100">
-                  <div
-                    className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
-                    style={{
-                      backgroundColor: ACCENT,
-                      animation: "impactPing 0.9s ease-out forwards",
-                      boxShadow: `0 0 26px ${ACCENT}55`,
-                    }}
-                  />
-                </div>
-
-                {/* Icon */}
-                <div
-                  className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-black/40"
-                  style={{
-                    color: ACCENT,
-                    boxShadow: `0 0 40px rgba(78,234,200,0.16)`,
-                  }}
-                >
-                  {s.icon}
-                </div>
-
-                {/* Value (count-up) */}
-                <p className="mt-5 text-4xl font-extrabold tracking-tight text-white tabular-nums">
-                  <span
-                    className="bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(255,255,255,0.85))`,
-                    }}
-                  >
-                    {formatStatValue(count, s.value)}
-                  </span>
-                </p>
-
-                {/* Label */}
-                <p className="mt-2 text-sm text-white/70">{s.label}</p>
-
-                {/* Bottom neon line */}
-                <div
-                  className="mx-auto mt-5 h-[2px] w-16 rounded-full opacity-80"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, transparent, ${ACCENT}, transparent)`,
-                  }}
-                />
-              </div>
-            );
-          })}
+          {parsed.map((stat, idx) => (
+            <ImpactStatCard
+              key={stat.label}
+              stat={stat}
+              inView={inView}
+              duration={1150 + idx * 120}
+            />
+          ))}
         </div>
       </div>
 

@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
-// High-end 3D Tilt Card wrapper
 const PremiumVideoCard = ({ 
   children, 
   className = "",
@@ -13,41 +12,18 @@ const PremiumVideoCard = ({
   onHoverStart: () => void;
   onHoverEnd: () => void;
 }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["4deg", "-4deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-4deg", "4deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    x.set(mouseX / width - 0.5);
-    y.set(mouseY / height - 0.5);
-  };
-
   const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
     onHoverEnd();
   };
 
   return (
-    <motion.div
-      onMouseMove={handleMouseMove}
+    <div
       onMouseEnter={onHoverStart}
       onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className={`relative w-full h-full cursor-pointer ${className}`}
+      className={`relative h-full w-full cursor-pointer transition-transform duration-300 hover:-translate-y-1 ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
 
@@ -91,7 +67,7 @@ const HoverVideoContainer = ({ fac }: { fac: typeof facilities[0] }) => {
 
   const handleHoverStart = () => {
     if (videoRef.current) {
-      videoRef.current.play().catch(e => console.log('Autoplay blocked', e));
+      videoRef.current.play().catch(() => {});
     }
   };
 

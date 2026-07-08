@@ -77,8 +77,16 @@ const FuturisticBackground: React.FC = () => {
   );
 };
 
+type StatutoryApproval = {
+  name: string;
+  desc: string;
+  icon: React.ReactNode;
+  status: string;
+  span: string;
+};
+
 const BentoCard: React.FC<{ 
-  approval: any; 
+  approval: StatutoryApproval;
   className?: string; 
   delay?: number 
 }> = ({ approval, className = "", delay = 0 }) => {

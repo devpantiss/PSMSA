@@ -18,7 +18,6 @@ interface Sector {
   skills: string[];
 }
 
-interface UpskillingOverviewProps {}
 
 // Upskilling & Reskilling — 7 sectors requested
 const sectors: Sector[] = [
@@ -155,7 +154,7 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   </button>
 );
 
-const DiplomaOverview: React.FC<UpskillingOverviewProps> = () => {
+const DiplomaOverview: React.FC = () => {
   // State to track current slide for dynamic impact data
   const [currentSlide, setCurrentSlide] = useState(0);
 

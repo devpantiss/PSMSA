@@ -33,7 +33,7 @@ const MediaContainer = ({ feat }: { feat: typeof lifestyleFeatures[0] }) => {
 
   const handleMouseEnter = () => {
     if (feat.mediaType === 'video' && videoRef.current) {
-       videoRef.current.play().catch(_e => console.log('Autoplay blocked'));
+       videoRef.current.play().catch(() => {});
     }
   }
 
@@ -59,6 +59,7 @@ const MediaContainer = ({ feat }: { feat: typeof lifestyleFeatures[0] }) => {
           muted 
           loop 
           playsInline
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-40"
         />
       ) : (
@@ -118,7 +119,7 @@ const StudentLifeGallery: React.FC = () => {
 
         {/* Video/Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {lifestyleFeatures.map((feat, _i) => (
+          {lifestyleFeatures.map((feat) => (
              <MediaContainer key={feat.title} feat={feat} />
           ))}
         </div>

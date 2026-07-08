@@ -18,7 +18,6 @@ interface Sector {
   skills: string[];
 }
 
-interface WILPOverviewProps {}
 
 // Define sectors data tailored for WILP (Work-Integrated Learning Program)
 const sectors: Sector[] = [
@@ -165,7 +164,7 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   </button>
 );
 
-const WILPOverview: React.FC<WILPOverviewProps> = () => {
+const WILPOverview: React.FC = () => {
   // State to track current slide for dynamic impact data
   const [currentSlide, setCurrentSlide] = useState(0);
 

@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import type { CustomArrowProps } from "react-slick";
 import { motion } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaHandshake, FaFileSignature } from "react-icons/fa";
 
@@ -36,7 +37,7 @@ const mouPartners = [
   },
 ];
 
-const NextArrow = ({ onClick }: any) => (
+const NextArrow = ({ onClick }: CustomArrowProps) => (
   <button
     onClick={onClick}
     className="absolute -right-4 md:-right-12 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-purple-400 hover:bg-purple-600 hover:text-white transition-all duration-300"
@@ -45,7 +46,7 @@ const NextArrow = ({ onClick }: any) => (
   </button>
 );
 
-const PrevArrow = ({ onClick }: any) => (
+const PrevArrow = ({ onClick }: CustomArrowProps) => (
   <button
     onClick={onClick}
     className="absolute -left-4 md:-left-12 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-purple-400 hover:bg-purple-600 hover:text-white transition-all duration-300"

@@ -161,7 +161,7 @@ const ScrollLockedTrainingProcess: React.FC = () => {
     <section
       ref={sectionRef}
       className="relative h-[130vh] overflow-hidden bg-black"
-      style={{ ["--tx" as any]: "0px" }}
+      style={{ "--tx": "0px" } as React.CSSProperties}
     >
       {/* Ambient Background */}
       <div className="pointer-events-none absolute inset-0">

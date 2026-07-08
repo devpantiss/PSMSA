@@ -1,4 +1,22 @@
-export const programmes = [
+export interface ProgrammeFees {
+  overview: string;
+  breakdown: Array<{
+    label: string;
+    amount: string;
+  }>;
+}
+
+export interface Programme {
+  key: string;
+  title: string;
+  subtitle: string;
+  eligibility: string[];
+  selectionProcess: string[];
+  fees: ProgrammeFees;
+  scholarship: string[];
+}
+
+export const programmes: Programme[] = [
     {
       key: "ug-mining",
       title: "Bachelor’s in Mining Engineering (UG)",
@@ -215,4 +233,3 @@ export const programmes = [
       ],
     },
   ];
-  

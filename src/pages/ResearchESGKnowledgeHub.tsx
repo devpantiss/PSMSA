@@ -994,7 +994,7 @@ export default function ResearchESGKnowledgeHub() {
             <div className="grid w-full gap-3 md:grid-cols-2 lg:grid-cols-4">
               <select
                 value={type}
-                onChange={(e) => setType(e.target.value as any)}
+                onChange={(e) => setType(e.target.value as KnowledgeType | "All")}
                 className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white/80 outline-none"
               >
                 {TYPES.map((t) => (
@@ -1006,7 +1006,7 @@ export default function ResearchESGKnowledgeHub() {
 
               <select
                 value={sector}
-                onChange={(e) => setSector(e.target.value as any)}
+                onChange={(e) => setSector(e.target.value as Sector | "All")}
                 className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white/80 outline-none"
               >
                 {SECTORS.map((s) => (
@@ -1018,7 +1018,7 @@ export default function ResearchESGKnowledgeHub() {
 
               <select
                 value={theme}
-                onChange={(e) => setTheme(e.target.value as any)}
+                onChange={(e) => setTheme(e.target.value as Theme | "All")}
                 className="rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white/80 outline-none"
               >
                 {THEMES.map((t) => (

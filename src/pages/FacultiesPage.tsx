@@ -86,11 +86,13 @@ const faculties = [
   },
 ];
 
+type Faculty = (typeof faculties)[number];
+
 /* -------------------------------------------------------------------------- */
 /*                              Faculty Card                                  */
 /* -------------------------------------------------------------------------- */
 
-const FacultyCard = ({ faculty }: { faculty: any }) => (
+const FacultyCard = ({ faculty }: { faculty: Faculty }) => (
   <motion.div
     layout
     initial={{ opacity: 0, y: 20 }}

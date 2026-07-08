@@ -7,6 +7,7 @@ import {
   TrendingUp,
   CheckCircle,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 /* -----------------------------
    DATA (Women in Mining Operator Roles)
@@ -77,6 +78,44 @@ const useCountUp = (end: number, enabled: boolean) => {
   return count;
 };
 
+type Metric = {
+  label: string;
+  value: number;
+  suffix: string;
+  icon: LucideIcon;
+};
+
+const MetricCard = ({ item, visible }: { item: Metric; visible: boolean }) => {
+  const value = useCountUp(item.value, visible);
+  const Icon = item.icon;
+
+  return (
+    <div
+      className="
+        bg-neutral-900/80
+        border border-neutral-800
+        rounded-2xl
+        p-8
+        transition
+        hover:border-purple-600/50
+        hover:shadow-[0_0_40px_rgba(147,51,234,0.15)]
+      "
+    >
+      <div className="flex items-center justify-between mb-6">
+        <span className="text-sm text-gray-400">{item.label}</span>
+        <Icon className="w-5 h-5 text-purple-500" />
+      </div>
+
+      <div className="text-4xl font-semibold tracking-tight text-white">
+        {value}
+        {item.suffix}
+      </div>
+
+      <div className="mt-6 h-[2px] w-full bg-gradient-to-r from-purple-600/60 via-green-500/40 to-transparent opacity-60" />
+    </div>
+  );
+};
+
 /* -----------------------------
    COMPONENT
 ----------------------------- */
@@ -123,38 +162,9 @@ export default function WomenImpact() {
 
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {metrics.map((item, i) => {
-            const value = useCountUp(item.value, visible);
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={i}
-                className="
-                  bg-neutral-900/80
-                  border border-neutral-800
-                  rounded-2xl
-                  p-8
-                  transition
-                  hover:border-purple-600/50
-                  hover:shadow-[0_0_40px_rgba(147,51,234,0.15)]
-                "
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-sm text-gray-400">{item.label}</span>
-                  <Icon className="w-5 h-5 text-purple-500" />
-                </div>
-
-                <div className="text-4xl font-semibold tracking-tight text-white">
-                  {value}
-                  {item.suffix}
-                </div>
-
-                {/* subtle “alive” pulse line */}
-                <div className="mt-6 h-[2px] w-full bg-gradient-to-r from-purple-600/60 via-green-500/40 to-transparent opacity-60" />
-              </div>
-            );
-          })}
+          {metrics.map((item) => (
+            <MetricCard key={item.label} item={item} visible={visible} />
+          ))}
         </div>
       </div>
     </section>

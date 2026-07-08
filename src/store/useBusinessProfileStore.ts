@@ -1,6 +1,8 @@
 import { create } from 'zustand';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { BusinessProfile, BusinessFormData } from '../types/businessTypes';
+
+type ApiError = AxiosError<{ message?: string }>;
 
 interface BusinessProfileState {
   profile: BusinessProfile | null;
@@ -28,7 +30,7 @@ export const useBusinessProfileStore = create<BusinessProfileState>((set) => ({
         if (!token || typeof token !== 'string') {
           throw new Error('Invalid or missing token in business authentication data');
         }
-      } catch (parseError) {
+      } catch {
         throw new Error('Invalid business authentication data format');
       }
 
@@ -36,8 +38,9 @@ export const useBusinessProfileStore = create<BusinessProfileState>((set) => ({
         headers: { Authorization: `Bearer ${token}` },
       });
       set({ profile: response.data });
-    } catch (error: any) {
-      set({ error: error.message || 'Failed to fetch profile' });
+    } catch (error) {
+      const err = error as ApiError;
+      set({ error: err.response?.data?.message || err.message || 'Failed to fetch profile' });
     } finally {
       set({ isLoading: false });
     }
@@ -56,7 +59,7 @@ export const useBusinessProfileStore = create<BusinessProfileState>((set) => ({
         if (!token || typeof token !== 'string') {
           throw new Error('Invalid or missing token in business authentication data');
         }
-      } catch (parseError) {
+      } catch {
         throw new Error('Invalid business authentication data format');
       }
 
@@ -74,8 +77,9 @@ export const useBusinessProfileStore = create<BusinessProfileState>((set) => ({
         },
       });
       set({ profile: response.data });
-    } catch (error: any) {
-      set({ error: error.message || 'Failed to update profile' });
+    } catch (error) {
+      const err = error as ApiError;
+      set({ error: err.response?.data?.message || err.message || 'Failed to update profile' });
       throw error;
     } finally {
       set({ isLoading: false });

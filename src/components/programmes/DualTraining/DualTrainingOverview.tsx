@@ -18,7 +18,6 @@ interface Sector {
   skills: string[];
 }
 
-interface DualTrainingOverviewProps {}
 
 // Apprenticeship & Dual Training — 7 sectors requested
 const sectors: Sector[] = [
@@ -155,7 +154,7 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   </button>
 );
 
-const DualTrainingOverview: React.FC<DualTrainingOverviewProps> = () => {
+const DualTrainingOverview: React.FC = () => {
   // State to track current slide for dynamic impact data
   const [currentSlide, setCurrentSlide] = useState(0);
 

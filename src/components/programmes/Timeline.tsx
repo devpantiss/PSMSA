@@ -456,7 +456,11 @@ const categoryConfig = {
   },
 };
 
-const useIntersectionObserver = (options = {}) => {
+const DEFAULT_OBSERVER_OPTIONS: IntersectionObserverInit = {};
+
+const useIntersectionObserver = (
+  options: IntersectionObserverInit = DEFAULT_OBSERVER_OPTIONS
+) => {
   const [visibleElements, setVisibleElements] = useState(new Set<string>());
 
   useEffect(() => {
@@ -480,7 +484,7 @@ const useIntersectionObserver = (options = {}) => {
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [options]);
 
   return visibleElements;
 };

@@ -1,7 +1,8 @@
 import React from "react";
+import type { Programme } from "./programmesData";
 
 interface Props {
-  programmes: any[];
+  programmes: Programme[];
   selected: string;
   onSelect: (key: string) => void;
 }

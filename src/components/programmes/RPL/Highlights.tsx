@@ -9,7 +9,6 @@ interface Highlight {
   icon: React.ReactNode;
 }
 
-interface RplHighlightsProps {}
 
 // Define highlights data with unique icons
 const highlights: Highlight[] = [
@@ -66,7 +65,7 @@ const headingVariants: Variants = {
   },
 };
 
-const RplHighlights: React.FC<RplHighlightsProps> = () => {
+const RplHighlights: React.FC = () => {
   return (
     <section
       className="relative py-24 bg-black overflow-hidden"

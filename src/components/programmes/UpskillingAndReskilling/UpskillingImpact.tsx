@@ -7,6 +7,7 @@ import {
   Building2,
   Target,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 const metrics = [
   { label: "Workers Upskilled / Reskilled", value: 5400, suffix: "+", icon: Users },
@@ -35,6 +36,30 @@ const useCountUp = (end: number, enabled: boolean) => {
   }, [end, enabled]);
 
   return count;
+};
+
+type Metric = {
+  label: string;
+  value: number;
+  suffix: string;
+  icon: LucideIcon;
+};
+
+const MetricCard = ({ metric, visible }: { metric: Metric; visible: boolean }) => {
+  const Icon = metric.icon;
+  const value = useCountUp(metric.value, visible);
+
+  return (
+    <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8">
+      <div className="flex justify-between mb-6">
+        <span className="text-sm text-gray-400">{metric.label}</span>
+        <Icon className="w-5 h-5 text-green-500" />
+      </div>
+      <div className="text-4xl font-semibold">
+        {value}{metric.suffix}
+      </div>
+    </div>
+  );
 };
 
 export default function WorkmenUpskillingImpactSection() {
@@ -69,21 +94,9 @@ export default function WorkmenUpskillingImpactSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {metrics.map((m, i) => {
-            const Icon = m.icon;
-            const value = useCountUp(m.value, visible);
-            return (
-              <div key={i} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8">
-                <div className="flex justify-between mb-6">
-                  <span className="text-sm text-gray-400">{m.label}</span>
-                  <Icon className="w-5 h-5 text-green-500" />
-                </div>
-                <div className="text-4xl font-semibold">
-                  {value}{m.suffix}
-                </div>
-              </div>
-            );
-          })}
+          {metrics.map((metric) => (
+            <MetricCard key={metric.label} metric={metric} visible={visible} />
+          ))}
         </div>
       </div>
     </section>

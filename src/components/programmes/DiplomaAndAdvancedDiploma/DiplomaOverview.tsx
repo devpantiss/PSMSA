@@ -18,7 +18,6 @@ interface Sector {
   skills: string[];
 }
 
-interface DiplomaOverviewProps {}
 
 // Updated sectors: Blue-Collar Focused Diploma Programs
 const sectors: Sector[] = [
@@ -146,7 +145,7 @@ const CustomNextArrow = ({ onClick }: CustomArrowProps) => (
   </button>
 );
 
-const DiplomaOverview: React.FC<DiplomaOverviewProps> = () => {
+const DiplomaOverview: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const sliderSettings = {

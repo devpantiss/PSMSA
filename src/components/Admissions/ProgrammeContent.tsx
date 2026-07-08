@@ -2,6 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProgrammeSections from "./ProgrammeSections";
 import ProgrammeFees from "./ProgrammeFees";
+import type { Programme } from "./programmesData";
 // import ProgrammeAdmissionTimeline from "./ProgrammeAdmissionTimeline";
 
 const contentVariants = {
@@ -11,7 +12,7 @@ const contentVariants = {
 };
 
 interface Props {
-  programme: any;
+  programme: Programme;
 }
 
 const ProgrammeContent: React.FC<Props> = ({ programme }) => {
