@@ -2,14 +2,14 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
     Truck,
-    Wrench,
+    // Wrench,
     // Cpu,
     Sparkles,
 } from "lucide-react";
 
 /* === Imported Lab Components === */
 import HEMMMechanicsShowcase from "./HEMMMechanicsShowcase";
-import HEMMMechanicLabPartsShowcase from "./HEMMMechanicLabPartsShowcase";
+// import HEMMMechanicLabPartsShowcase from "./HEMMMechanicLabPartsShowcase";
 // import ElectricalLabImmersive from "./ElectricalLabViewer";
 import ARVRLabShowcase from "./ARVRLabShowcase";
 
@@ -27,12 +27,12 @@ const TABS: {
             icon: <Truck className="h-4 w-4" />,
             description: "3D heavy equipment simulators",
         },
-        {
-            key: "parts",
-            label: "HEMM Lab Parts",
-            icon: <Wrench className="h-4 w-4" />,
-            description: "Mechanic systems & components",
-        },
+        // {
+        //     key: "parts",
+        //     label: "HEMM Lab Parts",
+        //     icon: <Wrench className="h-4 w-4" />,
+        //     description: "Mechanic systems & components",
+        // },
         // {
         //     key: "electrical",
         //     label: "Electrical Lab",
@@ -58,17 +58,28 @@ export default function TrainingLabsSection() {
                     <div>
                         <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs text-white/70">
                             <span className="h-2 w-2 animate-pulse rounded-full bg-[#4eeac8]" />
-                            Integrated Training Infrastructure
+                            Operator Pathway • Command Center
                         </p>
 
                         <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-                            Advanced Training Labs
+                            Operator Command Center
                         </h2>
 
                         <p className="mt-2 max-w-2xl text-sm text-white/65 md:text-base">
-                            Explore our technology-enabled training ecosystem — from heavy
-                            equipment simulators to immersive AR/VR labs.
+                            Simulator-led environments built for machine handling, operational discipline, and field-readiness.
                         </p>
+
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            <span className="rounded-full border border-white/10 bg-black/35 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-white/55">
+                                Heavy equipment simulation
+                            </span>
+                            <span className="rounded-full border border-white/10 bg-black/35 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-white/55">
+                                Machine familiarization
+                            </span>
+                            <span className="rounded-full border border-white/10 bg-black/35 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-white/55">
+                                Operational safety drills
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -125,7 +136,7 @@ export default function TrainingLabsSection() {
                             transition={{ duration: 0.4, ease: "easeOut" }}
                         >
                             {activeTab === "fleet" && <HEMMMechanicsShowcase />}
-                            {activeTab === "parts" && <HEMMMechanicLabPartsShowcase />}
+                            {/* {activeTab === "parts" && <HEMMMechanicLabPartsShowcase />} */}
                             {/* {activeTab === "electrical" && <ElectricalLabImmersive />} */}
                             {activeTab === "arvr" && <ARVRLabShowcase />}
                         </motion.div>

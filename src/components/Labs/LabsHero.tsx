@@ -3,10 +3,15 @@ import React from "react";
 const LabsHero: React.FC = () => {
   return (
     <section className="relative h-[100vh] flex items-center justify-center text-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: "url('/labs_hero.jpg')" }}
-      />
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/lab/lab_hero.mp4" type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-black/20" />
 
       <div className="relative z-10 max-w-4xl px-6">

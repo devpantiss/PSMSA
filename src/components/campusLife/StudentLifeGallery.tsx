@@ -1,83 +1,67 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 const lifestyleFeatures = [
   {
-    title: "Premium Accommodation",
-    desc: "Executive hostels designed for deep recovery.",
-    mediaType: "video",
-    src: "https://cdn.coverr.co/videos/coverr-modern-minimalist-living-room-6178/1080p.mp4"
+    title: "Team-Building Activities",
+    desc: "Structured activities help trainees build confidence, cooperation and shop-floor communication.",
+    type: "Student Community",
+    src: "/About/carousel/Gallery_5.JPG"
   },
   {
-    title: "Nutritional Dining",
-    desc: "High-performance meal plans crafted by dietary experts.",
-    mediaType: "image",
-    src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
+    title: "Sports and Fitness",
+    desc: "Daily movement, games and fitness routines support the stamina needed for industrial careers.",
+    type: "Wellbeing",
+    src: "/InfraPage/playground.jpg"
   },
   {
-    title: "Fitness & Recreation",
-    desc: "State-of-the-art gyms and sports courts for physical conditioning.",
-    mediaType: "video",
-    src: "https://cdn.coverr.co/videos/coverr-man-working-out-in-a-gym-5154/1080p.mp4"
+    title: "Skill Demonstrations",
+    desc: "Trainees present workshop tasks, tool handling and safety-led practical learning to peers and visitors.",
+    type: "Technical Culture",
+    src: "/images/weld.jpg"
   },
   {
-    title: "Community Learning",
-    desc: "Collaborative peer spaces for late-night study and planning.",
-    mediaType: "image",
-    src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+    title: "Celebrations and Graduation",
+    desc: "Milestones are recognised through certificates, campus events, family moments and placement readiness.",
+    type: "Campus Events",
+    src: "/About/carousel/Gallery_15.jpeg"
+  },
+  {
+    title: "Peer Learning Sessions",
+    desc: "Senior trainees, instructors and batchmates work together to strengthen fundamentals and discipline.",
+    type: "Mentoring",
+    src: "/About/carousel/Gallery_4.JPG"
+  },
+  {
+    title: "Community Engagement",
+    desc: "Projects and outreach activities help students connect technical learning with real social impact.",
+    type: "Leadership",
+    src: "/About/carousel/Gallery_7.JPG"
   }
 ];
 
 const MediaContainer = ({ feat }: { feat: typeof lifestyleFeatures[0] }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const handleMouseEnter = () => {
-    if (feat.mediaType === 'video' && videoRef.current) {
-       videoRef.current.play().catch(() => {});
-    }
-  }
-
-  const handleMouseLeave = () => {
-    if (feat.mediaType === 'video' && videoRef.current) {
-       videoRef.current.pause();
-    }
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="group relative aspect-[4/5] rounded-[2rem] overflow-hidden border border-white/10 bg-black cursor-pointer shadow-2xl"
+      className="group relative aspect-[4/5] overflow-hidden rounded-[24px] border border-white/10 bg-black shadow-2xl"
     >
-      {feat.mediaType === 'video' ? (
-        <video 
-          ref={videoRef}
-          src={feat.src}
-          muted 
-          loop 
-          playsInline
-          preload="none"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-40"
-        />
-      ) : (
-        <img loading="lazy" decoding="async" 
-          src={feat.src} 
-          alt={feat.title}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-60 group-hover:opacity-40"
-        />
-      )}
+      <img
+        loading="lazy"
+        decoding="async"
+        src={feat.src}
+        alt={feat.title}
+        className="absolute inset-0 h-full w-full object-cover opacity-70 transition-transform duration-1000 group-hover:scale-105 group-hover:opacity-55"
+      />
       
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       
       <div className="absolute inset-0 p-8 flex flex-col justify-end">
-        {feat.mediaType === 'video' && (
-           <div className="w-8 h-8 rounded-full border border-white/20 bg-black/40 backdrop-blur-sm flex items-center justify-center mb-6 opacity-80 group-hover:opacity-100">
-             <div className="w-0 h-0 border-t-[3px] border-b-[3px] border-l-[5px] border-transparent border-l-white ml-0.5" />
-           </div>
-        )}
+        <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.24em] text-[#4eeac8]">
+          {feat.type}
+        </p>
         <h3 className="text-xl font-bold text-white leading-tight mb-2 tracking-tight group-hover:text-purple-400 transition-colors">
           {feat.title}
         </h3>
@@ -91,7 +75,7 @@ const MediaContainer = ({ feat }: { feat: typeof lifestyleFeatures[0] }) => {
 
 const StudentLifeGallery: React.FC = () => {
   return (
-    <section className="relative py-32 px-6 bg-[#050505] overflow-hidden">
+    <section id="community" className="relative py-32 px-6 bg-[#050505] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
@@ -103,7 +87,7 @@ const StudentLifeGallery: React.FC = () => {
                viewport={{ once: true }}
                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white mb-4"
              >
-               Resort Lifestyle.
+               Student Community.
              </motion.h2>
              <motion.p
                initial={{ opacity: 0, x: -20 }}
@@ -112,13 +96,13 @@ const StudentLifeGallery: React.FC = () => {
                transition={{ delay: 0.1 }}
                className="text-lg text-zinc-400 font-light max-w-xl"
              >
-               World-class training demands world-class recovery. Hover to experience life on the Pantiss campus.
+               Campus life extends beyond workshops through sports, clubs, skill demonstrations, celebrations, peer learning and community engagement.
              </motion.p>
           </div>
         </div>
 
         {/* Video/Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {lifestyleFeatures.map((feat) => (
              <MediaContainer key={feat.title} feat={feat} />
           ))}

@@ -10,7 +10,7 @@ const programmes = [
     description:
       "Comprehensive training in technical and applied sciences, preparing students for supervisory and technician roles.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421119/diploma_diqahi.avif",
+      "/program/programs_image/diploma.jpg",
     duration: "2-3 years",
     highlights: ["Technical Proficiency", "Career-Ready Skills", "Lab-Based Learning"],
     path: "/our-programmes/diploma-programs",
@@ -20,7 +20,7 @@ const programmes = [
     description:
       "Hands-on skill development programs designed to create industry-ready technicians for blue-collar sectors.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762421038/iti_pld6fw.avif",
+    "/program/programs_image/iti.jpg",
     duration: "6-24 months",
     highlights: ["Hands-On Workshops", "Industry Tools", "Placement Assistance"],
     path: "/our-programmes/iti-program",
@@ -39,7 +39,7 @@ const programmes = [
     description:
       "Empowering women with industry-ready skills, certifications, and safe pathways into mining and heavy industry roles.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762167481/Gemini_Generated_Image_dm4793dm4793dm47_obiynh.png",
+    "/program/programs_image/women-in-mining.png",
     duration: "8-12 weeks",
     highlights: ["Inclusive Training", "Certification Ready", "Workplace Safety Focus"],
     path: "/our-programmes/women-in-mining",
@@ -49,7 +49,7 @@ const programmes = [
     description:
       "Structured certification pathways for operators to gain formal licensing, improve safety compliance, and boost employability.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1761745242/IMG_9085_tkrncl_1_1_cc29gu.jpg",
+    "/program/programs_image/operator.jpg",
     duration: "8-12 weeks",
     highlights: ["License Readiness", "Safety Compliance", "Practical Evaluation"],
     path: "/our-programmes/operator-licencing",

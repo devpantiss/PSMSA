@@ -10,22 +10,31 @@ import "slick-carousel/slick/slick-theme.css";
 
 const testimonials = [
   {
-    name: "Vikram S.",
-    role: "Certified Operator Candidate",
-    story: "The transition from VR simulation to the live 100-acre track was flawless. I felt like I had already been operating heavy machinery for years before I even stepped into the real cab.",
-    location: "Zone Alpha Training"
+    name: "Student Name Placeholder",
+    role: "Course or Trade Placeholder",
+    story: "CMS quote placeholder: add the student's real training experience, workshop moment, instructor support or placement preparation story here.",
+    location: "Home district / state placeholder",
+    image: "/About/carousel/Gallery_6.JPG",
+    company: "Placement company placeholder",
+    job: "Job role placeholder",
   },
   {
-    name: "Rahul M.",
-    role: "Industrial Logistics Trainee",
-    story: "Living in the executive hostels and eating performance-focused meals completely changed my mindset. It's not a school; it's a high-performance training camp.",
-    location: "Residential Campus"
+    name: "Student Name Placeholder",
+    role: "Course or Trade Placeholder",
+    story: "CMS quote placeholder: describe how practical training, safety discipline and peer learning helped this student prepare for work.",
+    location: "Home district / state placeholder",
+    image: "/About/carousel/Gallery_10.JPG",
+    company: "Placement company placeholder",
+    job: "Job role placeholder",
   },
   {
-    name: "Priya D.",
-    role: "Safety Protocol Lead",
-    story: "The hazard modules are incredibly immersive. Experiencing emergency shut-downs in a safe, controlled environment builds a reflexes that books simply cannot teach.",
-    location: "VR Hazard Safety Labs"
+    name: "Student Name Placeholder",
+    role: "Course or Trade Placeholder",
+    story: "CMS quote placeholder: add a real video testimonial transcript or short written story from the student.",
+    location: "Home district / state placeholder",
+    image: "/About/carousel/Gallery_11.jpg",
+    company: "Placement company placeholder",
+    job: "Job role placeholder",
   }
 ];
 
@@ -64,7 +73,7 @@ const CampusTestimonials: React.FC = () => {
   };
 
   return (
-    <section className="relative py-32 overflow-hidden bg-[#050505]">
+    <section id="stories" className="relative py-32 overflow-hidden bg-[#050505]">
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         
         {/* Apple-style minimalist header */}
@@ -75,7 +84,7 @@ const CampusTestimonials: React.FC = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6"
           >
-            Real Experience.
+            From Training Floor to Career
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -84,7 +93,7 @@ const CampusTestimonials: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-xl text-zinc-400 font-light"
           >
-            Insights from candidates within the ecosystem.
+            Video testimonials and written stories can be managed from the CMS without inventing placement data.
           </motion.p>
         </div>
 
@@ -96,27 +105,42 @@ const CampusTestimonials: React.FC = () => {
                 <div className="group relative h-full flex flex-col p-10 rounded-[2rem] bg-zinc-900 border border-white/5 backdrop-blur-3xl transition-all duration-500 hover:border-zinc-500/30">
                   
                   {/* Quote Icon */}
-                  <div className="mb-8 text-zinc-700 text-4xl">
-                    <FaQuoteLeft />
+                  <div className="mb-7 flex items-center gap-4">
+                    <img
+                      src={t.image}
+                      alt={`${t.name} portrait placeholder`}
+                      loading="lazy"
+                      className="h-16 w-16 rounded-2xl object-cover"
+                    />
+                    <div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-teal-400">
+                        Video / Story Placeholder
+                      </p>
+                      <p className="mt-1 text-sm text-zinc-500">{t.location}</p>
+                    </div>
                   </div>
 
                   {/* Story */}
                   <div className="mb-10 flex-1">
+                    <FaQuoteLeft className="mb-5 text-3xl text-zinc-700" />
                     <p className="text-zinc-300 text-lg md:text-xl leading-relaxed font-light tracking-wide">
                       "{t.story}"
                     </p>
                   </div>
 
                   {/* Sign-off */}
-                  <div className="flex items-center gap-4 pt-6 border-t border-white/5">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-900 border border-zinc-600" />
+                  <div className="pt-6 border-t border-white/5">
                     <div>
                       <h4 className="text-lg font-bold text-white tracking-tight">
                         {t.name}
                       </h4>
                       <p className="text-xs text-teal-400 uppercase tracking-widest font-semibold mt-1">
-                        {t.role} • {t.location}
+                        {t.role}
                       </p>
+                      <div className="mt-4 grid gap-2 text-xs text-zinc-500 sm:grid-cols-2">
+                        <span>{t.company}</span>
+                        <span>{t.job}</span>
+                      </div>
                     </div>
                   </div>
                 </div>

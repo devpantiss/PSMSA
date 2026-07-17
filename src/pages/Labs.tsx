@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, startTransition, useState } from "react";
+import React, { Suspense, lazy } from "react";
 import LabsHero from "../components/Labs/LabsHero";
 import LabsWhyItMatters from "../components/Labs/LabsWhyItMatters";
 import LabsGrid from "../components/Labs/LabsGrid";
@@ -14,8 +14,6 @@ const LabsSimulatorPromoBanner = lazy(
 
 const ACCENT = "#4eeac8";
 
-type RoleKey = "operator" | "technician";
-
 const highlights = [
   { value: "02", label: "Role-specific training zones" },
   { value: "05+", label: "Technology-enabled lab systems" },
@@ -26,50 +24,6 @@ const overviewPoints = [
   "Simulation-first learning environments",
   "Hands-on technical practice zones",
   "Industry-aligned training workflows",
-];
-
-// const overviewBands = [
-//   {
-//     title: "Operator Track",
-//     meta: "Simulators, control systems, safety drills",
-//   },
-//   {
-//     title: "Technician Track",
-//     meta: "Diagnostics, maintenance practice, workshop exposure",
-//   },
-// ];
-
-const roles: {
-  key: RoleKey;
-  title: string;
-  eyebrow: string;
-  description: string;
-  details: string[];
-}[] = [
-  {
-    key: "operator",
-    title: "Operator Command Center",
-    eyebrow: "Operator Roles",
-    description:
-      "Simulator-led environments built for machine handling, operational discipline, and field-readiness.",
-    details: [
-      "Heavy equipment simulation",
-      "Machine familiarization",
-      "Operational safety drills",
-    ],
-  },
-  {
-    key: "technician",
-    title: "Technician Innovation Bay",
-    eyebrow: "Technician Roles",
-    description:
-      "Technical labs focused on diagnostics, systems understanding, workshop practice, and maintenance readiness.",
-    details: [
-      "Electrical and systems diagnostics",
-      "Workshop-oriented practice",
-      "Maintenance pathway training",
-    ],
-  },
 ];
 
 function LabsLoader() {
@@ -112,13 +66,6 @@ function LabsLoader() {
 }
 
 const Labs: React.FC = () => {
-  const [activeRole, setActiveRole] = useState<RoleKey | null>(null);
-
-  const handleRoleChange = (role: RoleKey | null) => {
-    startTransition(() => {
-      setActiveRole(role);
-    });
-  };
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-black text-white">
@@ -287,113 +234,13 @@ const Labs: React.FC = () => {
         <LabsWhyItMatters />
         <LabsGrid />
 
-        <section className="relative py-10 md:py-14">
-          <div className="mx-auto max-w-7xl px-6">
-            {activeRole ? (
-              <Suspense fallback={<LabsLoader />}>
-                <div className="space-y-5">
-                  <div className="flex items-center justify-between rounded-[24px] border border-white/10 bg-black/40 px-4 py-3 backdrop-blur-xl">
-                    <div>
-                      <p
-                        className="text-xs font-semibold uppercase tracking-[0.34em]"
-                        style={{ color: ACCENT }}
-                      >
-                        {activeRole === "operator"
-                          ? "Operator Roles"
-                          : "Technician Roles"}
-                      </p>
-                      <p className="mt-1 text-sm text-white/55">
-                        {activeRole === "operator"
-                          ? "Operator-focused simulation and machine training"
-                          : "Technician-focused diagnostics and workshop training"}
-                      </p>
-                    </div>
+        <Suspense fallback={<LabsLoader />}>
+          <TrainingLabsSection />
+        </Suspense>
 
-                    <button
-                      type="button"
-                      onClick={() => handleRoleChange(null)}
-                      className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white/70 transition hover:border-white/20 hover:text-white"
-                    >
-                      Back
-                    </button>
-                  </div>
-
-                  {activeRole === "operator" ? (
-                    <TrainingLabsSection />
-                  ) : (
-                    <LabsSimulatorPromoBanner />
-                  )}
-                </div>
-              </Suspense>
-            ) : (
-              <>
-                <div className="mb-8 max-w-3xl">
-                  <p
-                    className="text-xs font-semibold uppercase tracking-[0.34em]"
-                    style={{ color: ACCENT }}
-                  >
-                    Select Training Pathway
-                  </p>
-                  <h2 className="mt-4 text-3xl font-semibold text-white md:text-4xl">
-                    Two role-based gateways into the lab ecosystem
-                  </h2>
-                </div>
-
-                <div className="grid gap-6 md:grid-cols-2">
-                  {roles.map((role) => (
-                    <button
-                      key={role.key}
-                      type="button"
-                      onClick={() => handleRoleChange(role.key)}
-                      className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-black/35 p-7 text-left transition duration-300 backdrop-blur-2xl hover:border-white/20 hover:bg-white/[0.05]"
-                    >
-                      <div className="pointer-events-none absolute inset-0">
-                        <div
-                          className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
-                          style={{
-                            background:
-                              "radial-gradient(circle at top right, rgba(78,234,200,0.18), transparent 45%)",
-                          }}
-                        />
-                        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(78,234,200,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(78,234,200,0.28)_1px,transparent_1px)] [background-size:30px_30px]" />
-                      </div>
-
-                      <div className="relative">
-                        <div className="flex items-center justify-between">
-                          <p
-                            className="text-xs font-semibold uppercase tracking-[0.34em]"
-                            style={{ color: ACCENT }}
-                          >
-                            {role.eyebrow}
-                          </p>
-                          <div className="h-3 w-3 rounded-full border border-white/25 bg-transparent transition group-hover:border-transparent group-hover:bg-[#4eeac8]" />
-                        </div>
-
-                        <h3 className="mt-5 text-2xl font-semibold text-white md:text-3xl">
-                          {role.title}
-                        </h3>
-                        <p className="mt-4 max-w-xl text-sm leading-7 text-white/62 md:text-base">
-                          {role.description}
-                        </p>
-
-                        <div className="mt-6 flex flex-wrap gap-3">
-                          {role.details.map((detail) => (
-                            <span
-                              key={detail}
-                              className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white/55"
-                            >
-                              {detail}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-        </section>
+        <Suspense fallback={<LabsLoader />}>
+          <LabsSimulatorPromoBanner />
+        </Suspense>
 
         <section className="relative py-6 md:py-8">
           <div className="mx-auto max-w-7xl px-6">

@@ -67,25 +67,28 @@ const VirtualLabsTourSection: React.FC = () => {
                 className="h-2 w-2 rounded-full animate-pulse"
                 style={{ backgroundColor: ACCENT }}
               />
-              Virtual Tour • Training Infrastructure
+              Technician Pathway • Innovation Bay
             </p>
 
             <h2 className="mt-4 text-3xl md:text-5xl font-semibold text-white">
-              Explore Our{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${ACCENT}, rgba(78,234,200,0.55))`,
-                }}
-              >
-                Training Labs
-              </span>
+              Technician Innovation Bay
             </h2>
 
             <p className="mt-4 max-w-3xl text-sm md:text-base text-white/70">
-              Navigate through Pantiss Skill Universe’s state-of-the-art labs via
-              an interactive virtual tour experience.
+              Technical labs focused on diagnostics, systems understanding, workshop practice, and maintenance readiness.
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              <span className="rounded-full border border-white/10 bg-black/35 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-white/55">
+                Electrical and systems diagnostics
+              </span>
+              <span className="rounded-full border border-white/10 bg-black/35 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-white/55">
+                Workshop-oriented practice
+              </span>
+              <span className="rounded-full border border-white/10 bg-black/35 px-4 py-1.5 text-xs uppercase tracking-[0.15em] text-white/55">
+                Maintenance pathway training
+              </span>
+            </div>
           </div>
 
           {/* TABS */}

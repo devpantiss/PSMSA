@@ -130,7 +130,7 @@ const infraData: InfraItem[] = [
   {
     title: "Advanced Operator Training Simulators",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158602/WhatsApp_Image_2025-03-03_at_10.47.37_PM_ex1zpe.jpg",
+      "/homepage/fleet/mining_sim.png",
     description:
       "High-fidelity mining and industrial machinery simulators.",
     quantity: "2 Units",
@@ -140,7 +140,7 @@ const infraData: InfraItem[] = [
   {
     title: "Large Scale Shipping Simulator",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762158602/WhatsApp_Image_2025-02-28_at_5.00.19_PM_frl41v.jpg",
+    "/homepage/fleet/shipping_sim.png",
     description:
       "AR-powered maritime and port logistics simulator.",
     quantity: "4 Units",
@@ -150,7 +150,7 @@ const infraData: InfraItem[] = [
   {
     title: "Infrastructure Equipment Simulator",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762159262/crane_empyz0.png",
+    "/homepage/fleet/crane_sim.jpg",
     description:
       "Crane, dozer and excavator simulation platform.",
     quantity: "Coming Soon",

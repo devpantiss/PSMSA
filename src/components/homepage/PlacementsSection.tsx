@@ -35,31 +35,31 @@ const statsData: Stat[] = [
 const companiesData: Company[] = [
   {
     name: "Vedanta Resources",
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163698/vedanta-removebg-preview_oxywkl.png",
+    logo: "/homepage/placements/company/vedanta-removebg-preview.png",
   },
   {
     name: "Tata Steel",
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163686/TATA_STEEL-removebg-preview_nkf1kz.png",
+    logo: "/homepage/placements/company/TATA_STEEL-removebg-preview.png",
   },
   {
     name: "Wistron",
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163688/pngegg_4_zq8y0w.png",
+    logo: "/homepage/placements/company/Wistron.webp",
   },
   {
     name: "Jindal Steel & Power",
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163608/Jindal_Steel_and_Power_Logo.svg_oiahk4.png",
+    logo: "/homepage/placements/company/Jindal_Steel_and_Power_Logo.svg.png",
   },
   {
     name: "Dhoot Transmission",
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163613/dhoot-trans-removebg-preview_rz6kgo.png",
+    logo: "/homepage/placements/company/dhoot-trans.png",
   },
   {
     name: "Schneider Electric",
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163645/schneider_electric_if28pt.png",
+    logo: "/homepage/placements/company/schneider_electric.png",
   },
   {
     name: "FleetGuard",
-    logo: "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163669/fleetguard_fxp8wb.png",
+    logo: "/homepage/placements/company/fleetguard.png",
   },
 ];
 
@@ -75,42 +75,42 @@ const studentsData: Student[] = [
     batch: "Batch 2023",
     package: "₹3.5 Lac.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163947/student-6_ls3cpe.jpg",
+      "/homepage/placements/students/student-6.jpg",
   },
   {
     name: "Nabjyoti Nayak",
     batch: "Batch 2024",
     package: "₹3.5 Lac.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163909/student-5_duxroz.jpg",
+    "/homepage/placements/students/student-5.jpg",
   },
   {
     name: "Manoj Kumar Kisan",
     batch: "Batch 2024",
     package: "₹3 Lac.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163916/student-4_p3zw09.jpg",
+    "/homepage/placements/students/student-4.jpg",
   },
   {
     name: "Kanha Raula",
     batch: "Batch 2024",
     package: "₹2.8 Lac.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163900/student-3_tzesxw.jpg",
+    "/homepage/placements/students/student-3.jpg",
   },
   {
     name: "Subham Majhi",
     batch: "Batch 2025",
     package: "₹2.8 Lac.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163885/student-2_jfgmyh.jpg",
+    "/homepage/placements/students/student-2.jpg",
   },
   {
     name: "Chandan Sahoo",
     batch: "Batch 2025",
     package: "₹2.64 Lac.",
     image:
-      "https://res.cloudinary.com/dxzhnns58/image/upload/v1762163871/student-1_fbrzzd.jpg",
+    "/homepage/placements/students/student-1.jpg",
   },
 ];
 

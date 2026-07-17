@@ -10,7 +10,7 @@ const GlobalPlacement: React.FC = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
+          video.play().catch(() => { });
         } else {
           video.pause();
         }
@@ -30,7 +30,7 @@ const GlobalPlacement: React.FC = () => {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="https://res.cloudinary.com/dxzhnns58/video/upload/v1762412314/3125427-uhd_3840_2160_25fps_goajqw.mp4"
+        src="/homepage/placements/3125427-uhd_3840_2160_25fps.mp4"
         loop
         muted
         playsInline
@@ -100,8 +100,7 @@ const GlobalPlacement: React.FC = () => {
             <div className="h-[400px] rounded-2xl bg-white/10 backdrop-blur-sm border border-green-600 p-4 flex flex-col md:flex-row items-center gap-6">
               {/* Replace image with your own SVG/map */}
               <img
-                src="https://res.cloudinary.com/dxzhnns58/image/upload/v1762413812/ChatGPT_Image_Nov_6_2025_12_53_13_PM_ngcmc0.png"
-                alt="World map showing placement regions"
+                src="/homepage/placements/world_map.png"
                 className="h-full rounded-2xl ring-2 ring-purple-600 object-contain"
                 loading="lazy"
                 decoding="async"
